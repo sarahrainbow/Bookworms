@@ -43,4 +43,4 @@ Library Cardholders is a many-to-many database as it connects customer informati
 
 ### Library Application Schema
 
-![Screen Shot 2019-02-26 at 17.39.37](/Users/Rainbow/Desktop/Screen Shot 2019-02-26 at 17.39.37.png)
+![LibraryApplicationSchema](images/LibraryApplicationSchema.png)
