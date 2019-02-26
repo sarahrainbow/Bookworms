@@ -19,5 +19,5 @@
 | As an administrator                | I want to have a log of all users with a library card        | so that they can be contacted as required                    |
 | As an administrator/customer       | I want to be able to see what books are available            | so that I don't get/recommend a book that's already on loan  |
 | As a manager                       | I want to securely store the details of staff on our payroll | so that they can only be accessed by me/other authorised personel |
-| As a librarian                     | I want to be able to see stock levels of books across the city | so that we can recommned customers to go elsewhere if we are out of stock |
+| As a librarian                     | I want to be able to see stock levels of books across the city | so that we can recommend customers to go elsewhere if we are out of stock |
 
