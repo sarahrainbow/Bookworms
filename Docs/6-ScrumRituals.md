@@ -10,6 +10,8 @@ A time to decide what is achievable within this sprint, what work we can commit 
 
 2. Decide which tickets should be put into the Sprint backlog
 
+3. Order them in Trello according to MoSCoW
+
 
 
 ### 2. Daily stand-up
