@@ -19,4 +19,4 @@
 
 
 ## Other observations
-- GitHub is providing us with an additional learning curve - I think it would be good to monitor whether it's adding to or detracting from our project and how we are each individually learning as time goes on. There is also a danger that we start commiting changes to files separately and in turn diverge from the strong collaborative focus that Victoria wants us to have.
+- GitHub is providing us with an additional learning curve - I (FE) think it would be good to monitor whether it's adding to or detracting from our project and how we are each individually learning as time goes on. There is also a danger that we start commiting changes to files separately and in turn diverge from the strong collaborative focus that Victoria wants us to have.
