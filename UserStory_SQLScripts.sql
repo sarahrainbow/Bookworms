@@ -72,7 +72,7 @@ ON L.BookID=B.BookID
 WHERE DateReturned IS NOT NULL #means only pulls back books that are not checked out
 		AND BranchID=0 #can be changed
 
-GROUP BY ISBN,Title,Author,Year #group statement necessary for count function to work
+GROUP BY ISBN,Title,Author,Year,Branch #group statement necessary for count function to work
 
 ;
 
