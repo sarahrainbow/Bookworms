@@ -2,13 +2,14 @@
 
 Welcome to the Bookworms Library app!
 
-1. [Application Requirements](/Docs/1-ApplicationRequirements.md)
 
-Here we outline the requirements our application must fulfil. 
-
-2. [User stories](/Docs/2-UserStories.md)
+1. [User stories](/Docs/2-UserStories.md)
 
 Our user stories helped shape our application requirements.
+
+2. [Application Requirements](/Docs/1-ApplicationRequirements.md)
+
+Here we outline the requirements our application must fulfil. 
 
 3. [Example Database](/Docs/4-ExampleTables.xlsx)
 
