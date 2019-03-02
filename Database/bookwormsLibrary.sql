@@ -18,9 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `LibraryApp`
---
+CREATE DATABASE IF NOT EXISTS LibraryApp;
+USE LibraryApp;
 
 -- --------------------------------------------------------
 
@@ -303,10 +302,10 @@ INSERT INTO `City` (`CityID`, `CityName`) VALUES
 -- Table structure for table `Copy`
 --
 
-CREATE TABLE `Copy` (
-  `BookID` tinyint(9) UNSIGNED ZEROFILL NOT NULL,
+CREATE TABLE `Title` (
   `BookISBN` char(14) NOT NULL,
-  `Copies` tinyint(3) DEFAULT NULL
+  `BookTitle` varchar(50) NOT NULL,
+  FOREIGN KEY(`BookISBN`) REFERENCES Book(BookISBN)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -609,7 +608,8 @@ ALTER TABLE `Author`
 -- Indexes for table `Book`
 --
 ALTER TABLE `Book`
-  ADD PRIMARY KEY (`BookISBN`),
+  ADD PRIMARY KEY (`BookID`),
+  ADD KEY (`BookISBN`),
   ADD KEY `LibraryBranch` (`LibraryBranch`),
   ADD KEY `AgeRange` (`AgeRange`),
   ADD KEY `Genre` (`Genre`);

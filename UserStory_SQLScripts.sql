@@ -1,5 +1,51 @@
 ## USER STORY - SQL SCRIPTS ##
 
+#UserStory6 As a customer I want to search for books by title so that I can quickly find what I am looking for
+
+
+SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*
+FROM Book_Author
+INNER JOIN Book
+	ON Book_Author.BookID=Book.BookID
+INNER JOIN Author
+	ON Book_Author.AuthorID = Author.AuthorID
+Where Book.Title= 'The Subtle Art of Not Giving a F*ck';
+
+
+
+#UserStory7  As a customer I want to search for books by author so that I can see everything they have published
+
+
+SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*
+FROM Book_Author
+INNER JOIN Book
+	ON Book_Author.BookID=Book.BookID
+INNER JOIN Author
+	ON Book_Author.AuthorID = Author.AuthorID
+Where Author.FirstName = 'Gary' AND Author.LastName = 'Chapman';
+
+#UserStory8 As a customer I want to search for books by ISBN so that I can quickly find what I am looking for
+
+SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*
+FROM Book_Author
+INNER JOIN Book
+	ON Book_Author.BookID=Book.BookID
+INNER JOIN Author
+	ON Book_Author.AuthorID = Author.AuthorID
+Where Book.BookISBN = '978-0062457714';
+
+
+#UserStory9  As a customer I want to have a 'my account' area So that I can see personal and borrowing information
+
+-- Book needs BookLoanHistory field, LibraryCardHolder also needs CustomerLoanHistory
+
+
+
+#UserStory10  As a customer I want to delete reserved books from my account so that I can change my mind
+
+-- perhaps lets 'shelve' this idea for now, seems a non-vital step at this point to have a reserve book option… 
+
+
 #NB - have written these without access to latest version of database so may need to update column/table names and rectify errors
 
 
