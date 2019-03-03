@@ -47,7 +47,7 @@ Where Book.BookISBN = '978-0062457714';
 -- perhaps lets 'shelve' this idea for now, seems a non-vital step at this point to have a reserve book option… 
 
 
-#NB - have written these without access to latest version of database so may need to update column/table names and rectify errors
+
 
 
 #UserStory11 I want to be able to update my name and address information
@@ -59,7 +59,7 @@ City.CityName = 'Bath',
 Postcode.Postcode = 'BA2 0AA'
 Where Address.AddressID =  000000001  
 
-
+#NB - have written these without access to latest version of database so may need to update column/table names and rectify errors
 #UserStory16 - select overdue books (have kept simple for now but could also add LCHolder details to it too)
 
 SELECT B.BookID #Have written Book ID assuming we create a Copy table (BookID primary key, ISBN foreign key inbooks)
