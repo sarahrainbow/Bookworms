@@ -1,5 +1,13 @@
 ## USER STORY - SQL SCRIPTS ##
 
+
+
+
+
+
+
+
+
 #UserStory6 As a customer I want to search for books by title so that I can quickly find what I am looking for
 
 
@@ -47,6 +55,27 @@ Where Book.BookISBN = '978-0062457714';
 
 
 #NB - have written these without access to latest version of database so may need to update column/table names and rectify errors
+
+
+#UserStory11 I want to be able to update my name and address information
+
+UPDATE Address, Road, City, Postcode
+SET Address.AddressNumber = '15',
+Road.RoadName = 'High Street',
+City.CityName = 'Bath',
+Postcode.Postcode = 'BA2 0AA'
+Where Address.AddressID =  000000001  
+
+
+
+
+ 
+
+
+
+
+
+
 
 
 #UserStory16 - select overdue books (have kept simple for now but could also add LCHolder details to it too)
@@ -151,3 +180,38 @@ WHERE DateReturned IS NOT NULL #means only pulls back books that are not checked
 GROUP BY ISBN,Title,Author,Year #group statement necessary for count function to work
 
 ;
+
+
+#USER STORY 20
+I want to be able to see stock levels of books across the city
+
+SELECT * FROM librarycardholder
+
+
+SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.* , LibraryBranch.LibraryBranch
+FROM bookisbn_authorid
+INNER JOIN Book
+	ON bookisbn_authorid.BookISBN=Book.BookISBN
+INNER JOIN Author
+	ON bookisbn_authorid.AuthorID = Author.AuthorID
+	INNER JOIN LibraryBranch
+	ON LibraryBranch.BranchCode = Book.BranchCode
+	WHERE Book.IsAvailable = 1;
+
+
+
+
+
+#USER STORY 21
+21 As I customer I want to check out a book
+
+UPDATE Book
+SET IsAvailable = 0
+where Book.BookID = 000000001;
+
+#USER STORY 22
+As a customer I want to check in a book
+
+UPDATE Book
+SET IsAvailable = 1
+where Book.BookID = 000000001;
