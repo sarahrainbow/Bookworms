@@ -1,13 +1,6 @@
 ## USER STORY - SQL SCRIPTS ##
 
 
-
-
-
-
-
-
-
 #UserStory6 As a customer I want to search for books by title so that I can quickly find what I am looking for
 
 
@@ -65,17 +58,6 @@ Road.RoadName = 'High Street',
 City.CityName = 'Bath',
 Postcode.Postcode = 'BA2 0AA'
 Where Address.AddressID =  000000001  
-
-
-
-
- 
-
-
-
-
-
-
 
 
 #UserStory16 - select overdue books (have kept simple for now but could also add LCHolder details to it too)
@@ -197,9 +179,6 @@ INNER JOIN Author
 	INNER JOIN LibraryBranch
 	ON LibraryBranch.BranchCode = Book.BranchCode
 	WHERE Book.IsAvailable = 1;
-
-
-
 
 
 #USER STORY 21
