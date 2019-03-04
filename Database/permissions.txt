@@ -1,0 +1,36 @@
+# Privileges for `GWash`@`%`
+
+GRANT USAGE ON *.* TO 'GWash'@'%' IDENTIFIED BY PASSWORD '*C56EC454689C8A160633307A6ECC536111F5087B';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON `libraryapp`.* TO 'GWash'@'%';
+
+
+# Privileges for `Queenie`@`%`
+
+GRANT USAGE ON *.* TO 'Queenie'@'%' IDENTIFIED BY PASSWORD '*29D5EA5BC6930034F7B60776EBD7CFE4F028744F';
+
+GRANT ALL PRIVILEGES ON `libraryapp`.* TO 'Queenie'@'%';
+
+
+# Privileges for `Stuart1542`@`%`
+
+GRANT USAGE ON *.* TO 'Stuart1542'@'%' IDENTIFIED BY PASSWORD '*2AD7524A4133975EDC6B4C52A96BE58128597CC6';
+
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE ON `libraryapp`.* TO 'Stuart1542'@'%';
+
+
+# Privileges for `root`@`127.0.0.1`
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' WITH GRANT OPTION;
+
+
+# Privileges for `root`@`::1`
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'::1' WITH GRANT OPTION;
+
+
+# Privileges for `root`@`localhost`
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+
+GRANT PROXY ON ''@'%' TO 'root'@'localhost' WITH GRANT OPTION;
