@@ -394,6 +394,21 @@ BEGIN
 END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatePassword`(IN thisPassword varchar(20)
+  ,IN thisUserID int(10))
+BEGIN
+
+UPDATE librarycardholder
+SET librarycardholder.Password  = thisPassword
+
+WHERE librarycardholder.librarycardid = thisUserID;
+
+END$$
+DELIMITER ;
+
+DROP table libraryUsers;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
