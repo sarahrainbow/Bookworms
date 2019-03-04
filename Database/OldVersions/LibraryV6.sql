@@ -8,6 +8,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+Create database if not exists LibraryApp;
+Use LibraryApp;
+
 
 CREATE TABLE `Address` (
   `AddressID` int(9) UNSIGNED ZEROFILL NOT NULL,
@@ -77,29 +80,32 @@ CREATE TABLE `Book` (
   `BookISBN` char(14) NOT NULL,
   `Title` varchar(120) NOT NULL,
   `YearPublished` year(4) NOT NULL,
-  `LibraryBranch` tinyint(3) UNSIGNED DEFAULT NULL,
   `AgeRange` tinyint(3) UNSIGNED DEFAULT NULL,
-  `Genre` tinyint(3) UNSIGNED DEFAULT NULL,
+  `Genre` tinyint(3) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `CopyAvailibility` (
   `BookID` int(9) UNSIGNED ZEROFILL NOT NULL,
-  `IsAvailable` bit(1) NOT NULL,
+  `BookISBN` char(14) NOT NULL,
+  `IsAvailable` bit(1) NOT NULL DEFAULT 1,  
   `BranchCode` tinyint(3) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Book` (`BookISBN`, `Title`, `YearPublished`, `LibraryBranch`, `AgeRange`, `Genre`, `BookID`, `IsAvailable`, `BranchCode`) VALUES
-('978-0062457714', 'The Subtle Art of Not Giving a F*ck', 2018, 1, 1, 1, 000000001, b'0', 1),
-('978-0062801975', 'Homebody: A Guide to Creating Spaces You Never Want to Leave', 2018, 1, 1, 1, 000000002, b'0', NULL),
-('978-0241321980', 'Diary of a Wimpy Kid: The Meltdown (book 13', 2018, 1, 1, 1, 000000003, b'0', NULL),
-('978-0241321988', 'Good Omens', 1990, 2, 2, 3, 000000004, b'0', NULL),
-('978-0241334140', 'Becoming', 2018, 1, 1, 1, 000000005, b'0', NULL),
-('978-0241351635', '12 Rules for Life: An Antidote to Chaos', 2018, 1, 1, 1, 000000006, b'0', NULL),
-('978-0802418104', 'Loving Your Spouse When You Feel Like Walking Away', 2018, 1, 1, 1, 000000007, b'0', NULL),
-('978-1400201655', 'Girl, wash your face', 2018, 1, 1, 1, 000000008, b'0', NULL),
-('978-1407195575', 'The Wonky Donkey', 2018, 1, 1, 1, 000000009, b'0', NULL),
-('978-1408711408', 'Fire and fury', 2018, 1, 1, 1, 000000010, b'0', NULL),
-('978-1452173801', 'Last week tonight', 2018, 1, 1, 1, 000000011, b'0', NULL),
-('978-1471181290', 'Fear: Trump in the White House', 2018, 1, 1, 1, 000000012, b'0', NULL),
-('978-1529000825', 'A Higher Loyalty: Truth, Lies, and Leadership', 2018, 1, 1, 1, 000000013, b'0', NULL),
-('978-1592338153', 'The Beginners KetoDiet Cookbook', 2018, 1, 1, 1, 000000014, b'0', NULL);
+INSERT INTO `Book` (`BookISBN`, `Title`, `YearPublished`, `AgeRange`, `Genre`) VALUES
+('978-0062457714', 'The Subtle Art of Not Giving a F*ck', 2018, 1, 1),
+('978-0062801975', 'Homebody: A Guide to Creating Spaces You Never Want to Leave', 2018, 1, 1),
+('978-0241321980', 'Diary of a Wimpy Kid: The Meltdown (book 13', 2018, 1, 1),
+('978-0241321988', 'Good Omens', 1990, 2, 2),
+('978-0241334140', 'Becoming', 2018, 1, 1),
+('978-0241351635', '12 Rules for Life: An Antidote to Chaos', 2018, 1, 1),
+('978-0802418104', 'Loving Your Spouse When You Feel Like Walking Away', 2018, 1, 1),
+('978-1400201655', 'Girl, wash your face', 2018, 5, 4),
+('978-1407195575', 'The Wonky Donkey', 2018, 3, 3),
+('978-1408711408', 'Fire and fury', 2018, 1, 1),
+('978-1452173801', 'Last week tonight', 2018, 1, 1),
+('978-1471181290', 'Fear: Trump in the White House', 2018, 1, 1),
+('978-1529000825', 'A Higher Loyalty: Truth, Lies, and Leadership', 2018, 1, 1),
+('978-1592338153', 'The Beginners KetoDiet Cookbook', 2018, 9, 4);
 
 CREATE TABLE `BookISBN_AuthorID` (
   `BookISBN` char(14) NOT NULL,
@@ -244,12 +250,9 @@ ALTER TABLE `Author`
   ADD PRIMARY KEY (`AuthorID`);
 
 ALTER TABLE `Book`
-  ADD PRIMARY KEY (`BookID`),
-  ADD KEY `LibraryBranch` (`LibraryBranch`),
+  ADD PRIMARY KEY (`BookISBN`),
   ADD KEY `AgeRange` (`AgeRange`),
-  ADD KEY `Genre` (`Genre`),
-  ADD KEY `BookISBN` (`BookISBN`) USING BTREE,
-  ADD KEY `BranchCode` (`BranchCode`);
+  ADD KEY `Genre` (`Genre`);
 
 ALTER TABLE `BookISBN_AuthorID`
   ADD KEY `BookISBN` (`BookISBN`),
@@ -287,9 +290,6 @@ ALTER TABLE `AgeRange`
 ALTER TABLE `Author`
   MODIFY `AuthorID` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
-ALTER TABLE `Book`
-  MODIFY `BookID` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 ALTER TABLE `City`
   MODIFY `CityID` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
@@ -318,10 +318,8 @@ ALTER TABLE `Address`
   ADD CONSTRAINT `address_ibfk_3` FOREIGN KEY (`Postcode`) REFERENCES `Postcode` (`PostcodeID`);
 
 ALTER TABLE `Book`
-  ADD CONSTRAINT `book_ibfk_1` FOREIGN KEY (`LibraryBranch`) REFERENCES `LibraryBranch` (`BranchCode`),
   ADD CONSTRAINT `book_ibfk_2` FOREIGN KEY (`AgeRange`) REFERENCES `AgeRange` (`AgeCode`),
-  ADD CONSTRAINT `book_ibfk_3` FOREIGN KEY (`Genre`) REFERENCES `Genre` (`GenreCode`),
-  ADD CONSTRAINT `book_ibfk_4` FOREIGN KEY (`BranchCode`) REFERENCES `LibraryBranch` (`BranchCode`);
+  ADD CONSTRAINT `book_ibfk_3` FOREIGN KEY (`Genre`) REFERENCES `Genre` (`GenreCode`);
 
 ALTER TABLE `BookISBN_AuthorID`
   ADD CONSTRAINT `bookisbn_authorid_ibfk_1` FOREIGN KEY (`BookISBN`) REFERENCES `book` (`BookISBN`),

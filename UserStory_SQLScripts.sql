@@ -4,41 +4,52 @@
 #UserStory6 As a customer I want to search for books by title so that I can quickly find what I am looking for
 
 
-SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*
-FROM Book_Author
+SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, CopyAvailibility.IsAvailable, LibraryBranch.LibraryBranch
+FROM bookisbn_authorid
 INNER JOIN Book
-	ON Book_Author.BookID=Book.BookID
+	ON bookisbn_authorid.BookISBN=Book.BookISBN
 INNER JOIN Author
-	ON Book_Author.AuthorID = Author.AuthorID
-Where Book.Title= 'The Subtle Art of Not Giving a F*ck';
+	ON bookisbn_authorid.AuthorID = Author.AuthorID
+INNER JOIN CopyAvailibility
+	ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
+INNER JOIN LibraryBranch 
+	ON CopyAvailibility.BranchCode = LibraryBranch.BranchCode
+Where Book.Title= 'The Subtle Art of Not Giving a F*ck' AND CopyAvailibility.IsAvailable = 1;
 
 
 
 #UserStory7  As a customer I want to search for books by author so that I can see everything they have published
 
-
-SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*
-FROM Book_Author
+SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, CopyAvailibility.IsAvailable, LibraryBranch.LibraryBranch
+FROM bookisbn_authorid
 INNER JOIN Book
-	ON Book_Author.BookID=Book.BookID
+	ON bookisbn_authorid.BookISBN=Book.BookISBN
 INNER JOIN Author
-	ON Book_Author.AuthorID = Author.AuthorID
-Where Author.FirstName = 'Gary' AND Author.LastName = 'Chapman';
+	ON bookisbn_authorid.AuthorID = Author.AuthorID
+INNER JOIN CopyAvailibility
+	ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
+INNER JOIN LibraryBranch 
+	ON CopyAvailibility.BranchCode = LibraryBranch.BranchCode
+Where Author.FirstName = 'Gary' AND Author.LastName = 'Chapman' AND CopyAvailibility.IsAvailable = 1;
 
 #UserStory8 As a customer I want to search for books by ISBN so that I can quickly find what I am looking for
 
-SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*
-FROM Book_Author
+SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, CopyAvailibility.IsAvailable, LibraryBranch.LibraryBranch
+FROM bookisbn_authorid
 INNER JOIN Book
-	ON Book_Author.BookID=Book.BookID
+	ON bookisbn_authorid.BookISBN=Book.BookISBN
 INNER JOIN Author
-	ON Book_Author.AuthorID = Author.AuthorID
-Where Book.BookISBN = '978-0062457714';
+	ON bookisbn_authorid.AuthorID = Author.AuthorID
+INNER JOIN CopyAvailibility
+	ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
+INNER JOIN LibraryBranch 
+	ON CopyAvailibility.BranchCode = LibraryBranch.BranchCode
+Where Book.BookISBN = '978-0062457714' AND CopyAvailibility.IsAvailable = 1;
 
 
 #UserStory9  As a customer I want to have a 'my account' area So that I can see personal and borrowing information
 
--- Book needs BookLoanHistory field, LibraryCardHolder also needs CustomerLoanHistory
+-- Need Loan table to be created. Book needs BookLoanHistory field, LibraryCardHolder also needs CustomerLoanHistory
 
 
 
@@ -167,18 +178,18 @@ GROUP BY ISBN,Title,Author,Year #group statement necessary for count function to
 #USER STORY 20
 I want to be able to see stock levels of books across the city
 
-SELECT * FROM librarycardholder
-
-
-SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.* , LibraryBranch.LibraryBranch
+SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, CopyAvailibility.IsAvailable, LibraryBranch.LibraryBranch
 FROM bookisbn_authorid
 INNER JOIN Book
 	ON bookisbn_authorid.BookISBN=Book.BookISBN
 INNER JOIN Author
 	ON bookisbn_authorid.AuthorID = Author.AuthorID
-	INNER JOIN LibraryBranch
-	ON LibraryBranch.BranchCode = Book.BranchCode
-	WHERE Book.IsAvailable = 1;
+INNER JOIN CopyAvailibility
+	ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
+INNER JOIN LibraryBranch 
+	ON CopyAvailibility.BranchCode = LibraryBranch.BranchCode
+WHERE CopyAvailibility.IsAvailable = 1;
+
 
 
 #USER STORY 21
