@@ -64,18 +64,18 @@ City.CityName = 'Bath',
 Postcode.Postcode = 'BA2 0AA'
 Where Address.AddressID =  000000001  
 
-User story #12 As a customer I want to be able to change my password
+#User story 12 As a customer I want to be able to change my password
 
 UPDATE librarycardholder
 SET librarycardholder.Password  = '745845'
 WHERE librarycardholder.librarycardid = 1
 
-User story #13 As a library website administrator I want to search for user accounts
+#User story 13 As a library website administrator I want to search for user accounts
 
 SELECT * FROM librarycardholder
 WHERE LibraryCardID = 1
 
-User story #14 As a library website administrator I want add new book titles to the database as they become available
+#User story 14 As a library website administrator I want add new book titles to the database as they become available
 
 INSERT INTO book(BookISBN, Title, YearPublished, LibraryBranch, AgeRange, Genre, IsAvailable)
 VALUES ('978-1405288583', "Mr Wolf's Pancackes", '2017', '2', '2', '4', '1');
@@ -86,7 +86,7 @@ VALUES ('Jan', 'Fearnley');
 INSERT INTO bookisbn_authorID(BookISBN, AuthorID)
 VALUES ('978-1405288583', '000000016');
 
-User story #15 As a library website administrator I want to set a control on the maximum number of books a user can borrow
+#User story 15 As a library website administrator I want to set a control on the maximum number of books a user can borrow
 
 We need a loans table for this but think it could look something like this. Out of scope for now
 
