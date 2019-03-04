@@ -61,8 +61,13 @@ Where Book.BookISBN = '978-0062457714' AND CopyAvailibility.IsAvailable = 1;
 
 
 
-#UserStory11 I want to be able to update my name and address information
+#UserStory11 As a customer I want to be able to update my name and address information
+-- name update--
+UPDATE librarycardholder
+SET librarycardholder.Forename = 'Ell'
+WHERE librarycardholder.librarycardid = 1
 
+--address update--
 UPDATE Address, Road, City, Postcode
 SET Address.AddressNumber = '15',
 Road.RoadName = 'High Street',
@@ -70,7 +75,41 @@ City.CityName = 'Bath',
 Postcode.Postcode = 'BA2 0AA'
 Where Address.AddressID =  000000001  
 
+#User story 12 As a customer I want to be able to change my password
+
+UPDATE librarycardholder
+SET librarycardholder.Password  = '745845'
+WHERE librarycardholder.librarycardid = 1
+
+#User story 13 As a library website administrator I want to search for user accounts
+
+SELECT * FROM librarycardholder
+WHERE LibraryCardID = 1
+
+#User story 14 As a library website administrator I want add new book titles to the database as they become available
+
+INSERT INTO book(BookISBN, Title, YearPublished, LibraryBranch, AgeRange, Genre, IsAvailable)
+VALUES ('978-1405288583', "Mr Wolf's Pancackes", '2017', '2', '2', '4', '1');
+
+INSERT INTO author (FirstName, LastName)
+VALUES ('Jan', 'Fearnley');
+
+INSERT INTO bookisbn_authorID(BookISBN, AuthorID)
+VALUES ('978-1405288583', '000000016');
+
+#User story 15 As a library website administrator I want to set a control on the maximum number of books a user can borrow
+
+We need a loans table for this but think it could look something like this. Out of scope for now
+
+SELECT LibraryCardID
+FROM librarycardholder
+WHERE LibraryCardID = ANY (SELECT FROM Loan  WHERE LoanQuantity = <=5);
+
+
+
+
 #NB - have written these without access to latest version of database so may need to update column/table names and rectify errors
+
 #UserStory16 - select overdue books (have kept simple for now but could also add LCHolder details to it too)
 
 SELECT B.BookID #Have written Book ID assuming we create a Copy table (BookID primary key, ISBN foreign key inbooks)
