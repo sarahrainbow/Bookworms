@@ -1,8 +1,27 @@
 ## USER STORY - SQL SCRIPTS ##
 
 
-#UserStory6 As a customer I want to search for books by title so that I can quickly find what I am looking for
+#UserStory 2 As a customer I want to find books by genre so that I can plan for lessons
 
+SELECT Title, Author.FirstName, Author.LastName, Genre.GenreName
+FROM Book
+INNER JOIN Author
+ON Author.AuthorID=Book.BookID
+INNER JOIN Genre
+ON genre.genrecode=book.bookID
+Where genre.genrecode='1';
+
+#UserStory 3 As a customer I want to find books by age range so that my child has suitable reading material
+
+SELECT Title, Author.FirstName, Author.LastName, AgeRange.AgeRange
+FROM Book
+INNER JOIN Author
+ON Author.AuthorID=Book.BookID
+INNER JOIN AgeRange
+ON AgeRange.AgeCode=book.bookID
+Where AgeRange.AgeCode='1';
+
+#UserStory6 As a customer I want to search for books by title so that I can quickly find what I am looking for
 
 SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, CopyAvailibility.IsAvailable, LibraryBranch.LibraryBranch
 FROM bookisbn_authorid
