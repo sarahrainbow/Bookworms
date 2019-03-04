@@ -60,3 +60,37 @@ BEGIN
 	WHERE Book.Title= thisBookTitle;                       
 END$$
 DELIMITER ;
+
+
+
+--change user Password
+
+CREATE PROCEDURE updatePassword
+ (IN thisPassword varchar(20)
+  ,IN thisUserID int(10))
+ 
+ BEGIN
+
+UPDATE librarycardholder
+SET librarycardholder.Password  = thisPassword
+
+WHERE librarycardholder.librarycardid = thisUserID;
+
+END
+
+CALL updatePassword('TestProcedure','1');
+
+
+-- exported from MySQL 
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatePassword`(IN thisPassword varchar(20)
+  ,IN thisUserID int(10))
+BEGIN
+
+UPDATE librarycardholder
+SET librarycardholder.Password  = thisPassword
+
+WHERE librarycardholder.librarycardid = thisUserID;
+
+END$$
+DELIMITER ;
