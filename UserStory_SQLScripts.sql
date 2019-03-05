@@ -311,7 +311,6 @@ SELECT concat(LibraryCardHolder.Forename, ' ', LibraryCardHolder.Surname) as 'Cu
 		GETDATE() > DATEADD(day, 30, DateOut) as 'Due Back'
 
 WHERE LibraryBranch.LibraryBranch = 'Walworth'
-AND 
 
 
 
