@@ -270,20 +270,20 @@ INSERT INTO `Road` (`RoadID`, `RoadName`) VALUES
 
 ALTER TABLE `Address`
   ADD PRIMARY KEY (`AddressID`),
-  ADD KEY `Road` (`Road`),
-  ADD KEY `City` (`City`),
-  ADD KEY `Postcode` (`Postcode`);
+  ADD KEY `RoadID` (`RoadID`),
+  ADD KEY `CityID` (`CityID`),
+  ADD KEY `PostcodeID` (`PostcodeID`);
 
 ALTER TABLE `AgeRange`
-  ADD PRIMARY KEY (`AgeCode`);
+  ADD PRIMARY KEY (`AgeID`);
 
 ALTER TABLE `Author`
   ADD PRIMARY KEY (`AuthorID`);
 
 ALTER TABLE `Book`
   ADD PRIMARY KEY (`BookISBN`),
-  ADD KEY `AgeRange` (`AgeRange`),
-  ADD KEY `Genre` (`Genre`);
+  ADD KEY `AgeID` (`AgeID`),
+  ADD KEY `GenreID` (`GenreID`);
 
 ALTER TABLE `BookISBN_AuthorID`
   ADD KEY `BookISBN` (`BookISBN`),
@@ -297,17 +297,14 @@ ALTER TABLE `CopyAvailibility`
   ADD KEY `BookISBN` (`BookISBN`);
 
 ALTER TABLE `Genre`
-  ADD PRIMARY KEY (`GenreCode`);
+  ADD PRIMARY KEY (`GenreID`);
 
 ALTER TABLE `LibraryBranch`
-  ADD PRIMARY KEY (`BranchCode`);
+  ADD PRIMARY KEY (`BranchID`);
 
 ALTER TABLE `LibraryCardholder`
   ADD PRIMARY KEY (`LibraryCardID`),
   ADD KEY `AddressID` (`AddressID`);
-
-ALTER TABLE `libraryUsers`
-  ADD PRIMARY KEY (`userID`);
 
 ALTER TABLE `Postcode`
   ADD PRIMARY KEY (`PostcodeID`);
@@ -320,7 +317,7 @@ ALTER TABLE `Address`
   MODIFY `AddressID` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 ALTER TABLE `AgeRange`
-  MODIFY `AgeCode` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `AgeID` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 ALTER TABLE `Author`
   MODIFY `AuthorID` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
@@ -329,16 +326,13 @@ ALTER TABLE `City`
   MODIFY `CityID` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 ALTER TABLE `Genre`
-  MODIFY `GenreCode` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `GenreID` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 ALTER TABLE `LibraryBranch`
-  MODIFY `BranchCode` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `BranchID` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 ALTER TABLE `LibraryCardholder`
   MODIFY `LibraryCardID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
-ALTER TABLE `libraryUsers`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `Postcode`
   MODIFY `PostcodeID` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
@@ -348,13 +342,13 @@ ALTER TABLE `Road`
 
 
 ALTER TABLE `Address`
-  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`Road`) REFERENCES `Road` (`RoadID`),
-  ADD CONSTRAINT `address_ibfk_2` FOREIGN KEY (`City`) REFERENCES `City` (`CityID`),
-  ADD CONSTRAINT `address_ibfk_3` FOREIGN KEY (`Postcode`) REFERENCES `Postcode` (`PostcodeID`);
+  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`RoadID`) REFERENCES `Road` (`RoadID`),
+  ADD CONSTRAINT `address_ibfk_2` FOREIGN KEY (`CityID`) REFERENCES `City` (`CityID`),
+  ADD CONSTRAINT `address_ibfk_3` FOREIGN KEY (`PostcodeID`) REFERENCES `Postcode` (`PostcodeID`);
 
 ALTER TABLE `Book`
-  ADD CONSTRAINT `book_ibfk_2` FOREIGN KEY (`AgeRange`) REFERENCES `AgeRange` (`AgeCode`),
-  ADD CONSTRAINT `book_ibfk_3` FOREIGN KEY (`Genre`) REFERENCES `Genre` (`GenreCode`);
+  ADD CONSTRAINT `book_ibfk_2` FOREIGN KEY (`AgeID`) REFERENCES `AgeRange` (`AgeID`),
+  ADD CONSTRAINT `book_ibfk_3` FOREIGN KEY (`GenreID`) REFERENCES `Genre` (`GenreID`);
 
 ALTER TABLE `BookISBN_AuthorID`
   ADD CONSTRAINT `bookisbn_authorid_ibfk_1` FOREIGN KEY (`BookISBN`) REFERENCES `book` (`BookISBN`),
@@ -368,11 +362,11 @@ ALTER TABLE `LibraryCardholder`
 COMMIT;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `FindUserByForename`(IN thisForename varchar(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `FindUserByFirstName`(IN thisForename varchar(50))
 BEGIN
   SELECT * 
   FROM LibraryCardholder
-    WHERE LibraryCardholder.Forename = thisForename;                          
+    WHERE LibraryCardholder.FirstName = thisForename;                          
 END$$
 DELIMITER ;
 
@@ -388,7 +382,7 @@ BEGIN
   INNER JOIN CopyAvailibility
   ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
   INNER JOIN LibraryBranch 
-  ON CopyAvailibility.BranchCode = LibraryBranch.BranchCode
+  ON CopyAvailibility.BranchID = LibraryBranch.BranchID
   WHERE Book.Title= thisBookTitle;                       
 END$$
 DELIMITER ;
