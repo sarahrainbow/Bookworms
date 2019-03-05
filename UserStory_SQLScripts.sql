@@ -72,7 +72,7 @@ Where Book.BookISBN = '978-0062457714' AND copy.IsAvailable = 1;
 
 -- Need Loan table to be created. Book needs BookLoanHistory field, LibraryCardHolder also needs CustomerLoanHistory
 
-SELECT 
+SELECT DISTINCT
 	concat(librarycardholder.FirstName, ' ', librarycardholder.SecondName) as 'Customer name', 
 	Book.Title,
 	concat(Author.FirstName,' ', Author.LastName) as 'Author',
@@ -95,7 +95,7 @@ WHERE Loan.LibraryCardID = '6'
 
 #UserStory10  As a customer I want to see just my current loans so I know which books I have to return and when.
 
-SELECT 
+SELECT DISTINCT
 	concat(librarycardholder.FirstName, ' ', librarycardholder.SecondName) as 'Customer name', 
 	Book.Title,
 	concat(Author.FirstName,' ', Author.LastName) as 'Author',
