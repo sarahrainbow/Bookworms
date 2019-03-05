@@ -166,7 +166,7 @@ CREATE TABLE `Genre` (
   `GenreName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Genre` (`GenreCode`, `GenreName`) VALUES
+INSERT INTO `Genre` (`GenreID`, `GenreName`) VALUES
 (1, 'Biographical'),
 (2, 'Fiction'),
 (3, 'Crime'),
