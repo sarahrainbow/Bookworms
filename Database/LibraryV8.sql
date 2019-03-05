@@ -15,12 +15,12 @@ DROP TABLE IF EXISTS `Address`;
 CREATE TABLE `Address` (
   `AddressID` int(9) UNSIGNED ZEROFILL NOT NULL,
   `AddressNumber` varchar(20) NOT NULL,
-  `Road` int(9) UNSIGNED ZEROFILL DEFAULT NULL,
-  `City` int(3) UNSIGNED ZEROFILL DEFAULT NULL,
-  `Postcode` int(9) UNSIGNED ZEROFILL DEFAULT NULL
+  `RoadID` int(9) UNSIGNED ZEROFILL DEFAULT NULL,
+  `CityID` int(3) UNSIGNED ZEROFILL DEFAULT NULL,
+  `PostcodeID` int(9) UNSIGNED ZEROFILL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Address` (`AddressID`, `AddressNumber`, `Road`, `City`, `Postcode`) VALUES
+INSERT INTO `Address` (`AddressID`, `AddressNumber`, `RoadID`, `CityID`, `PostcodeID`) VALUES
 (000000001, 'Flat 2a', 000000002, 005, 000000003),
 (000000002, '13', 000000001, 005, 000000004),
 (000000003, '22', 000000009, 005, 000000002),
@@ -37,11 +37,11 @@ INSERT INTO `Address` (`AddressID`, `AddressNumber`, `Road`, `City`, `Postcode`)
 
 DROP TABLE IF EXISTS `AgeRange`;
 CREATE TABLE `AgeRange` (
-  `AgeCode` tinyint(3) UNSIGNED NOT NULL,
+  `AgeID` tinyint(3) UNSIGNED NOT NULL,
   `AgeRange` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `AgeRange` (`AgeCode`, `AgeRange`) VALUES
+INSERT INTO `AgeRange` (`AgeID`, `AgeRange`) VALUES
 (1, 'Under 3'),
 (2, '3-5 years'),
 (3, '5-7 years'),
@@ -62,19 +62,19 @@ CREATE TABLE `Author` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `Author` (`AuthorID`, `FirstName`, `SecondName`, `LastName`) VALUES
-(000000001, 'Michelle', '', 'Obama'),
-(000000002, 'Rachel', '', 'Hollis'),
-(000000003, 'Craig', '', 'Smith'),
-(000000004, 'Michael', '', 'Wolff'),
-(000000005, 'Bob', '', 'Woodward'),
-(000000006, 'Jill', '', 'Twiss'),
+(000000001, 'Michelle', NULL, 'Obama'),
+(000000002, 'Rachel', NULL, 'Hollis'),
+(000000003, 'Craig', NULL, 'Smith'),
+(000000004, 'Michael', NULL, 'Wolff'),
+(000000005, 'Bob', NULL, 'Woodward'),
+(000000006, 'Jill', NULL, 'Twiss'),
 (000000007, 'Jordan', 'B', 'Peterson'),
-(000000008, 'Joanna', '', 'Gaines'),
-(000000009, 'Mark', '', 'Manson'),
-(000000010, 'James', '', 'Comey'),
-(000000011, 'Amy', '', 'Ramos'),
-(000000012, 'Jeff', '', 'Kinney'),
-(000000013, 'Gary', '', 'Chapman'),
+(000000008, 'Joanna', NULL, 'Gaines'),
+(000000009, 'Mark', NULL, 'Manson'),
+(000000010, 'James', NULL, 'Comey'),
+(000000011, 'Amy', NULL, 'Ramos'),
+(000000012, 'Jeff', NULL, 'Kinney'),
+(000000013, 'Gary', NULL, 'Chapman'),
 (000000014, 'Neil', NULL, 'Gaiman'),
 (000000015, 'Terry', NULL, 'Pratchett');
 
@@ -83,11 +83,11 @@ CREATE TABLE `Book` (
   `BookISBN` char(14) NOT NULL,
   `Title` varchar(120) NOT NULL,
   `YearPublished` year(4) NOT NULL,
-  `AgeRange` tinyint(3) UNSIGNED DEFAULT NULL,
-  `Genre` tinyint(3) UNSIGNED DEFAULT NULL
+  `AgeID` tinyint(3) UNSIGNED DEFAULT NULL,
+  `GenreID` tinyint(3) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Book` (`BookISBN`, `Title`, `YearPublished`, `AgeRange`, `Genre`) VALUES
+INSERT INTO `Book` (`BookISBN`, `Title`, `YearPublished`, `AgeID`, `GenreID`) VALUES
 ('978-0062457714', 'The Subtle Art of Not Giving a F*ck', 2018, 1, 1),
 ('978-0062801975', 'Homebody: A Guide to Creating Spaces You Never Want to Leave', 2018, 1, 1),
 ('978-0241321980', 'Diary of a Wimpy Kid: The Meltdown (book 13', 2018, 1, 1),
@@ -115,7 +115,6 @@ INSERT INTO `BookISBN_AuthorID` (`BookISBN`, `AuthorID`) VALUES
 ('978-0062801975', 000000008),
 ('978-0241321980', 000000012),
 ('978-1592338153', 000000011),
-('978-0241321980', 000000012),
 ('978-0802418104', 000000013),
 ('978-0241321988', 000000014),
 ('978-0241321988', 000000015);
@@ -139,10 +138,10 @@ CREATE TABLE `CopyAvailibility` (
   `BookID` int(9) UNSIGNED ZEROFILL NOT NULL,
   `BookISBN` char(14) NOT NULL,
   `IsAvailable` bit(1) NOT NULL DEFAULT b'1',
-  `BranchCode` tinyint(3) UNSIGNED DEFAULT NULL
+  `BranchID` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `CopyAvailibility` (`BookID`, `BookISBN`, `IsAvailable`, `BranchCode`) VALUES
+INSERT INTO `CopyAvailibility` (`BookID`, `BookISBN`, `IsAvailable`, `BranchID`) VALUES
 (000000001, '978-0062457714', b'1', 2),
 (000000002, '978-0062457714', b'1', 2),
 (000000003, '978-0062457714', b'0', 2),
@@ -163,7 +162,7 @@ INSERT INTO `CopyAvailibility` (`BookID`, `BookISBN`, `IsAvailable`, `BranchCode
 
 DROP TABLE IF EXISTS `Genre`;
 CREATE TABLE `Genre` (
-  `GenreCode` tinyint(3) UNSIGNED NOT NULL,
+  `GenreID` tinyint(3) UNSIGNED NOT NULL,
   `GenreName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -182,11 +181,11 @@ INSERT INTO `Genre` (`GenreCode`, `GenreName`) VALUES
 
 DROP TABLE IF EXISTS `LibraryBranch`;
 CREATE TABLE `LibraryBranch` (
-  `BranchCode` tinyint(3) UNSIGNED NOT NULL,
+  `BranchID` tinyint(3) UNSIGNED NOT NULL,
   `LibraryBranch` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `LibraryBranch` (`BranchCode`, `LibraryBranch`) VALUES
+INSERT INTO `LibraryBranch` (`BranchID`, `LibraryBranch`) VALUES
 (1, 'Tottenham'),
 (2, 'Walworth'),
 (3, 'Chelsea'),
@@ -198,8 +197,8 @@ INSERT INTO `LibraryBranch` (`BranchCode`, `LibraryBranch`) VALUES
 DROP TABLE IF EXISTS `LibraryCardholder`;
 CREATE TABLE `LibraryCardholder` (
   `LibraryCardID` int(10) NOT NULL,
-  `Forename` varchar(50) NOT NULL,
-  `Surname` varchar(50) NOT NULL,
+  `FirstName` varchar(50) NOT NULL,
+  `SecondName` varchar(50) NOT NULL,
   `ContactNumber` bigint(11) NOT NULL,
   `AddressID` int(9) UNSIGNED ZEROFILL DEFAULT NULL,
   `DateJoined` date NOT NULL,
@@ -209,7 +208,7 @@ CREATE TABLE `LibraryCardholder` (
   `IsStaff` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `LibraryCardholder` (`LibraryCardID`, `Forename`, `Surname`, `ContactNumber`, `AddressID`, `DateJoined`, `Email`, `Username`, `Password`, `IsStaff`) VALUES
+INSERT INTO `LibraryCardholder` (`LibraryCardID`, `FirstName`, `SecondName`, `ContactNumber`, `AddressID`, `DateJoined`, `Email`, `Username`, `Password`, `IsStaff`) VALUES
 (1, 'Elliot', 'Dorsey', 2077859030, 000000001, '2018-12-10', 'e.dorsey@hotmail.com', 'Elliot123', 'KMKm5fCm', b'0'),
 (2, 'Amy', 'Moses', 2077859031, 000000002, '2018-08-07', 'amymoses@gmail.com', 'AM2345', 'sQwvr6Ja', b'0'),
 (3, 'Maria', 'Esparza', 2077859032, 000000003, '2019-01-15', 'marespar@yahoo.com', 'MarEsp9', 'Gcf6eTez', b'0'),
