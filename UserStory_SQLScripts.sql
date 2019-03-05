@@ -72,29 +72,50 @@ Where Book.BookISBN = '978-0062457714' AND CopyAvailibility.IsAvailable = 1;
 
 -- Need Loan table to be created. Book needs BookLoanHistory field, LibraryCardHolder also needs CustomerLoanHistory
 
-SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, LibraryBranch.LibraryBranch, Loan.DateOut, Loan.DateReturned
+SELECT 
+	concat(librarycardholder.FirstName, ' ', librarycardholder.SecondName) as 'Customer name', 
+	Book.Title,
+	concat(Author.FirstName,' ', Author.LastName) as 'Author',
+	Loan.DateOut, 
+	Loan.DateReturned,
+	DATE_ADD(DateOut, INTERVAL 1 MONTH) as 'Due back' 
+
 FROM Loan
 INNER JOIN LibraryCardHolder
 	ON LibraryCardHolder.LibraryCardID = Loan.LibraryCardID
-INNER JOIN Book
-	ON Book.BookID = Loan.BookID
-INNER JOIN BookISBN_AuthorID
-	ON bookisbn_authorid.BookISBN=Book.BookISBN
+INNER JOIN copy
+	ON copy.BookID=loan.BookID 
+INNER JOIN bookisbn_authorid
+	ON copy.BookISBN=bookisbn_authorid.BookISBN
+INNER JOIN book
+	ON book.BookISBN=bookisbn_authorid.BookISBN
 INNER JOIN Author
 	ON bookisbn_authorid.AuthorID = Author.AuthorID
-INNER JOIN CopyAvailibility
-	ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
-INNER JOIN LibraryBranch 
-	ON CopyAvailibility.BranchID= LibraryBranch.BranchID
-WHERE Loan.LibraryCardID = '1'
+WHERE Loan.LibraryCardID = '6'
 
 #UserStory10  As a customer I want to see just my current loans so I know which books I have to return and when.
 
+SELECT 
+	concat(librarycardholder.FirstName, ' ', librarycardholder.SecondName) as 'Customer name', 
+	Book.Title,
+	concat(Author.FirstName,' ', Author.LastName) as 'Author',
+	Loan.DateOut, 
+	Loan.DateReturned,
+	DATE_ADD(DateOut, INTERVAL 1 MONTH) as 'Due back' 
 
-
-
-WHERE Loan.LibraryCardID = '1' 
-	AND DateReturned = NULL
+FROM Loan
+INNER JOIN LibraryCardHolder
+	ON LibraryCardHolder.LibraryCardID = Loan.LibraryCardID
+INNER JOIN copy
+	ON copy.BookID=loan.BookID 
+INNER JOIN bookisbn_authorid
+	ON copy.BookISBN=bookisbn_authorid.BookISBN
+INNER JOIN book
+	ON book.BookISBN=bookisbn_authorid.BookISBN
+INNER JOIN Author
+	ON bookisbn_authorid.AuthorID = Author.AuthorID
+WHERE Loan.LibraryCardID = '6' 
+	AND DateReturned IS NULL
 
 
 #UserStory11 As a customer I want to be able to update my name and address information
@@ -282,9 +303,15 @@ SET IsAvailable = 1
 where Book.BookID = 000000001;
 
 #USER STORY 23
-# As a library staff member I want to check the return date of a loaned book so I know when to expect it back
+# As a library staff member I want to check the return date of a loaned book from the branch I work at so I know when to expect it back
 
-#USER STORY 24
-# As a library staff member I want to see all overdue books so that I can chase up the borrowers
+SELECT concat(LibraryCardHolder.Forename, ' ', LibraryCardHolder.Surname) as 'Customer Name', 
+		Book.*, 
+		LibraryBranch.LibraryBranch, 
+		GETDATE() > DATEADD(day, 30, DateOut) as 'Due Back'
+
+WHERE LibraryBranch.LibraryBranch = 'Walworth'
+AND 
+
 
 
