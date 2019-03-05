@@ -204,7 +204,7 @@ WHERE LibraryCardID = ANY (SELECT FROM Loan  WHERE LoanQuantity = <=5);
 
 #UserStory16 - select overdue books (have kept simple for now but could also add LCHolder details to it too)
 
-####NOT READY YET - NEEDS FIXING and few tweaks to db
+#### !!!!!!!!!!!!!! NOT READY YET - NEEDS FIXING and few tweaks to db
 
 SELECT B.BookID #Have written Book ID assuming we create a Copy table (BookID primary key, ISBN foreign key inbooks)
 		,B.Title
@@ -258,24 +258,34 @@ WHERE LibraryCardID = '1' #can be changed as necessary
 
 
 #UserStory18 - see what books are available in our branch
-	#NB this assumes that we have a separate book copies table
+	
+SELECT  
+		B.BookISBN
+		,B.Title 
+		,concat(A.FirstName,' ', A.LastName) as 'Author'
+		,B.YearPublished
+        ,LB.LibraryBranch
+		,Count(DISTINCT C.BookID) as 'CopiesAvailable' #Distinct needed to prevent counting the samebook twice
 
-SELECT  B.Title 
-		,Author#may need to update based on db structure
-		,B.Year
-		,Count (DISTINCT `B.BookID`) as 'CopiesAvailable' #Distinct needed to prevent counting the samebook twice
 
-FROM Book as B
-RIGHT OUTER JOIN Loan as L
-ON L.BookID=B.BookID
+FROM Book AS B
+INNER JOIN bookisbn_authorid as AB
+	ON AB.BookISBN=B.BookISBN
+INNER JOIN Author AS A
+	ON AB.AuthorID = A.AuthorID
+INNER JOIN copy as C
+	ON AB.BookISBN = C.BookISBN
+INNER JOIN librarybranch as LB 
+	ON LB.BranchID = C.BranchID
+INNER JOIN Loan as L 
+	ON C.BookID=L.BookID
 
 
 WHERE DateReturned IS NOT NULL #means only pulls back books that are not checked out
-		AND BranchID=0 #can be changed
+		AND C.BranchID=1 #can be changed
 
-GROUP BY ISBN,Title,Author,Year,Branch #group statement necessary for count function to work
-
-;
+GROUP BY B.BookISBN, B.Title,concat(A.FirstName,' ', A.LastName),B.YearPublished, C.BranchID
+#group statement necessary for count function to work
 
 
 
