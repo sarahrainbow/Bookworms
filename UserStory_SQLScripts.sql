@@ -39,24 +39,6 @@ Need to create a reservation table
 #UserStory 5 As a university professor I want to see a list of previously borrowed books in my account area so I can borrow them by a specified date
 Similar to user story 9. 
 
-SELECT DISTINCT
-	concat(librarycardholder.FirstName, ' ', librarycardholder.SecondName) as 'Customer name', 
-	Book.Title,
-	concat(Author.FirstName,' ', Author.LastName) as 'Author',
-
-FROM Loan
-INNER JOIN LibraryCardHolder
-	ON LibraryCardHolder.LibraryCardID = Loan.LibraryCardID
-INNER JOIN copy
-	ON copy.BookID=loan.BookID 
-INNER JOIN bookisbn_authorid
-	ON copy.BookISBN=bookisbn_authorid.BookISBN
-INNER JOIN book
-	ON book.BookISBN=bookisbn_authorid.BookISBN
-INNER JOIN Author
-	ON bookisbn_authorid.AuthorID = Author.AuthorID
-WHERE Loan.LibraryCardID = '2'
-
 #UserStory6 As a customer I want to search for books by title so that I can quickly find what I am looking for
 
 SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, Copy.IsAvailable, LibraryBranch.LibraryBranch
