@@ -3,13 +3,15 @@
 
 #UserStory 2 As a customer I want to find books by genre so that I can plan for lessons
 
-SELECT Title, Author.FirstName, Author.LastName, Genre.GenreName
+SELECT Title, concat(Author.FirstName,' ', Author.LastName) as 'Author', Genre.GenreName
 FROM Book
+Inner join Genre
+ON Genre.GenreCode = Book.Genre
+Inner Join BookISBN_AuthorID
+ON Book.BookISBN = BookISBN_AuthorID.BookISBN
 INNER JOIN Author
-ON Author.AuthorID=Book.BookID
-INNER JOIN Genre
-ON genre.genreID=book.genreID
-Where genre.genreID='1';
+ON bookisbn_authorid.AuthorID = Author.AuthorID
+WHERE Genre.GenreName = 'Biographical'
 
 #UserStory 3 As a customer I want to find books by age range so that my child has suitable reading material
 
