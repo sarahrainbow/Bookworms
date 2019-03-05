@@ -8,8 +8,8 @@ FROM Book
 INNER JOIN Author
 ON Author.AuthorID=Book.BookID
 INNER JOIN Genre
-ON genre.genrecode=book.bookID
-Where genre.genrecode='1';
+ON genre.genreID=book.genreID
+Where genre.genreID='1';
 
 #UserStory 3 As a customer I want to find books by age range so that my child has suitable reading material
 
@@ -18,8 +18,8 @@ FROM Book
 INNER JOIN Author
 ON Author.AuthorID=Book.BookID
 INNER JOIN AgeRange
-ON AgeRange.AgeCode=book.bookID
-Where AgeRange.AgeCode='1';
+ON AgeRange.AgeID=book.AgeID
+Where AgeRange.AgeID='1';
 
 #UserStory6 As a customer I want to search for books by title so that I can quickly find what I am looking for
 
@@ -32,7 +32,7 @@ INNER JOIN Author
 INNER JOIN CopyAvailibility
 	ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
 INNER JOIN LibraryBranch 
-	ON CopyAvailibility.BranchCode = LibraryBranch.BranchCode
+	ON CopyAvailibility.BranchID = LibraryBranch.BranchID
 Where Book.Title= 'The Subtle Art of Not Giving a F*ck' AND CopyAvailibility.IsAvailable = 1;
 
 
@@ -48,7 +48,7 @@ INNER JOIN Author
 INNER JOIN CopyAvailibility
 	ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
 INNER JOIN LibraryBranch 
-	ON CopyAvailibility.BranchCode = LibraryBranch.BranchCode
+	ON CopyAvailibility.BranchID = LibraryBranch.BranchID
 Where Author.FirstName = 'Gary' AND Author.LastName = 'Chapman' AND CopyAvailibility.IsAvailable = 1;
 
 #UserStory8 As a customer I want to search for books by ISBN so that I can quickly find what I am looking for
@@ -62,7 +62,7 @@ INNER JOIN Author
 INNER JOIN CopyAvailibility
 	ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
 INNER JOIN LibraryBranch 
-	ON CopyAvailibility.BranchCode = LibraryBranch.BranchCode
+	ON CopyAvailibility.BranchID= LibraryBranch.BranchID
 Where Book.BookISBN = '978-0062457714' AND CopyAvailibility.IsAvailable = 1;
 
 
@@ -83,7 +83,7 @@ Where Book.BookISBN = '978-0062457714' AND CopyAvailibility.IsAvailable = 1;
 #UserStory11 As a customer I want to be able to update my name and address information
 -- name update--
 UPDATE librarycardholder
-SET librarycardholder.Forename = 'Ell'
+SET librarycardholder.FirstName = 'Ell'
 WHERE librarycardholder.librarycardid = 1
 
 --address update--
@@ -250,15 +250,15 @@ WHERE CopyAvailibility.IsAvailable = 1;
 
 
 
-#USER STORY 21
-21 As I customer I want to check out a book
+#USER STORY 21 ######## to be changed - we have a loans table!
+#21 As I customer I want to check out a book
 
 UPDATE Book
 SET IsAvailable = 0
 where Book.BookID = 000000001;
 
-#USER STORY 22
-As a customer I want to check in a book
+#USER STORY 22 ######## to be changed - we have a loans table!
+#As a customer I want to check in a book
 
 UPDATE Book
 SET IsAvailable = 1
