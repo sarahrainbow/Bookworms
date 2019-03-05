@@ -145,14 +145,17 @@ WHERE LibraryCardID = 1
 
 #User story 14 As a library website administrator I want add new book titles to the database as they become available
 
-INSERT INTO book(BookISBN, Title, YearPublished, LibraryBranch, AgeRange, Genre, IsAvailable)
-VALUES ('978-1405288583', "Mr Wolf's Pancackes", '2017', '2', '2', '4', '1');
+INSERT INTO book(BookISBN, Title, YearPublished, AgeID, GenreID)
+VALUES ('978-1405288505', 'Tiger tales', '2017', '2', '4');
 
-INSERT INTO author (FirstName, LastName)
-VALUES ('Jan', 'Fearnley');
+INSERT INTO author(FirstName, LastName)
+VALUES ('Jan', 'Blogs');
 
 INSERT INTO bookisbn_authorID(BookISBN, AuthorID)
-VALUES ('978-1405288583', '000000016');
+VALUES ('978-1405288505', '000000023');
+
+INSERT INTO copy(BookISBN, IsAvailable, BranchID)
+VALUES ('978-1405288505', '1', '3');
 
 #User story 15 As a library website administrator I want to set a control on the maximum number of books a user can borrow
 
