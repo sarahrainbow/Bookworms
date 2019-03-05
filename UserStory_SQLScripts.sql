@@ -186,25 +186,28 @@ WHERE LibraryCardID = ANY (SELECT FROM Loan  WHERE LoanQuantity = <=5);
 
 #UserStory16 - select overdue books (have kept simple for now but could also add LCHolder details to it too)
 
-#### !!!!!!!!!!!!!! NOT READY YET - NEEDS FIXING and few tweaks to db
-
-	SELECT B.BookID #Have written Book ID assuming we create a Copy table (BookID primary key, ISBN foreign key inbooks)
+	SELECT 
+			C.BookID
 			,B.Title
-			,concat (A.FirstName, ' ', A.SecondName) as 'Author' #may need changing depending on author table
+			,concat (A.FirstName, ' ', A.LastName) as 'Author' 
+	        ,L.LibraryCardID
+	        ,L.DateOut
+	        ,DATE_ADD(DateOut, INTERVAL 30 DAY) as 'Expected_Return'
+	        
 
-	From Author_Book as AB
-	INNER JOIN Book as B
-		ON AB.ISBN=B.ISBN
-	INNER JOIN Author as B
-		ON AB.AuthorID=A.AuthorID
-	INNER JOIN Loan as L
-		ON L.BookID=B.BookID
-		AND L.DateReturned IS NULL #we want it to join to currently on loan books only, not any historical loans
-	#Need to check what this join looks like if a book has multiple authors, do we still get distinct rows? tweak as appropriate
+		FROM Book AS B
+		INNER JOIN bookisbn_authorid as AB
+			ON AB.BookISBN=B.BookISBN
+		INNER JOIN Author AS A
+			ON AB.AuthorID = A.AuthorID
+		INNER JOIN copy as C
+			ON AB.BookISBN = C.BookISBN
+		INNER JOIN Loan as L 
+			ON C.BookID=L.BookID
+	        AND L.DateReturned IS NULL
 
-
-	WHERE GETDATE() > DATEADD(day,30,DateOut) #this function adds 30 days to the date in the DateOut column
-	;
+	    
+	 WHERE CURRENT_DATE > DATE_ADD(DateOut, INTERVAL 30 DAY) #this function adds 30 days to the date in the DateOut column
 
 
 
