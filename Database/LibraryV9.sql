@@ -350,7 +350,7 @@ CREATE TABLE `librarycardholder` (
   `LibraryCardID` int(10) NOT NULL,
   `FirstName` varchar(50) NOT NULL,
   `SecondName` varchar(50) NOT NULL,
-  `ContactNumber` bigint(11) NOT NULL,
+  `ContactNumber` CHAR(11) NOT NULL,
   `AddressID` int(9) UNSIGNED ZEROFILL DEFAULT NULL,
   `DateJoined` date NOT NULL,
   `Email` varchar(50) DEFAULT NULL,
