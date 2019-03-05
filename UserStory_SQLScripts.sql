@@ -200,9 +200,11 @@ WHERE LibraryCardID = ANY (SELECT FROM Loan  WHERE LoanQuantity = <=5);
 
 
 
-#NB - have written these without access to latest version of database so may need to update column/table names and rectify errors
+
 
 #UserStory16 - select overdue books (have kept simple for now but could also add LCHolder details to it too)
+
+####NOT READY YET - NEEDS FIXING and few tweaks to db
 
 SELECT B.BookID #Have written Book ID assuming we create a Copy table (BookID primary key, ISBN foreign key inbooks)
 		,B.Title
@@ -227,8 +229,8 @@ WHERE GETDATE() > DATEADD(day,30,DateOut) #this function adds 30 days to the dat
 #UserStory17 - get contact details of a library card holder
 
 SELECT LCH.FirstName
-		,LCH.LastName
-		,LCH.PhoneNumber
+		,LCH.SecondName
+		,LCH.ContactNumber
 		,COALESCE(LCH.Email,'No email provided')
 		,A.AddressNumber
 		,R.RoadName
@@ -241,16 +243,16 @@ INNER JOIN Address as A
 ON LCH.AddressID = A.AddressID
 
 INNER JOIN Road as R
-ON A.AddressRoad = R.RoadID
+ON A.RoadID = R.RoadID
 
 INNER JOIN City as C
-ON A.City = C.CityID
+ON A.CityID = C.CityID
 
 INNER JOIN Postcode as P
-ON A.Postcode = C.PostcodeID
+ON A.PostcodeID = P.PostcodeID
 
 
-WHERE LibraryCardID = '000000001' #can be changed as necessary
+WHERE LibraryCardID = '1' #can be changed as necessary
 ;
 
 
