@@ -1,6 +1,13 @@
 ## USER STORY - SQL SCRIPTS ##
 
-#UserStory 1 As a customer I want to find books by genre so that I can plan for lessons
+#UserStory 1 As a customer I want to borrow a couple of books per month so that I can read for pleasure
+
+UPDATE copy
+SET copy.IsAvailable = 0
+where copy.BookID = '000000001';
+
+INSERT into loan (`LibraryCardID`, `BookID`, `DateOut`, `DateReturned`) 
+VALUES ('2', '000000001', '2019/03/31', '2019/04/30')
 
 #UserStory 2 As a customer I want to find books by genre so that I can plan for lessons
 
@@ -26,6 +33,30 @@ INNER JOIN Author
 ON bookisbn_authorid.AuthorID = Author.AuthorID
 WHERE Agerange.AgeRange = 'Under 3'
 
+#UserStory 4 As a student I want to reserve books out on loan so that I can borrow them by a specified date 
+Need to create a reservation table
+
+#UserStory 5 As a university professor I want to see a list of previously borrowed books in my account area so I can borrow them by a specified date
+Similar to user story 9. 
+
+SELECT DISTINCT
+	concat(librarycardholder.FirstName, ' ', librarycardholder.SecondName) as 'Customer name', 
+	Book.Title,
+	concat(Author.FirstName,' ', Author.LastName) as 'Author',
+
+FROM Loan
+INNER JOIN LibraryCardHolder
+	ON LibraryCardHolder.LibraryCardID = Loan.LibraryCardID
+INNER JOIN copy
+	ON copy.BookID=loan.BookID 
+INNER JOIN bookisbn_authorid
+	ON copy.BookISBN=bookisbn_authorid.BookISBN
+INNER JOIN book
+	ON book.BookISBN=bookisbn_authorid.BookISBN
+INNER JOIN Author
+	ON bookisbn_authorid.AuthorID = Author.AuthorID
+WHERE Loan.LibraryCardID = '2'
+
 #UserStory6 As a customer I want to search for books by title so that I can quickly find what I am looking for
 
 SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, Copy.IsAvailable, LibraryBranch.LibraryBranch
@@ -39,8 +70,6 @@ INNER JOIN copy
 INNER JOIN LibraryBranch 
 	ON Copy.BranchID = LibraryBranch.BranchID
 Where Book.Title= 'The Subtle Art of Not Giving a F*ck' AND Copy.IsAvailable = 1;
-
-
 
 #UserStory7  As a customer I want to search for books by author so that I can see everything they have published
 
@@ -249,7 +278,7 @@ GROUP BY ISBN,Title,Author,Year,Branch #group statement necessary for count func
 
 
 #UserStory19 - securely store details of staff on payroll
-	#Haven't done this yet as we have not yet created a HR table (on could have list)
+	#Havent done this yet as we have not yet created a HR table (on could have list)
 
 
 #User story - see what books are available across branches
