@@ -68,18 +68,33 @@ INNER JOIN LibraryBranch
 Where Book.BookISBN = '978-0062457714' AND CopyAvailibility.IsAvailable = 1;
 
 
-#UserStory9  As a customer I want to have a 'my account' area So that I can see personal and borrowing information
+#UserStory9  As a customer I want to see all my loan activity so I have it for my records
 
 -- Need Loan table to be created. Book needs BookLoanHistory field, LibraryCardHolder also needs CustomerLoanHistory
 
+SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, LibraryBranch.LibraryBranch, Loan.DateOut, Loan.DateReturned
+FROM Loan
+INNER JOIN LibraryCardHolder
+	ON LibraryCardHolder.LibraryCardID = Loan.LibraryCardID
+INNER JOIN Book
+	ON Book.BookID = Loan.BookID
+INNER JOIN BookISBN_AuthorID
+	ON bookisbn_authorid.BookISBN=Book.BookISBN
+INNER JOIN Author
+	ON bookisbn_authorid.AuthorID = Author.AuthorID
+INNER JOIN CopyAvailibility
+	ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
+INNER JOIN LibraryBranch 
+	ON CopyAvailibility.BranchID= LibraryBranch.BranchID
+WHERE Loan.LibraryCardID = '1'
+
+#UserStory10  As a customer I want to see just my current loans so I know which books I have to return and when.
 
 
-#UserStory10  As a customer I want to delete reserved books from my account so that I can change my mind
-
--- perhaps lets 'shelve' this idea for now, seems a non-vital step at this point to have a reserve book option… 
 
 
-
+WHERE Loan.LibraryCardID = '1' 
+	AND DateReturned = NULL
 
 
 #UserStory11 As a customer I want to be able to update my name and address information
@@ -265,3 +280,11 @@ where Book.BookID = 000000001;
 UPDATE Book
 SET IsAvailable = 1
 where Book.BookID = 000000001;
+
+#USER STORY 23
+# As a library staff member I want to check the return date of a loaned book so I know when to expect it back
+
+#USER STORY 24
+# As a library staff member I want to see all overdue books so that I can chase up the borrowers
+
+
