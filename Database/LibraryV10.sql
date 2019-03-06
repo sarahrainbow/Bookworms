@@ -12,6 +12,9 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+CREATE DATABASE libraryapp;
+USE libraryapp; 
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -52,6 +55,38 @@ UPDATE librarycardholder
 SET librarycardholder.Password  = thisPassword
 
 WHERE librarycardholder.librarycardid = thisUserID;
+
+END$$
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `searchBookAvailability` (IN `searchTerm` VARCHAR(100))  BEGIN
+
+SELECT  
+			B.BookISBN
+			,B.Title 
+			,concat(A.FirstName,' ', A.LastName) as 'Author'
+			,B.YearPublished
+	        ,LB.LibraryBranch
+			,Count(DISTINCT C.BookID) as 'CopiesAvailable' #Distinct needed to prevent counting the same book twice (in case that a book has been returned multiple times)
+
+
+	FROM Book AS B
+	INNER JOIN bookisbn_authorid as AB
+		ON AB.BookISBN=B.BookISBN
+	INNER JOIN Author AS A
+		ON AB.AuthorID = A.AuthorID
+	INNER JOIN copy as C
+		ON AB.BookISBN = C.BookISBN
+	INNER JOIN librarybranch as LB 
+		ON LB.BranchID = C.BranchID
+	INNER JOIN Loan as L 
+		ON C.BookID=L.BookID
+
+
+	WHERE DateReturned IS NOT NULL AND Title LIKE concat('%',searchTerm,'%')
+		
+
+	GROUP BY B.BookISBN, B.Title,concat(A.FirstName,' ', A.LastName),B.YearPublished, C.BranchID;
 
 END$$
 
@@ -350,7 +385,7 @@ INSERT INTO `librarybranch` (`BranchID`, `LibraryBranch`) VALUES
 CREATE TABLE `librarycardholder` (
   `LibraryCardID` int(10) NOT NULL,
   `FirstName` varchar(50) NOT NULL,
-  `SecondName` varchar(50) NOT NULL,
+  `LastName` varchar(50) NOT NULL,
   `ContactNumber` bigint(11) NOT NULL,
   `AddressID` int(9) UNSIGNED ZEROFILL DEFAULT NULL,
   `DateJoined` date NOT NULL,
@@ -364,7 +399,7 @@ CREATE TABLE `librarycardholder` (
 -- Dumping data for table `librarycardholder`
 --
 
-INSERT INTO `librarycardholder` (`LibraryCardID`, `FirstName`, `SecondName`, `ContactNumber`, `AddressID`, `DateJoined`, `Email`, `Username`, `Password`, `IsStaff`) VALUES
+INSERT INTO `librarycardholder` (`LibraryCardID`, `FirstName`, `LastName`, `ContactNumber`, `AddressID`, `DateJoined`, `Email`, `Username`, `Password`, `IsStaff`) VALUES
 (1, 'Elliot', 'Dorsey', 2077859030, 000000001, '2018-12-10', 'e.dorsey@hotmail.com', 'Elliot123', 'KMKm5fCm', b'0'),
 (2, 'Amy', 'Moses', 2077859031, 000000002, '2018-08-07', 'amymoses@gmail.com', 'AM2345', 'sQwvr6Ja', b'0'),
 (3, 'Maria', 'Esparza', 2077859032, 000000003, '2019-01-15', 'marespar@yahoo.com', 'MarEsp9', 'Gcf6eTez', b'0'),
