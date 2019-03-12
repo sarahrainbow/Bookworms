@@ -19,5 +19,6 @@
 ## Any comments from team
 
 - (FE) I'm not sure that we need an IsAvailable column in the copy table now that we have a stored procedure that can calculate availability.
+- (CS) Need to try more complicated scripts to develop skills and thinking
 
 
