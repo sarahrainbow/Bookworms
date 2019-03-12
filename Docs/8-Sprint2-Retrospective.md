@@ -14,6 +14,7 @@
 ## How it might have gone better
 
 - Use of estimation in forward planning of sprint
+- Use of Scrum Master for estimations, understanding backlog etc. 
 
 
 
