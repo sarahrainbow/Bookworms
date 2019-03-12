@@ -7,6 +7,7 @@
 - Starting to get the hang of GitHub
 - Useful daily stand up meetings via whatsapp
 - Made use of team members that were available at a given time (ie not waiting for all four of us)
+- Better communcation of issues, tasks and knowledge
 
 
 
