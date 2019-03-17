@@ -4,7 +4,7 @@ namespace BookController{
     use Book\Book;
     
     class BookController{
-        private $books=[]; //Declares book type i.e. like Pen in notes
+        public $books=[]; //Declares book type i.e. like Pen in notes
         
         public function addbook(Book $book){ //Book is considered a type similar to string which is a defined type
             array_push($this->books, $book); //Arraypush is premade function which adds variables to the end of established array. Argument $books is from the array function defined which needs to be added into, $book is the variable which is the new book tht will be defined 
