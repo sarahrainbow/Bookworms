@@ -2,37 +2,41 @@
 
 namespace Employee{
 
-include 'Person.php';   
+require_once ('Person.php');   
 use Person\Person;
 
-class Employee extends Person{
-    private $employeeID; 
-    private $jobtitle;
-        
-        public function __construct(int $employeeID, string $jobtitle, string $firstname, string $surname){
-                $this->employeeID = $employeeID;
-                $this->jobtitle = $jobtitle;
-                parent::__construct($firstname, $surname);
-        }
+    class Employee extends Person{
+        private $employeeID; 
+        private $jobtitle;
+        protected $loanlimit=10;#this overwrites general limit of 5
 
-        public function getEmployeeID(){
-            return $this->employeeID;
-        }
-        
-        public function setEmployeeID($newEmployeeID){
-            $this->employeeID=$newEmployeeID;
-        }
-       
-        public function getJobTitle(){
-            return $this->jobtitle;
-        }
-        
-        public function setJobTitle($newJobTitle){
-            $this->jobtitle=$newJobTitle;
-}
-}   
- $employee=new employee(2384958, 'Librarian', 'Harry', 'Potter');
-    echo $employee->getJobTitle();   
+            public function __construct(int $employeeID, string $jobtitle, string $firstname,  string $secondname,string $surname, string $address, string $email, string $username, string $password){
+                    $this->employeeID = $employeeID;
+                    $this->jobtitle = $jobtitle;
+                    parent::__construct($firstname, $secondname,$surname, $address, $email, $username, $password);
+            }
+
+            public function getEmployeeID(){
+                return $this->employeeID;
+            }
+
+            public function setEmployeeID($newEmployeeID){
+                $this->employeeID=$newEmployeeID;
+            }
+
+            public function getJobTitle(){
+                return $this->jobtitle;
+            }
+
+            public function setJobTitle($newJobTitle){
+                $this->jobtitle=$newJobTitle;
+    }
+
+
+    }   
+     
+
+            
     
     
     
