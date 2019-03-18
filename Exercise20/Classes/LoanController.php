@@ -15,7 +15,7 @@ namespace LoanController {
             return $this->loans;
         }
        
-        public function loanBook(Loan $loan, \Book\Book $book) {
+        public function loanBook(Loan $loan, Book $book) {
             array_push($this->loans, $loan); 
             $book->setIsAvailable(false);
         }
