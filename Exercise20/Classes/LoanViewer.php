@@ -20,6 +20,7 @@ namespace LoanViewer {
         
     }
     
+    //Calling all GET function to return info
 //    $myBook = new Book(1, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
 //    $myLoan = new Loan(98765, '13-01-19', 1, 2);
 //    $myLoan->setIsLoanOverdue(true);
