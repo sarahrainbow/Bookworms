@@ -9,6 +9,7 @@ namespace Book{
         private $ISBN;
         private $yearpublished;
         private $genre;
+        private $isAvailable;
         
         public function __construct(int $bookID, string $title, array $authors, int $ISBN, int $publishdate, string $genre){
             $this->bookID = $bookID;
@@ -65,6 +66,14 @@ namespace Book{
         
         public function setPublishDate($newPublishDate){
             $this->PublishDate=$newPublishDate;
+        }
+        
+        public function getIsAvailable() {
+            return $this->isAvailable;
+        }
+        
+        public function setIsAvailable($isAvailable) {
+            $this->isAvailable = $isAvailable;
         }
     }
     

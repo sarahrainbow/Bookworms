@@ -19,13 +19,15 @@ namespace LoanViewer {
         }
         
     }
-    $myLoan = new Loan(98765, '13-01-19', 1, 2);
-    $myLoan->setIsLoanOverdue(true);
-    $myLoanController = new LoanController();
-    $myLoanController->loanBook($myLoan);
-    $myLoanController->returnBook(98765, "13-12-13");
-    $myLoanViewer = new LoanViewer();
     
-    $myLoanViewer->listLoan($myLoan);
+//    $myBook = new Book(1, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
+//    $myLoan = new Loan(98765, '13-01-19', 1, 2);
+//    $myLoan->setIsLoanOverdue(true);
+//    $myLoanController = new LoanController();
+//    $myLoanController->loanBook($myLoan, $myBook);
+//    $myLoanController->returnBook(98765, "13-12-13", $myBook);
+//    $myLoanViewer = new LoanViewer();
+//    
+//    $myLoanViewer->listLoan($myLoan);
 }
 

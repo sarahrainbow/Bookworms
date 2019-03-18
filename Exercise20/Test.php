@@ -1,20 +1,27 @@
 <?php
 
 #Could try using autoload function for loading of class files
+
 // WINDOWS TEST (with back slash delimiters)
 //require_once ('Classes\Person.php'); 
 //require_once ('Classes\Employee.php'); 
 //require_once ('Classes\CustomerController.php');
 //require_once ('Classes\Customer.php');
 //require_once ('Classes\Loan.php');
+//require_once 'Classes\LoanController.php';
+//require_once 'Classes\Book.php';
+//require_once 'Classes\LoanViewer.php';
 
 // MAC TEST (with forward slash delimiters)
+
 require_once ('Classes/Person.php'); 
 require_once ('Classes/Employee.php'); 
 require_once ('Classes/CustomerController.php');
 require_once ('Classes/Customer.php');
 require_once 'Classes/Loan.php';
 require_once 'Classes/LoanController.php';
+require_once 'Classes/Book.php';
+require_once 'Classes/LoanViewer.php';
 
     ##Testing Person
      use Person\Person;
@@ -84,13 +91,27 @@ require_once 'Classes/LoanController.php';
     
     # Testing LoanController
     use LoanController\LoanController;
+    use Book\Book;
     
+    $myBook = new Book(1, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
     $myLoanController = new LoanController();
-    $myLoanController->loanBook(new Loan(1, '11-1-01', 3, 1));
-    $myLoanController->loanBook(new Loan(2, '12-2-02', 4, 2));
+    $myLoanController->loanBook((new Loan(1, '11-1-01', 3, 1)), $myBook);
+    $myLoanController->loanBook((new Loan(2, '12-2-02', 4, 2)), $myBook);
     
     var_dump($myLoanController->getLoans());
     
-    $myLoanController->returnBook(1, '12-12-12');
+    $myLoanController->returnBook(1, '12-12-12', $myBook);
     
     var_dump($myLoanController->getLoans());
+    
+    
+    # Testing LoanViewer
+    use LoanViewer\LoanViewer;
+    $myLoan = new Loan(98765, '13-01-19', 1, 2);
+    $myLoan->setIsLoanOverdue(true);
+    $myLoanController = new LoanController();
+    $myLoanController->loanBook($myLoan, $myBook);
+    $myLoanController->returnBook(98765, "13-12-13", $myBook);
+    $myLoanViewer = new LoanViewer();
+    
+    $myLoanViewer->listLoan($myLoan);

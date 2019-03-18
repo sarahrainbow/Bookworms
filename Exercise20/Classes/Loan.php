@@ -35,7 +35,6 @@ namespace Loan {
         }
         
         public function getLoanOutDate() {
-//            $date = new DateTime($this->loanOutDate);
             return $this->loanOutDate;
         }
         
@@ -61,8 +60,6 @@ namespace Loan {
             $interval = new \DateInterval('P1M');
             $date->add($interval);
             $this->loanDueBackDate = $date;
-//            $this->loanDueBackDate = date_add($date, $interval);
-//            $this->loanDueBackDate = $this->loanOutDate + 30;
         }
 
         public function getIsLoanOverdue() {
