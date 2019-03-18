@@ -9,22 +9,22 @@ namespace LoanController {
 
     
     class LoanController {
-        private $loans = [];
+        private $loans = []; //created loan array in the loan controller 
 
-        public function getLoans() {
+        public function getLoans() { // This function returns the array 
             return $this->loans;
         }
        
         public function loanBook(Loan $loan, Book $book) {
-            array_push($this->loans, $loan); 
-            $book->setIsAvailable(false);
+            array_push($this->loans, $loan); //Put the loan information into the array and pulling books added into book class
+            $book->setIsAvailable(false); //Setting the book as unavailable by creating a boolean (false means book is now loaned out)
         }
         
-        public function returnBook(int $loanID, $loanReturnDate, Book $book) {
-            foreach($this->loans as $loan) {
-                if($loan->getLoanID() === $loanID) {
+        public function returnBook(int $loanID, $loanReturnDate, Book $book) { //uses loadID, retrun date and book object
+            foreach($this->loans as $loan) { //iterates through loan array
+                if($loan->getLoanID() === $loanID) { //IF loanID matches loanID entered into the function entered
                     $loan->setLoanReturnDate($loanReturnDate);
-                    $book->setIsAvailable(true);
+                    $book->setIsAvailable(true); //Sets availability to true
                 }
             }
         }
