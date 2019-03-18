@@ -1,15 +1,25 @@
 <?php
 
 #Could try using autoload function for loading of class files
-require_once ('Classes\Person.php'); 
-require_once ('Classes\Employee.php'); 
-require_once ('Classes\CustomerController.php');
-require_once ('Classes\Customer.php');
+// WINDOWS TEST (with back slash delimiters)
+//require_once ('Classes\Person.php'); 
+//require_once ('Classes\Employee.php'); 
+//require_once ('Classes\CustomerController.php');
+//require_once ('Classes\Customer.php');
+//require_once ('Classes\Loan.php');
+
+// MAC TEST (with forward slash delimiters)
+require_once ('Classes/Person.php'); 
+require_once ('Classes/Employee.php'); 
+require_once ('Classes/CustomerController.php');
+require_once ('Classes/Customer.php');
+require_once 'Classes/Loan.php';
+require_once 'Classes/LoanController.php';
 
     ##Testing Person
      use Person\Person;
 
-        $testperson=new person('David', '','Beckham','11 Beckingham Palace','davidbeckham@gmail.com','goldenballs7','champsleague99','','');
+        $testperson=new Person('David', '','Beckham','11 Beckingham Palace','davidbeckham@gmail.com','goldenballs7','champsleague99','','');
         echo $testperson->getFirstName().' '.$testperson->getSurname().' is married to Victoria Beckham. They live at '.$testperson->getAddress().'.'.PHP_EOL;
 
         #or
@@ -20,7 +30,7 @@ require_once ('Classes\Customer.php');
     ##Testing Employee
      use Employee\Employee;
 
-        $testemployee=new employee(2384958, 'librarian', 'Frida', '','Kahlo','4 Feet Under','','','','','');
+        $testemployee=new Employee(2384958, 'librarian', 'Frida', '','Kahlo','4 Feet Under','','','','','');
         echo $testemployee->getFullName().'(ID='.$testemployee->getEmployeeID().')'.' is a '.$testemployee->getJobTitle().'.'.PHP_EOL;#this is pulling a method from the Person class and from the Eemployee class
 
         $testemployee->setJobTitle('library manager');
@@ -51,3 +61,36 @@ require_once ('Classes\Customer.php');
         
         #$mycustomercontroller->removeCustomer(12345);
         #print_r($mycustomercontroller->customers);
+        
+    #Testing Loan
+    use Loan\Loan;
+        
+    $myLoan = new Loan(98765, '13-01-19', 1, 2);
+    var_dump($myLoan);
+    
+    $myLoan->setLoanID(12345);
+    echo "\nloanID: " . $myLoan->getLoanID();
+    
+    $myLoan->setLoanOutDate('15-01-19');
+    echo "\nloanOutDate: " . $myLoan->getLoanOutDate();
+    
+    $myLoan->setLoanReturnDate('14-01-19');
+    echo "\nloanReturnDate: " . $myLoan->getLoanReturnDate();
+    
+    $myLoan->setIsLoanOverdue(false);
+    echo "\nloanOverdue: ";
+    var_dump($myLoan->getIsLoanOverdue());
+    
+    
+    # Testing LoanController
+    use LoanController\LoanController;
+    
+    $myLoanController = new LoanController();
+    $myLoanController->loanBook(new Loan(1, '11-1-01', 3, 1));
+    $myLoanController->loanBook(new Loan(2, '12-2-02', 4, 2));
+    
+    var_dump($myLoanController->getLoans());
+    
+    $myLoanController->returnBook(1, '12-12-12');
+    
+    var_dump($myLoanController->getLoans());

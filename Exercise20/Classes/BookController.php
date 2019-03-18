@@ -23,7 +23,7 @@ namespace BookController{
     }
     
     $mybookcontroller=new BookController();
-    $mybookcontroller->addbook(new Book('The Shining', ['Stephen King'], 3894234, 2034, 'horror'));
+    $mybookcontroller->addbook(new Book(1234, 'The Shining', ['Stephen King'], 3894234, 2034, 'horror'));
     var_dump($mybookcontroller->books);
     
     $mybookcontroller->countCopies(3894234);

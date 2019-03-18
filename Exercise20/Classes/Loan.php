@@ -3,7 +3,8 @@
 namespace Loan {
     
 //    include_once 'Library.php';
-//    use Library\Library as Library;
+//    use Library\Library;
+    
     
     class Loan {
         
@@ -11,12 +12,16 @@ namespace Loan {
         private $loanOutDate;
         private $loanReturnDate;
         private $isLoanOverdue;
+        private $loanedBookID;
+        private $loanCustomerID;
         
-        public function __construct(int $loanID, $loanOutDate, $loanReturnDate, bool $isLoanOverdue) {
+
+        
+        public function __construct(int $loanID, $loanOutDate, $loanedBookID, $loanCustomerID) {
             $this->setLoanID($loanID);
             $this->setLoanOutDate($loanOutDate);
-            $this->setLoanReturnDate($loanReturnDate);
-            $this->setIsLoanOverdue($isLoanOverdue);
+            $this->setLoanedBookID($loanedBookID);
+            $this->setLoanCustomerID($loanCustomerID);
 //            parent::__construct('Bookworms', 6780);
         }
         
@@ -24,7 +29,7 @@ namespace Loan {
             return $this->loanID;
         }
         
-        private function setLoanID(int $loanID) {
+        public function setLoanID(int $loanID) {
             $this->loanID = $loanID;
         }
         
@@ -32,7 +37,7 @@ namespace Loan {
             return $this->loanOutDate;
         }
         
-        private function setLoanOutDate($loanOutDate) {
+        public function setLoanOutDate($loanOutDate) {
             $this->loanOutDate = $loanOutDate;
         }
 
@@ -40,7 +45,7 @@ namespace Loan {
             return $this->loanReturnDate;
         }
         
-        private function setLoanReturnDate($loanReturnDate) {
+        public function setLoanReturnDate($loanReturnDate) {
             $this->loanReturnDate = $loanReturnDate;
         }
 
@@ -48,14 +53,27 @@ namespace Loan {
             return $this->isLoanOverdue;
         }
         
-        private function setIsLoanOverdue(bool $isLoanOverdue) {
+        public function setIsLoanOverdue(bool $isLoanOverdue) {
             $this->isLoanOverdue = $isLoanOverdue;
-        }        
+        }  
+        
+        public function getLoanedBookID() {
+            return $this->loanedBookID;
+        }
+        
+        public function setLoanedBookID(int $loanedBookID) {
+            $this->loanedBookID = $loanedBookID;
+        }
+        
+        public function getLoanCustomerID() {
+            return $this->loanCustomerID;
+        }
+        
+        public function setLoanCustomerID(int $loanCustomerID) {
+            $this->loanCustomerID = $loanCustomerID;
+        }
     
     }
     
-    $myLoan = new Loan(98765, '13-01-19', '12-02-19', true);
-    
-    var_dump($myLoan);
 }
 

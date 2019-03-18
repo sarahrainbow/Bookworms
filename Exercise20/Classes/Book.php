@@ -3,19 +3,29 @@
 namespace Book{
 
     class Book {
+        private $bookID;
         private $title; 
         private $authors=[];
         private $ISBN;
         private $yearpublished;
         private $genre;
         
-        public function __construct(string $title, array $authors, int $ISBN, int $publishdate, string $genre){
+        public function __construct(int $bookID, string $title, array $authors, int $ISBN, int $publishdate, string $genre){
+            $this->bookID = $bookID;
             $this->title = $title;
             $this->authors = $authors;
             $this->ISBN = $ISBN;
             $this->yearpublished = $publishdate;
             $this->genre = $genre;
         }
+        
+        public function getBookID(){
+            return $this->title;
+        }
+        
+        public function setBookID($newBookID){
+            $this->title=$newBookID;
+        }        
     
         public function getTitle(){
             return $this->title;
@@ -58,10 +68,10 @@ namespace Book{
         }
     }
     
-    //$mybook=new Book('Harry Potter', ['J.K. Rowling','Stephen King'], 283429858432,  1996, 'Children');
-    //echo $mybook->getTitle();
-    
-    //$mybook->setTitle('James Bond');
+//    $mybook=new Book('Harry Potter', ['J.K. Rowling','Stephen King'], 283429858432,  1996, 'Children');
+//    echo $mybook->getTitle();
+//    
+//    $mybook->setTitle('James Bond');
 //    echo $mybook->getTitle();
 //    
 //    var_dump($mybook);
