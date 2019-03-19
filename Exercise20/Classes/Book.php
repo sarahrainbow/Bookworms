@@ -7,7 +7,7 @@ namespace Book{
         private $title; 
         private $authors=[];
         private $ISBN;
-        private $yearpublished;
+        private $publishdate;
         private $genre;
         private $isAvailable;
         
@@ -16,7 +16,7 @@ namespace Book{
             $this->title = $title;
             $this->authors = $authors;
             $this->ISBN = $ISBN;
-            $this->yearpublished = $publishdate;
+            $this->publishdate = $publishdate;
             $this->genre = $genre;
             $this->isAvailable=$isAvailable;
         }
