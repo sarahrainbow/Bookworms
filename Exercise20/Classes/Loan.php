@@ -56,10 +56,7 @@ namespace Loan {
         
         //this is set automatically when a new instance of a Loan is called.
         public function setLoanDueBackDate() {
-            $date = new \DateTime($this->loanOutDate);
-            $interval = new \DateInterval('P1M');
-            $date->add($interval);
-            $this->loanDueBackDate = $date;
+            $this->loanDueBackDate = date('Y-m-d', strtotime('+1 month', strtotime($this->loanOutDate)));
         }
 
         public function getIsLoanOverdue() {
@@ -90,10 +87,11 @@ namespace Loan {
     
     }
 //    $myLoan = new Loan(98765, '2019-01-01', 1, 2);
-//    
+    
 //    var_dump($myLoan->getLoanOutDate());
 //    echo "\n";
 //    print_r($myLoan->getLoanDueBackDate());
+//    echo $myLoan->getLoanDueBackDate();
     
     
     

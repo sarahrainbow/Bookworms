@@ -16,8 +16,15 @@ namespace LoanController {
         }
        
         public function loanBook(Loan $loan, Book $book) {
-            array_push($this->loans, $loan); //Put the loan information into the array and pulling books added into book class
-            $book->setIsAvailable(false); //Setting the book as unavailable by creating a boolean (false means book is now loaned out)
+            if($book->getIsAvailable()){
+                array_push($this->loans, $loan); //Put the loan information into the array and pulling books added into book class
+                $book->setIsAvailable(false); //Setting the book as unavailable by creating a boolean (false means book is now loaned out)
+            }
+            else if (!$book->getIsAvailable()) {
+//                die("Book already loaned");
+                echo "Book already loaned";
+            }
+                
         }
         
         public function returnBook(int $loanID, $loanReturnDate, Book $book) { //uses loadID, retrun date and book object
@@ -28,8 +35,6 @@ namespace LoanController {
                 }
             }
         }
-        
-        
         
     }
     
