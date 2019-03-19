@@ -3,8 +3,6 @@
 namespace BookViewer{
     include 'Book.php';
     use Book\Book;
-    include 'BookController.php';
-    use BookController\BookController;
     
     class BookViewer{
         public function viewbook(book $book){
