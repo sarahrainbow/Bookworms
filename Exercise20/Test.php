@@ -46,7 +46,9 @@ namespace Tests {
         private $testLoanViewer;
         
         public function __construct() {
-            $this->testBook = new Book(1, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
+            $this->testBook = new Book(000001, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
+            $this->testBookController = new BookController();
+            $this->testBookViewer = new BookViewer();
             $this->testPerson = new Person('David', '','Beckham','11 Beckingham Palace','davidbeckham@gmail.com','goldenballs7','champsleague99','','');
             $this->testEmployee= new Employee(2384958, 'librarian', 'Frida', '','Kahlo','4 Feet Under','','','','','');
             $this->testCustomer = new Customer(12345, 'Matilda', 'Honey', 'Wormwood','9 Youngwood Drive','matildahoney@gmail.com','bookworm23','Password123','','');
@@ -60,6 +62,10 @@ namespace Tests {
             
             echo 'The title is '.$this->testBook->getTitle().' and is written by '.$this->testBook->getAuthors().' was published in '.$this->testBook->getPublishDate().'.'.PHP_EOL;
         
+        public function testBookController() {
+            echo  $this->testBookController->addbook($this->testBook);
+            $this->testBookController->addbook(new book(000001, 'Charlie and the Chocolate Factory', ['Roald Dahl'], 01234, 1990, 'Children'));
+  
         public function testPerson() {
             
             echo $this->testPerson->getFirstName().' '.$this->testPerson->getSurname().' is married to Victoria Beckham. They live at '.$this->testPerson->getAddress().'.'.PHP_EOL;
