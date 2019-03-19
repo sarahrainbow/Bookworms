@@ -125,10 +125,12 @@ namespace Tests {
 
             var_dump($this->testLoanController->getLoans());
 
-            $this->testLoanController->returnBook(1, '12-12-12', $this->testBook);
+            $this->testLoanController->returnBook(1, '2012-12-12', $this->testBook);
 
             $this->testLoanController->deleteLoan($testLoan2);
             var_dump($this->testLoanController->getLoans());
+            
+            $this->testLoanController->flagBookOverdue($this->testLoan);
             
         }
         
@@ -149,8 +151,8 @@ namespace Tests {
 //    $myTest->testCustomer();
 //    $myTest->testCustomerController();
 //    $myTest->testLoan();
-//    $myTest->testLoanController();
-    $myTest->testLoanViewer();
+    $myTest->testLoanController();
+//    $myTest->testLoanViewer();
     
     
 }

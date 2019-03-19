@@ -51,19 +51,31 @@ namespace LoanController {
             }
         }
         
+        public function flagBookOverdue(Loan $loan) {
+            $todaysDate = date('Y-m-d');
+            if($loan->getLoanReturnDate() == NULL && $loan->getLoanDueBackDate() < $todaysDate){
+                echo "\nBOOK OVERDUE!";
+            }
+            
+        }
+        
     }
 //    $testBook = new Book(1, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
 //    $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
 //    $testLoanController = new LoanController();
-//    $testLoan = new Loan(1, '11-1-01', 3, 1);
+//    $testLoan = new Loan(1, '2019-02-18', 3, 1);
 //    $testLoan2 = new Loan(2, '2012-02-02', 4, 2);
 //    $testLoanController->loanBook($testLoan, $testBook);
+//    $testLoanController->returnBook(1, '2018-12-12', $testBook);
 //    $testLoanController->loanBook($testLoan2, $testBook2);
 //    
 //    $testLoanController->deleteLoan($testLoan2);
     
 //    var_dump($testLoanController->getLoans());
-    
+//    echo "\n" . $testLoan->getLoanDueBackDate();
+//    echo "\n" . date('Y-m-d');
+//    echo "\n";
+//    $testLoanController->flagBookOverdue($testLoan);
             
 }
 
