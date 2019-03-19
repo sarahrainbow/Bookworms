@@ -149,8 +149,8 @@ namespace Tests {
 //    $myTest->testCustomer();
 //    $myTest->testCustomerController();
 //    $myTest->testLoan();
-    $myTest->testLoanController();
-//    $myTest->testLoanViewer();
+//    $myTest->testLoanController();
+    $myTest->testLoanViewer();
     
     
 }
