@@ -15,7 +15,6 @@ namespace Tests {
     //require_once 'Classes\LoanViewer.php';
 
     // MAC TEST (with forward slash delimiters)
-
     require_once ('Classes/Person.php'); 
     require_once ('Classes/Employee.php'); 
     require_once ('Classes/CustomerController.php');
@@ -117,17 +116,20 @@ namespace Tests {
         }
         
         public function testLoanController() {
-            
 
-            $this->testBook->setIsAvailable(true);
+            $testLoan2 = new Loan(2, '2012-02-02', 4, 2);
+            $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
+            
             $this->testLoanController->loanBook((new Loan(1, '11-1-01', 3, 1)), $this->testBook);
-            $this->testLoanController->loanBook((new Loan(2, '12-2-02', 4, 2)), $this->testBook);
+            $this->testLoanController->loanBook((new Loan(2, '12-2-02', 4, 2)), $testBook2);
 
             var_dump($this->testLoanController->getLoans());
 
             $this->testLoanController->returnBook(1, '12-12-12', $this->testBook);
 
+            $this->testLoanController->deleteLoan($testLoan2);
             var_dump($this->testLoanController->getLoans());
+            
         }
         
         public function testLoanViewer() {
@@ -142,13 +144,13 @@ namespace Tests {
     
     $myTest = new Tests();
     
-    $myTest->testPerson();
-    $myTest->testEmployee();
-    $myTest->testCustomer();
-    $myTest->testCustomerController();
-    $myTest->testLoan();
+//    $myTest->testPerson();
+//    $myTest->testEmployee();
+//    $myTest->testCustomer();
+//    $myTest->testCustomerController();
+//    $myTest->testLoan();
     $myTest->testLoanController();
-    $myTest->testLoanViewer();
+//    $myTest->testLoanViewer();
     
     
 }

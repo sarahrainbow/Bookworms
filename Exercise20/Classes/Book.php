@@ -11,21 +11,22 @@ namespace Book{
         private $genre;
         private $isAvailable;
         
-        public function __construct(int $bookID, string $title, array $authors, int $ISBN, int $publishdate, string $genre){
+        public function __construct(int $bookID, string $title, array $authors, int $ISBN, int $publishdate, string $genre, bool $isAvailable=true){
             $this->bookID = $bookID;
             $this->title = $title;
             $this->authors = $authors;
             $this->ISBN = $ISBN;
             $this->yearpublished = $publishdate;
             $this->genre = $genre;
+            $this->isAvailable=$isAvailable;
         }
         
         public function getBookID(){
-            return $this->title;
+            return $this->bookID;
         }
         
         public function setBookID($newBookID){
-            $this->title=$newBookID;
+            $this->bookID=$newBookID;
         }        
     
         public function getTitle(){

@@ -9,20 +9,25 @@ namespace LoanController {
 
     
     class LoanController {
-        private $loans = []; //created loan array in the loan controller 
+        public $loans = []; //created loan array in the loan controller 
 
         public function getLoans() { // This function returns the array 
             return $this->loans;
+        }
+        
+        public function setLoans(array $loans) {
+            $this->loans = $loans;
         }
        
         public function loanBook(Loan $loan, Book $book) {
             if($book->getIsAvailable()){
                 array_push($this->loans, $loan); //Put the loan information into the array and pulling books added into book class
                 $book->setIsAvailable(false); //Setting the book as unavailable by creating a boolean (false means book is now loaned out)
+                echo "\n" . $book->getTitle() . " successfully loaned with bookID: " . $book->getBookID();
             }
             else if (!$book->getIsAvailable()) {
 //                die("Book already loaned");
-                echo "Book already loaned\n";
+                echo "\nBook already loaned\n";
             }
                 
         }
@@ -32,13 +37,33 @@ namespace LoanController {
                 if($loan->getLoanID() === $loanID) { //IF loanID matches loanID entered into the function entered
                     $loan->setLoanReturnDate($loanReturnDate);
                     $book->setIsAvailable(true); //Sets availability to true
+                    echo "\n" . $book->getTitle() . " succesffully returned with bookID: " . $book->getBookID();
+                }
+            }
+        }
+        
+        public function deleteLoan(Loan $loanToDelete){
+            foreach($this->getLoans() as $key => $loan) {
+                if($loan->getLoanID() === $loanToDelete->getLoanID()){
+                    unset($this->loans[$key]);
+                    echo "\nSuccessfully deleted loan with loanID: " . $loanToDelete->getLoanID();
                 }
             }
         }
         
     }
+//    $testBook = new Book(1, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
+//    $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
+//    $testLoanController = new LoanController();
+//    $testLoan = new Loan(1, '11-1-01', 3, 1);
+//    $testLoan2 = new Loan(2, '2012-02-02', 4, 2);
+//    $testLoanController->loanBook($testLoan, $testBook);
+//    $testLoanController->loanBook($testLoan2, $testBook2);
+//    
+//    $testLoanController->deleteLoan($testLoan2);
     
-
+//    var_dump($testLoanController->getLoans());
+    
             
 }
 
