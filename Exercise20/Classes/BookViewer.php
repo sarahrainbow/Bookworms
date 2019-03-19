@@ -6,17 +6,16 @@ namespace BookViewer{
     
     class BookViewer{
         public function viewbook(book $book){
+            echo "Book ID: ".$book->getbookID().'\n';
             echo "Book Title: ".$book->getTitle().'\n';
-            echo "Book Author: ".$book->getAuthor().'\n';
+            echo "Book Author: ".$book->getAuthors().'\n';
             echo "Book Genre: ".$book->getGenre().'\n';
             echo "Book Publish Date: ".$book->getPublishDate().'\n';
             echo "Book ISBN: ".$book->getISBN().'\n';
         }
     }
     
-    $mybook=new Book('Harry Potter', ['J.K. Rowling','Stephen King'], 283429858432,  1996, 'Children');
-    $myBookViewer = new ViewBook();
-    $myBookViewer->ViewBook($mybook);
-    
-    
+$mybook=new Book(9, 'Harry Potter', ['J.K. Rowling','Stephen King'], 28342432, 1996, 'Children'); //BookID cannot start with 0 as PHP recognises numeric literal
+$myBookViewer = new BookViewer();
+$myBookViewer->ViewBook($mybook);    
 }
