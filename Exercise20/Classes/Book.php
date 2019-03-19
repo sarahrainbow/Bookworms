@@ -62,11 +62,11 @@ namespace Book{
         }
         
         public function getPublishDate(){
-            return $this->PublishDate;
+            return $this->publishdate;
         }
         
         public function setPublishDate($newPublishDate){
-            $this->PublishDate=$newPublishDate;
+            $this->publishdate=$newPublishDate;
         }
         
         public function getIsAvailable() {

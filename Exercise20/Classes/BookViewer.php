@@ -6,12 +6,15 @@ namespace BookViewer{
     
     class BookViewer{
         public function viewbook(book $book){
-            echo "Book ID: ".$book->getbookID().'\n';
-            echo "Book Title: ".$book->getTitle().'\n';
-            echo "Book Author: ".$book->getAuthors().'\n';
-            echo "Book Genre: ".$book->getGenre().'\n';
-            echo "Book Publish Date: ".$book->getPublishDate().'\n';
-            echo "Book ISBN: ".$book->getISBN().'\n';
+            echo "Book ID: ".$book->getbookID()."\n";
+            echo "Book Title: ".$book->getTitle()."\n";
+            echo "Book Author: ";
+            foreach($book->getAuthors() as $author) {
+                echo $author . ", ";
+            }
+            echo "Book Genre: ".$book->getGenre()."\n";
+            echo "Book Publish Date: ".$book->getPublishDate()."\n";
+            echo "Book ISBN: ".$book->getISBN()."\n";
         }
     }
     
