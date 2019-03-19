@@ -56,6 +56,10 @@ namespace Tests {
             $this->testLoanViewer = new LoanViewer();
         }
         
+        public function testBook() {
+            
+            echo 'The title is '.$this->testBook->getTitle().' and is written by '.$this->testBook->getAuthors().' was published in '.$this->testBook->getPublishDate().'.'.PHP_EOL;
+        
         public function testPerson() {
             
             echo $this->testPerson->getFirstName().' '.$this->testPerson->getSurname().' is married to Victoria Beckham. They live at '.$this->testPerson->getAddress().'.'.PHP_EOL;
