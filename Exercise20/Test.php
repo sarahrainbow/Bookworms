@@ -13,6 +13,7 @@ namespace Tests {
     //require_once 'Classes\LoanController.php';
     //require_once 'Classes\Book.php';
     //require_once 'Classes\LoanViewer.php';
+    //require_once 'Classes\UserViewer.php';
 
     // MAC TEST (with forward slash delimiters)
     require_once ('Classes/Person.php'); 
@@ -23,6 +24,7 @@ namespace Tests {
     require_once 'Classes/LoanController.php';
     require_once 'Classes/Book.php';
     require_once 'Classes/LoanViewer.php';
+    require_once 'Classes/UserViewer.php';
     
     use Person\Person;
     use Employee\Employee;
@@ -32,7 +34,7 @@ namespace Tests {
     use LoanController\LoanController;
     use Book\Book;
     use LoanViewer\LoanViewer;
-    
+    use UserViewer\UserViewer;
     
     Class Tests {
         
@@ -44,6 +46,7 @@ namespace Tests {
         private $testLoan;
         private $testLoanController;
         private $testLoanViewer;
+        private $testUserViewer;
         
         public function __construct() {
             $this->testBook = new Book(000001, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
@@ -54,6 +57,7 @@ namespace Tests {
             $this->testLoan = new Loan(98765, '13-01-19', 1, 2);
             $this->testLoanController = new LoanController();
             $this->testLoanViewer = new LoanViewer();
+            $this->testUserViewer = new UserViewer(4569, 'Ted', 'James', 'Baker', 'The Heights', 'ted@test.com', 'Ted40', 'fsdfsd', 'User', '2019-03-01');
         }
         
         public function testBook() {
@@ -158,6 +162,7 @@ namespace Tests {
 //    $myTest->testLoan();
     $myTest->testLoanController();
 //    $myTest->testLoanViewer();
+    //$myTest->testUserViewer();
     
     
 }
