@@ -34,7 +34,16 @@ namespace BookController{
             echo $copycount;
         }
     }		
+  
+    $testbook=new Book(56776678, 'The Shining', ['Stephen King'], 3894234, 2034, 'horror');	//assign new book as a variable
     
+    $mybook1=new BookController(); //Need to call class
     
+    $mybook1->addbook($testbook); //add assigned variable to addbook method 
+    var_dump($mybook1->books); 
+    
+    $mybook1->countCopies(3894234); //Count the instances of books with this ISBN
+    
+    $mybook1->deletebook($testbook); //deletes book
     
 
