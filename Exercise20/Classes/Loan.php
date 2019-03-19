@@ -89,11 +89,11 @@ namespace Loan {
        
     
     }
-    $myLoan = new Loan(98765, '2019-01-01', 1, 2);
-    
-    var_dump($myLoan->getLoanOutDate());
-    echo "\n";
-    print_r($myLoan->getLoanDueBackDate());
+//    $myLoan = new Loan(98765, '2019-01-01', 1, 2);
+//    
+//    var_dump($myLoan->getLoanOutDate());
+//    echo "\n";
+//    print_r($myLoan->getLoanDueBackDate());
     
     
     
