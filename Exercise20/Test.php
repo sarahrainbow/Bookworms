@@ -61,11 +61,13 @@ namespace Tests {
         public function testBook() {
             
             echo 'The title is '.$this->testBook->getTitle().' and is written by '.$this->testBook->getAuthors().' was published in '.$this->testBook->getPublishDate().'.'.PHP_EOL;
+        }
         
         public function testBookController() {
             echo  $this->testBookController->addbook($this->testBook);
             $this->testBookController->addbook(new book(000001, 'Charlie and the Chocolate Factory', ['Roald Dahl'], 01234, 1990, 'Children'));
-  
+        }
+        
         public function testPerson() {
             
             echo $this->testPerson->getFirstName().' '.$this->testPerson->getSurname().' is married to Victoria Beckham. They live at '.$this->testPerson->getAddress().'.'.PHP_EOL;
