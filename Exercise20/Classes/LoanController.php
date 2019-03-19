@@ -22,7 +22,7 @@ namespace LoanController {
             }
             else if (!$book->getIsAvailable()) {
 //                die("Book already loaned");
-                echo "Book already loaned";
+                echo "Book already loaned\n";
             }
                 
         }
