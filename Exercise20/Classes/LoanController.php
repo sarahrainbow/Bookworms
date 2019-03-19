@@ -51,9 +51,10 @@ namespace LoanController {
             }
         }
         
-        public function flagBookOverdue(Loan $loan) {
+        public function flagLoanOverdue(Loan $loan) {
             $todaysDate = date('Y-m-d');
             if($loan->getLoanReturnDate() == NULL && $loan->getLoanDueBackDate() < $todaysDate){
+                $loan->setIsLoanOverdue(true);
                 echo "\nBOOK OVERDUE!";
             }
             
@@ -75,7 +76,7 @@ namespace LoanController {
 //    echo "\n" . $testLoan->getLoanDueBackDate();
 //    echo "\n" . date('Y-m-d');
 //    echo "\n";
-//    $testLoanController->flagBookOverdue($testLoan);
+//    $testLoanController->flagLoanOverdue($testLoan);
             
 }
 
