@@ -1,5 +1,27 @@
 <?php
 
+namespace UserViewer {
+    
+    require_once 'Customer.php';
+    use Customer\Customer;
+    
+    class UserViewer {
+        
+        public function listAccountDetails (Customer $customer) {//declare customer object type and variable is argument
+            echo "Customer ID:" . $customer->customerID;
+            echo "\nFirst name:" . $customer->firstname;
+        }
+  
+    }
+    
+    $myUserDetails = new UserViewer;
+    $myUserDetails->listAccountDetails('mel');
+    
+}
+     
+ 
+
+
  
 
 //want to show account details, list privileges, list fine
