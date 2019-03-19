@@ -5,7 +5,7 @@ namespace Employee{
 require_once ('Person.php');   
 use Person\Person;
 
-    class Employee extends Person{
+    class Employee extends Person{ //inherits attributes (name, address etc.) from Person Class allowing additional ones (Job Title, ID) to be added
         private $employeeID; 
         private $jobtitle;
         protected $loanlimit=10;#this overwrites general limit of 5
