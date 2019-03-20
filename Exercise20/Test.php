@@ -151,12 +151,12 @@ namespace Tests {
     
     $myTest = new Tests();
     
-//    $myTest->testPerson();
+    $myTest->testPerson();
 //    $myTest->testEmployee();
 //    $myTest->testCustomer();
 //    $myTest->testCustomerController();
 //    $myTest->testLoan();
-    $myTest->testLoanController();
+//    $myTest->testLoanController();
 //    $myTest->testLoanViewer();
     
     
