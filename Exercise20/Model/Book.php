@@ -1,6 +1,6 @@
 <?php
 
-namespace Book{
+namespace Model{
 
     class Book {
         private $bookID;

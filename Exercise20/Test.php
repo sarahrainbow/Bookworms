@@ -5,36 +5,36 @@ namespace Tests {
     #Could try using autoload function for loading of class files
 
     // WINDOWS TEST (with back slash delimiters)
-    //require_once ('Classes\Person.php'); 
-    //require_once ('Classes\Employee.php'); 
-    //require_once ('Classes\CustomerController.php');
-    //require_once ('Classes\Customer.php');
-    //require_once ('Classes\Loan.php');
-    //require_once 'Classes\LoanController.php';
-    //require_once 'Classes\Book.php';
-    //require_once 'Classes\LoanViewer.php';
-    //require_once 'Classes\UserViewer.php';
+    //require_once ('Model\Person.php'); 
+    //require_once ('Model\Employee.php'); 
+    //require_once ('Controller\CustomerController.php');
+    //require_once ('Model\Customer.php');
+    //require_once ('Model\Loan.php');
+    //require_once 'Controller\LoanController.php';
+    //require_once 'Model\Book.php';
+    //require_once 'Viewer\LoanViewer.php';
+    //require_once 'Viewer\UserViewer.php';
 
     // MAC TEST (with forward slash delimiters)
-    require_once ('Classes/Person.php'); 
-    require_once ('Classes/Employee.php'); 
-    require_once ('Classes/CustomerController.php');
-    require_once ('Classes/Customer.php');
-    require_once 'Classes/Loan.php';
-    require_once 'Classes/LoanController.php';
-    require_once 'Classes/Book.php';
-    require_once 'Classes/LoanViewer.php';
-    require_once 'Classes/UserViewer.php';
+    require_once ('Model/Person.php'); 
+    require_once ('Model/Employee.php'); 
+    require_once ('Controller/CustomerController.php');
+    require_once ('Model/Customer.php');
+    require_once 'Model/Loan.php';
+    require_once 'Controller/LoanController.php';
+    require_once 'Model/Book.php';
+    require_once 'Viewer/LoanViewer.php';
+    require_once 'Viewer/UserViewer.php';
     
-    use Person\Person;
-    use Employee\Employee;
-    use Customer\Customer;
-    use CustomerController\CustomerController;
-    use Loan\Loan;
-    use LoanController\LoanController;
-    use Book\Book;
-    use LoanViewer\LoanViewer;
-    use UserViewer\UserViewer;
+    use Model\Person;
+    use Model\Employee;
+    use Model\Customer;
+    use Controller\CustomerController;
+    use Model\Loan;
+    use Controller\LoanController;
+    use Model\Book;
+    use Viewer\LoanViewer;
+    use Viewer\UserViewer;
     
     Class Tests {
         

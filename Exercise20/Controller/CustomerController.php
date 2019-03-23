@@ -3,9 +3,9 @@
 #Currently generically called user controller but may want to split to customer/employee view/controller.
 ##below contains methods for accessing customers
 
-namespace CustomerController{
-    require_once ('Customer.php');
-    use Customer\Customer;
+namespace Controller{
+    require_once ('/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Customer.php');
+    use Model\Customer;
        
     
         class CustomerController{

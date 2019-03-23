@@ -1,6 +1,6 @@
 <?php
 
-namespace Loan {
+namespace Model {
     
 //    include_once 'Library.php';
 //    use Library\Library;

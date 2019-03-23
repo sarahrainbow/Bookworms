@@ -1,9 +1,9 @@
 <?php
 
-namespace Customer{
+namespace Model{
 
 require_once ('Person.php');   
-use Person\Person;
+use Model\Person;
 
     class Customer extends Person{
         private $customerID;

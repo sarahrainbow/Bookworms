@@ -1,11 +1,11 @@
 <?php
 
-namespace LoanController {
+namespace Controller {
     
-    include_once 'Loan.php';
-    use Loan\Loan;
-    include_once 'Book.php';
-    use Book\Book;
+    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Loan.php';
+    use Model\Loan;
+    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Book.php';
+    use Model\Book;
 
     
     class LoanController {

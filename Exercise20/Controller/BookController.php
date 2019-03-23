@@ -1,7 +1,7 @@
 <?php
-namespace BookController{
-    include 'Book.php';
-    use Book\Book;
+namespace Controller{
+    include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Book.php';
+    use Model\Book;
     
     class BookController{
         public $books=[]; //Declares book type i.e. like Pen in notes
