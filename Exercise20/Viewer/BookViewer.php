@@ -1,8 +1,9 @@
 <?php
 
 namespace BookViewer{
-    include 'Book.php';
-    use Book\Book;
+     
+   include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Book.php';
+   use Model\Book;
     
     class BookViewer{
         public function viewbook(book $book){

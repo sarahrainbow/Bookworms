@@ -1,9 +1,9 @@
 <?php
 
-namespace Employee{
+namespace Model{
 
 require_once ('Person.php');   
-use Person\Person;
+use Model\Person;
 
     class Employee extends Person{ //inherits attributes (name, address etc.) from Person Class allowing additional ones (Job Title, ID) to be added
         private $employeeID; 

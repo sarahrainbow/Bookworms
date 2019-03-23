@@ -1,6 +1,6 @@
 <?php
 
-namespace Person{
+namespace Model{
 
     class Person {
         protected $firstname; 

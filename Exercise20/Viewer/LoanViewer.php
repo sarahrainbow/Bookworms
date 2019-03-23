@@ -2,8 +2,8 @@
 
 namespace LoanViewer {
     
-    require_once 'Loan.php';
-    use Loan\Loan;
+    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Loan.php';
+    use Model\Loan;
     
     class LoanViewer {
         

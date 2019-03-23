@@ -1,8 +1,8 @@
 <?php
 namespace UserViewer {
     
-    require_once 'Customer.php';
-    use Customer\Customer;
+    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Customer.php';
+    use Model\Customer;
     
     class UserViewer {
         
