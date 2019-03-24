@@ -13,9 +13,18 @@ namespace Viewers{
             echo "Book ID: ".$book->getbookID()."\n";
             echo "Book Title: ".$book->getTitle()."\n";
             echo "Book Author: ";
+            $authorList='';
             foreach($book->getAuthors() as $author) {
-                echo $author . ", ";
+                if ($authorList === ""){//ie if this is the first match then start off the list, if hint has now changed to something other than null (started being populated with names, then add more onto the end with a comma)
+                $authorList=$author;
+                      }
+                else {
+                    $authorList .= ", $author";
+                    echo $authorList."\n";
+                }
+                #echo $author . ", ";
             }
+            
             echo "Book Genre: ".$book->getGenre()."\n";
             echo "Book Publish Date: ".$book->getPublishDate()."\n";
             echo "Book ISBN: ".$book->getISBN()."\n";
