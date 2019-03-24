@@ -5,8 +5,6 @@
 
 namespace Controllers{
     
-    //xx
-    
     #For Cynthuja  
     #require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Customer.php';
     
@@ -34,6 +32,14 @@ namespace Controllers{
                 if($customers->getCustomerID() === $deleteCustomer -> getCustomerID()){ //if CustomerID matches the customer you want to delete, delete it
                     unset($this->customers[$key]);
                     echo "Customer ID ". $deleteCustomer->getCustomerID(). " has been removed.";
+                }
+            }
+        }
+            
+        public function editCustomerPrivileges(Customer $editCustomer, $newPrivileges){
+            foreach($this->getCustomer() as $customer){ 
+                if($customers->getCustomerID() === $editCustomer -> getCustomerID()){ 
+                    $customer->setPrivileges($newPrivileges);
                 }
             }
         }  
