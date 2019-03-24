@@ -70,7 +70,12 @@ namespace Models{
         }
         
         public function getEmail(){
-            return $this->email;
+            if (empty($this->email)){
+                return "no email provided";
+            }
+            else{
+                return $this->email;
+            };
         }
         
         public function setEmail($newEmail){
