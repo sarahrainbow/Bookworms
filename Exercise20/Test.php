@@ -5,36 +5,36 @@ namespace Tests {
     #Could try using autoload function for loading of class files
 
     // WINDOWS TEST (with back slash delimiters)
-    //require_once ('Model\Person.php'); 
-    //require_once ('Model\Employee.php'); 
-    //require_once ('Controller\CustomerController.php');
-    //require_once ('Model\Customer.php');
-    //require_once ('Model\Loan.php');
-    //require_once 'Controller\LoanController.php';
-    //require_once 'Model\Book.php';
-    //require_once 'Viewer\LoanViewer.php';
-    //require_once 'Viewer\UserViewer.php';
+//    require_once ('Models\Person.php'); 
+//    require_once ('Models\Employee.php'); 
+//    require_once ('Controllers\CustomerController.php');
+//    require_once ('Models\Customer.php');
+//    require_once ('Models\Loan.php');
+//    require_once 'Controllers\LoanController.php';
+//    require_once 'Models\Book.php';
+//    require_once 'Viewers\LoanViewer.php';
+//    require_once 'Viewers\UserViewer.php';
 
     // MAC TEST (with forward slash delimiters)
-    require_once ('Model/Person.php'); 
-    require_once ('Model/Employee.php'); 
-    require_once ('Controller/CustomerController.php');
-    require_once ('Model/Customer.php');
-    require_once 'Model/Loan.php';
-    require_once 'Controller/LoanController.php';
-    require_once 'Model/Book.php';
-    require_once 'Viewer/LoanViewer.php';
-    require_once 'Viewer/UserViewer.php';
+//    require_once ('Models/Person.php'); 
+//    require_once ('Models/Employee.php');
+//    require_once ('Models/Customer.php');
+//    require_once 'Models/Loan.php';
+//    require_once 'Models/Book.php';
+//    require_once ('Controllers/CustomerController.php');
+//    require_once 'Controllers/LoanController.php';
+//    require_once 'Viewers/LoanViewer.php';
+//    require_once 'Viewers/UserViewer.php';
     
-    use Model\Person;
-    use Model\Employee;
-    use Model\Customer;
-    use Controller\CustomerController;
-    use Model\Loan;
-    use Controller\LoanController;
-    use Model\Book;
-    use Viewer\LoanViewer;
-    use Viewer\UserViewer;
+    spl_autoload_register(function($Name) { #detects full pathname of class and then searches in equivalent file structure to include file
+    require_once $Name . '.php';
+    });
+    
+    use Models\ {Person, Employee, Customer, Loan, Book};
+    use Controllers\ {CustomerController, LoanController};
+    use Viewers\ {LoanViewer, UserViewer};
+    
+
     
     Class Tests {
         
@@ -50,7 +50,8 @@ namespace Tests {
         
         public function __construct() {
             $this->testBook = new Book(000001, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
-            $this->testPerson = new Person('David', '','Beckham','11 Beckingham Palace','davidbeckham@gmail.com','goldenballs7','champsleague99','','');
+            #$this->testPerson = new Person('David', '','Beckham','11 Beckingham Palace','davidbeckham@gmail.com','goldenballs7','champsleague99','','');
+            #above no longer works as Person is an abstract class and can't be instantiated from
             $this->testEmployee= new Employee(2384958, 'librarian', 'Frida', '','Kahlo','4 Feet Under','','','','','');
             $this->testCustomer = new Customer(12345, 'Matilda', 'Honey', 'Wormwood','9 Youngwood Drive','matildahoney@gmail.com','bookworm23','Password123','','');
             $this->testCustomerController = new CustomerController();
@@ -65,14 +66,14 @@ namespace Tests {
             echo 'The title is '.$this->testBook->getTitle().' and is written by '.$this->testBook->getAuthors().' was published in '.$this->testBook->getPublishDate().'.'.PHP_EOL;
         }
         
-        public function testPerson() {
-            
-            echo $this->testPerson->getFirstName().' '.$this->testPerson->getSurname().' is married to Victoria Beckham. They live at '.$this->testPerson->getAddress().'.'.PHP_EOL;
-
-            #or
-
-            echo $this->testPerson->getFullName().PHP_EOL;
-        }
+//        public function testPerson() {
+//            
+//            echo $this->testPerson->getFirstName().' '.$this->testPerson->getSurname().' is married to Victoria Beckham. They live at '.$this->testPerson->getAddress().'.'.PHP_EOL;
+//
+//            #or
+//
+//            echo $this->testPerson->getFullName().PHP_EOL;
+//        }
         
         
         public function testEmployee() {
@@ -139,7 +140,7 @@ namespace Tests {
             $this->testLoanController->deleteLoan($testLoan2);
             var_dump($this->testLoanController->getLoans());
             
-            $this->testLoanController->flagBookOverdue($this->testLoan);
+            $this->testLoanController->flagLoanOverdue($this->testLoan);
             
         }
         
@@ -155,14 +156,14 @@ namespace Tests {
     
     $myTest = new Tests();
     
-    $myTest->testPerson();
-//    $myTest->testEmployee();
-//    $myTest->testCustomer();
-//    $myTest->testCustomerController();
-//    $myTest->testLoan();
-//    $myTest->testLoanController();
-//    $myTest->testLoanViewer();
-    //$myTest->testUserViewer();
+    
+$myTest->testEmployee();
+$myTest->testCustomer();
+$myTest->testCustomerController();
+$myTest->testLoan();
+$myTest->testLoanController();
+$myTest->testLoanViewer();
+#$myTest->testUserViewer(); #not been added by Mel yet
     
     
 }
