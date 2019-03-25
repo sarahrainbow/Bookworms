@@ -1,0 +1,71 @@
+<?php 
+
+$conn = mysqli_connect ('localhost', 'root') or die("could not connect");
+mysqli_select_db($conn, "libraryapp") or die ("could not connect");
+
+$output = ''; //output of results
+
+if(isset($_GET['search'])) {
+    $searchq = $_GET['search'];
+    $searchq = preg_replace("#[^0-9a-z.-]#i","", $searchq);//replaces anything that is not first argument with second argument on variable. Allows letters and numbers and -.#i allows caps and lowercase
+    
+ $query = mysqli_query($conn, "SELECT * FROM book WHERE BookISBN LIKE '%$searchq%' OR Title LIKE '%$searchq%'") or die("could not search");
+ $count = mysqli_num_rows($query);//count number of rows of results
+ if($count == 0) {
+ $output = "There were no results\n";}
+ else {
+     while($row = mysqli_fetch_array($query)) {
+         $bookisbn = $row['BookISBN'];
+         $title = $row['Title'];
+         $output = "<div>$bookisbn $title</div>"; //
+     }
+ }
+}
+
+?>
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Search books</title>
+    </head>
+    <body>
+        <nav><ul>
+                <li>Home</li>
+                <li>My account</li>
+                <li>Search and reserve books</li>
+                <li>Library branches</li>
+            </ul></nav>
+        
+        
+        <h1>Search books</h1>
+          
+<form action="search.php" method="get">
+  
+  <input type="search" name="search" placeholder="Search" autofocus="true"  maxlength="100" title="Book title or ISBN" required> 
+  <input type="submit" value="Search">
+</form>
+        
+        <h2>Search results</h2>   
+        
+      <?php echo ("$output");?>  
+        
+        <div>
+        <div>Useful links</div>
+        <ul>
+            <li>Library branches</li>
+            <li>Opening times</li> 
+        </ul>
+        </div>        
+        
+        <footer>
+            <ul>
+                <li>Terms of use</li>
+                <li>Contact us</li>
+                <li>Accessibility</li>
+            </ul>
+        </footer>
+    </body>
+</html>
