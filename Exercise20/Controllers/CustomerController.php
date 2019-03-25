@@ -34,6 +34,14 @@ namespace Controllers{
                     echo "Customer ID ". $deleteCustomer->getCustomerID(). " has been removed.";
                 }
             }
+        }
+            
+        public function editCustomerPrivileges(Customer $editCustomer, $newPrivileges){
+            foreach($this->getCustomer() as $customer){ 
+                if($customers->getCustomerID() === $editCustomer -> getCustomerID()){ 
+                    $customer->setPrivileges($newPrivileges);
+                }
+            }
         }  
         
 }

@@ -58,7 +58,8 @@ namespace Tests {
             $this->testLoan = new Loan(98765, '13-01-19', 1, 2);
             $this->testLoanController = new LoanController();
             $this->testLoanViewer = new LoanViewer();
-            $this->testUserViewer = new UserViewer(4569, 'Ted', 'James', 'Baker', 'The Heights', 'ted@test.com', 'Ted40', 'fsdfsd', 'User', '2019-03-01');
+            $this->testUserViewer = new UserViewer();
+            #$this->testUserViewer = new UserViewer(4569, 'Ted', 'James', 'Baker', 'The Heights', 'ted@test.com', 'Ted40', 'fsdfsd', 'User', '2019-03-01');
         }
         
         public function testBook() {
@@ -152,18 +153,22 @@ namespace Tests {
             $this->testLoanViewer->listLoan($this->testLoan);
         }
         
-    }
+        public function testUserViewer() {
+            
+            $this->testUserViewer->listEmployeeDetails($this->testEmployee);
+            
+    }}
     
     $myTest = new Tests();
     
     
-$myTest->testEmployee();
-$myTest->testCustomer();
-$myTest->testCustomerController();
-$myTest->testLoan();
-$myTest->testLoanController();
-$myTest->testLoanViewer();
-#$myTest->testUserViewer(); #not been added by Mel yet
+//$myTest->testEmployee();
+//$myTest->testCustomer();
+//$myTest->testCustomerController();
+//$myTest->testLoan();
+//$myTest->testLoanController();
+//$myTest->testLoanViewer();
+$myTest->testUserViewer(); 
     
     
 }

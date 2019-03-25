@@ -2,12 +2,15 @@
 namespace Viewers {
     
     #For Cynthuja  
-    #require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Customer.php';
+    #require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Models/Customer.php';
+    #require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Models/Employee.php';
+
     
     #For Windows
     require_once 'C:\xampp\htdocs\Exercise20\Models\Customer.php';
+    require_once 'C:\xampp\htdocs\Exercise20\Models\Employee.php';
     
-    use Models\Customer;
+    use Models\ {Customer, Employee};
     
     class UserViewer {
         
@@ -24,10 +27,22 @@ namespace Viewers {
             echo "Privileges: " . $customer->getPrivileges() . "\n";
           
         }
+        
+        #Added by Faith
+        public function listEmployeeDetails (Employee $employee) {//taking customer object type and variable is argument
+            echo "Customer ID: " . $employee->getEmployeeID() . "\n";
+            echo "Name: " . $employee->getFullName() . "\n";
+            echo "Address: " . $employee->getAddress() . "\n";
+            echo "Email: " . $employee->getEmail() . "\n";
+            echo "Date joined: " . $employee->getDateJoined() . "\n";
+            echo "Privileges: " . $employee->getPrivileges() . "\n";
    }
-    
+   
+               
+    }           
     //$myUserDetails = new UserViewer;
     //$myUserDetails->listAccountDetails(new Customer (4569, 'Ted', 'James', 'Baker', 'The Heights', 'ted@test.com', 'Ted40', 'fsdfsd', 'User', '2019-03-01'));
     
-}
+
  
+}
