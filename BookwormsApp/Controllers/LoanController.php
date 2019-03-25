@@ -6,8 +6,9 @@ namespace Controllers {
     #include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Loan.php';
     #include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Book.php';
     
-    require_once 'C:\xampp\htdocs\Exercise20\Models\Loan.php';
-    require_once 'C:\xampp\htdocs\Exercise20\Models\Book.php';
+    
+    require_once(__DIR__ . '/../Models/Loan.php');
+    require_once(__DIR__ . '/../Models/Book.php');
     
     use Models\ {Book, Loan};
 
@@ -56,10 +57,9 @@ namespace Controllers {
         }
         
         public function flagLoanOverdue(Loan $loan) {
-            $todaysDate = date('Y-m-d');
-            if($loan->getLoanReturnDate() == NULL && $loan->getLoanDueBackDate() < $todaysDate){
+//            $todaysDate = date('Y-m-d');
+            if($loan->getLoanDueBackDate() < $loan->getLoanReturnDate()){
                 $loan->setIsLoanOverdue(true);
-                echo "\nBOOK OVERDUE!";
             }
             
         }
