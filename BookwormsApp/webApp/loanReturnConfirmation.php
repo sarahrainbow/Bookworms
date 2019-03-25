@@ -1,4 +1,6 @@
 
+
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -40,16 +42,17 @@ if(!empty($loanDetails)) {
     }
 
     $loanID= rand(000, 1000);  
+    $newLoan = new Loan($loanID, '2019-01-25', $loanDetails['bookID'], $loanDetails['customerID']);
+    $newLoan->setLoanReturnDate($loanDetails['loanReturnDate']);
+    $newLoanController = new LoanController();
+    $newLoanController->flagLoanOverdue($newLoan);
+    $newLoanViewer = new LoanViewer();
+    $newLoanViewer->listLoan($newLoan);
 
+    //else navigate to error page
 }
 
-$newLoan = new Loan($loanID, '2019-01-25', $loanDetails['bookID'], $loanDetails['customerID']);
-$newLoan->setLoanReturnDate($loanDetails['loanReturnDate']);
-$newLoanController = new LoanController();
-$newLoanController->flagLoanOverdue($newLoan);
 
-$newLoanViewer = new LoanViewer();
-$newLoanViewer->listLoan($newLoan);
  ?>    
     </body>
 </html>
