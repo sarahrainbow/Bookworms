@@ -77,12 +77,12 @@
 
                 $loanID= rand(000, 1000);
                 echo "loanID: " . $loanID . "<br>";
-                $newLoan = new Loan($loanID, $loanDetails['loanOutDate'], $loanDetails['bookID'], $loanDetails['customerID']);
+                $newLoan = new Loan($loanID, $loanDetails['loanOutDate'], $loanDetails['bookID'], $loanDetails['customerID'], "Kennington", 5);
                 echo "Date loan due back: " . $newLoan->getLoanDueBackDate();
                 
                 //testing sunny and rainy day scenarios
                 $newCustomer = new Customer(12345, 'Matilda', 'Honey', 'Wormwood','9 Youngwood Drive','matildahoney@gmail.com','bookworm23','Password123','','');
-                $newCustomer->setLoanCount(4);
+                $newCustomer->setLoanCount(5);
 
                 if($newCustomer->getLoanCount() >= $newCustomer->getLoanLimit()){
                     header("Location: LoanLimitReached.php");

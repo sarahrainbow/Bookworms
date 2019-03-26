@@ -73,7 +73,7 @@ if(!empty($loanDetails)) {
         ${$loanDetail} = filterInput($loanDetail);
     }
     $loanID= rand(000, 1000);  
-    $newLoan = new Loan($loanID, '2019-01-25', $loanDetails['bookID'], $loanDetails['customerID']);
+    $newLoan = new Loan($loanID, '2019-01-25', $loanDetails['bookID'], $loanDetails['customerID'], "Kennington", 5);
     $newLoan->setLoanReturnDate($loanDetails['loanReturnDate']);
     $newLoanController = new LoanController();
     $newLoanController->flagLoanOverdue($newLoan);
@@ -83,7 +83,7 @@ if(!empty($loanDetails)) {
         echo '<h3 style="color:red">LOAN OVERDUE!</h3>';
     }
     
-    $newLoanViewer->listLoan($newLoan);
+    $newLoanViewer->listItem($newLoan);
     //else navigate to error page
 }
  ?>   
