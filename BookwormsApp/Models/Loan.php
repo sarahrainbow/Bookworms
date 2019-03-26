@@ -2,13 +2,13 @@
 
 namespace Models {
     
-//    include_once 'Library.php';
-//    use Library\Library;
+    require_once 'BranchItem.php';
+    use Models\BranchItem;
     
     
-    class Loan {
+    class Loan extends BranchItem {
         
-        private $loanID;
+        private $ID;
         private $loanOutDate;
         private $loanReturnDate;
         private $loanDueBackDate;
@@ -16,22 +16,22 @@ namespace Models {
         private $loanedBookID;
         private $loanCustomerID;
         
-// have only included properties in my construct that will be necessary for creating new Loan instance e.g. return date not set because that should be set later (when the book is returned)
-        public function __construct(int $loanID, $loanOutDate, int $loanedBookID, int $loanCustomerID) {
-            $this->setLoanID($loanID);
+
+        public function __construct(int $ID, $loanOutDate, int $loanedBookID, int $loanCustomerID, string $branchName, int $branchCode) {
+            $this->setID($ID);
             $this->setLoanOutDate($loanOutDate);
             $this->setLoanedBookID($loanedBookID);
             $this->setLoanCustomerID($loanCustomerID);
             $this->setLoanDueBackDate();
-//            parent::__construct('Bookworms', 6780);
+            parent::__construct($branchName, $branchCode);
         }
         
-        public function getLoanID() {
-            return $this->loanID;
+        public function getID() {
+            return $this->ID;
         }
         
-        public function setLoanID(int $loanID) {
-            $this->loanID = $loanID;
+        public function setID(int $ID) {
+            $this->ID = $ID;
         }
         
         public function getLoanOutDate() {
@@ -54,7 +54,6 @@ namespace Models {
             return $this->loanDueBackDate;
         }
         
-        //this is set automatically when a new instance of a Loan is called.
         public function setLoanDueBackDate() {
             $this->loanDueBackDate = date('Y-m-d', strtotime('+1 month', strtotime($this->loanOutDate)));
         }

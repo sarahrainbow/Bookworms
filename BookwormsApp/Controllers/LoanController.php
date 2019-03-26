@@ -36,7 +36,7 @@ namespace Controllers {
             if($book->getIsAvailable()){
                 array_push($this->loans, $loan); //Put the loan information into the array and pulling books added into book class
                 $book->setIsAvailable(false); //Setting the book as unavailable by creating a boolean (false means book is now loaned out)
-                echo "\n" . $book->getTitle() . " successfully loaned with bookID: " . $book->getBookID();
+                echo "<br>" . $book->getTitle() . " successfully loaned with bookID: " . $book->getBookID();
             }
             else if (!$book->getIsAvailable()) {
 //                die("Book already loaned");
@@ -48,19 +48,19 @@ namespace Controllers {
         
         public function returnBook(int $loanID, $loanReturnDate, Book $book) { //uses loadID, retrun date and book object
             foreach($this->loans as $loan) { //iterates through loan array
-                if($loan->getLoanID() === $loanID) { //IF loanID matches loanID entered into the function entered
+                if($loan->getID() === $loanID) { //IF loanID matches loanID entered into the function entered
                     $loan->setLoanReturnDate($loanReturnDate);
                     $book->setIsAvailable(true); //Sets availability to true
-                    echo "\n" . $book->getTitle() . " succesffully returned with bookID: " . $book->getBookID();
+                    echo "<br>" . $book->getTitle() . " succesffully returned with bookID: " . $book->getBookID();
                 }
             }
         }
         
         public function deleteLoan(Loan $loanToDelete){
             foreach($this->getLoans() as $key => $loan) {
-                if($loan->getLoanID() === $loanToDelete->getLoanID()){
+                if($loan->getID() === $loanToDelete->getID()){
                     unset($this->loans[$key]);
-                    echo "\nSuccessfully deleted loan with loanID: " . $loanToDelete->getLoanID();
+                    echo "<br>Successfully deleted loan with loanID: " . $loanToDelete->getID();
                 }
             }
         }
@@ -77,8 +77,8 @@ namespace Controllers {
 //    $testBook = new Book(1, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
 //    $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
 //    $testLoanController = new LoanController();
-//    $testLoan = new Loan(1, '2019-02-18', 3, 1);
-//    $testLoan2 = new Loan(2, '2012-02-02', 4, 2);
+//    $testLoan = new Loan(1, '2019-02-18', 3, 1, "Kennington", 2);
+//    $testLoan2 = new Loan(2, '2012-02-02', 4, 2, "Brighton", 8);
 //    $testLoanController->loanBook($testLoan, $testBook);
 //    $testLoanController->returnBook(1, '2018-12-12', $testBook);
 //    $testLoanController->loanBook($testLoan2, $testBook2);
