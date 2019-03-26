@@ -72,7 +72,7 @@
 
                 if($newCustomer->getLoanCount() >= $newCustomer->getLoanLimit()){
                     header("Location: LoanLimitReached.php");
-                    $_SESSION['errorMessage']="You have reached your loan limit. Please return a book to take out more loans.";
+                    $_SESSION['limitError']['errorMessage']="You have reached your loan limit. Please return a book to take out more loans.";
                     die();
                 }
             }
