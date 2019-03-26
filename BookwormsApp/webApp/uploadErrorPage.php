@@ -45,8 +45,8 @@
         <p>
             <?php
             
-             echo ($_SESSION['errorMessage']);
-             unset($_SESSION['errorMessage']);
+             echo ($_SESSION['uploadError']['errorMessage']);
+             unset($_SESSION['uploadError']['errorMessage']);
             ?>
         </p>
         <button type="button" onclick="window.location.href = 'customerSignUp.php';">I want to try again</button>
