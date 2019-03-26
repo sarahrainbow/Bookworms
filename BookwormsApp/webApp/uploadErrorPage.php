@@ -50,5 +50,4 @@
             ?>
         </p>
         <button type="button" onclick="window.location.href = 'customerSignUp.php';">I want to try again</button>
-    </body>
-</html>
+<?php include 'footer.php';?>
