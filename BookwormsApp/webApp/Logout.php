@@ -6,9 +6,12 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <link href="CSS.css" rel="stylesheet" type="text/css"/>
+ 
         <meta charset="UTF-8">
-        <title></title>
+        <title>Log out</title>
+        
+        <?php include 'header.php';?> 
+        
         <?php
             session_start();
             unset($_SESSION['username']);

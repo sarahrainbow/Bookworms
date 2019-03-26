@@ -7,9 +7,10 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <link href="CSS.css" rel="stylesheet" type="text/css"/>
-    </head>
+        <title>Log in</title>
+        
+        <?php include 'header.php';?> 
+        
     <?php
        session_start();
      //unset($_SESSION['Username']);
