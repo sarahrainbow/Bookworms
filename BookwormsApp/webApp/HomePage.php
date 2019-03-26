@@ -10,7 +10,7 @@
     </head>
     <body>
         <center>
-            <h1>Bookworms</h1>
+            <h1>The Bookkeepers</h1>
                 <nav role="navigation">
                     <ul>
                         <li><a href="#">Search, Renew and Reserve books</a>
