@@ -43,14 +43,14 @@ session_start();
 
     if (empty($_FILES[UploadKey]['name'])){
         header("Location: uploadErrorPage.php"); 
-        $_SESSION['errorMessage']="You forgot to add your file!";//stored error message in a storage file so that available to other php pages
+        $_SESSION['uploadError']['errorMessage']="You forgot to add your file!";//stored error message in a storage file so that available to other php pages
         die();
     }
 
     if ($_FILES[UploadKey]['error'] == (1||2)) {
         #$errors[] ="Your file is too big for us to handle, awkward! Please choose a file under 10MB.";      
         header("Location: uploadErrorPage.php"); 
-        $_SESSION['errorMessage']="Your file is too big for us to handle, awkward! Please choose a file under 10MB.";//stored error message in a storage file so that available to other php pages
+        $_SESSION['uploadError']['errorMessage']="Your file is too big for us to handle, awkward! Please choose a file under 10MB.";//stored error message in a storage file so that available to other php pages
         die();
         
     }
@@ -58,7 +58,7 @@ session_start();
     if (!in_array($_FILES[UploadKey]['type'],AllowedTypes)){//For some reason I had to put this before the file size check, couldn't work out why - even if did a under the limit, but wrong type - i was getting the error message for a wrong size
         #$errors[] = "We only accept .JPEG .PNG and .BMP files I'm afraid";
         header("Location: uploadErrorPage.php"); 
-        $_SESSION['errorMessage']="We only accept .JPEG .PNG and .BMP files I'm afraid";//stored error message in a storage file so that available to other php pages
+        $_SESSION['uploadError']['errorMessage']="We only accept .JPEG .PNG and .BMP files I'm afraid";//stored error message in a storage file so that available to other php pages
         die();
     }
     
@@ -69,14 +69,14 @@ session_start();
     if (file_exists($destFileLoc)) {// Check if file already exists
         #$errors[] ="We've already got this file, thanks though";
         header("Location: uploadErrorPage.php"); 
-        $_SESSION['errorMessage']="We've already got this file, thanks though";//stored error message in a storage file so that available to other php pages
+        $_SESSION['uploadError']['errorMessage']="We've already got this file, thanks though";//stored error message in a storage file so that available to other php pages
         die();
     }
 
     if ($_FILES[UploadKey]['error']>0){
         #$errors[] = "Unfortunately there's been an error with the uploading process";
         header("Location: uploadErrorPage.php"); 
-        $_SESSION['errorMessage']="Unfortunately there's been an error with the uploading process";//stored error message in a storage file so that available to other php pages
+        $_SESSION['uploadError']['errorMessage']="Unfortunately there's been an error with the uploading process";//stored error message in a storage file so that available to other php pages
         die();
     }
     
@@ -90,11 +90,11 @@ session_start();
     //Moving the file and ensuring deleted from temporary location
         if(!move_uploaded_file($tempFileLoc, $destFileLoc)){//trys to move, if successful returns true therefore if failed, ! would make true and get error statement
             header("Location: uploadErrorPage.php"); 
-            $_SESSION['errorMessage']= "There's been an error with the uploading process";
+            $_SESSION['uploadError']['errorMessage']= "There's been an error with the uploading process";
             die();
         }
         else {
-            unset($_SESSION['errorMessage']);
+            unset($_SESSION['uploadError']['errorMessage']);
             header("Location: profilePage.php");
             //var_dump($_FILES);
             //var_dump($_SESSION); checking to see that errorMessage successfully cleared - yep
