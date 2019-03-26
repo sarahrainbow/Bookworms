@@ -52,5 +52,4 @@
             ?>
         </p>
         <button type="button" onclick="window.location.href = 'LoanReturn.php';">Return a book</button>
-    </body>
-</html>
+<?php include 'footer.php';?>
