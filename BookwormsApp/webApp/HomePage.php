@@ -10,7 +10,7 @@
     </head>
     <body>
         <center>
-            <h1>The Bookkeepers</h1>
+            <h1>Bookworms</h1>
                 <nav role="navigation">
                     <ul>
                         <li><a href="#">Search, Renew and Reserve books</a>
@@ -21,7 +21,7 @@
                         </li>
                         <li><a href="#">Join a Library</a>
                             <ul>
-                                <li><a href="#">Online application form</a></li>
+                                <li><a href="customerSignUp.php">Online application form</a></li>
                                 <li><a href="#">Local Branches</a></li>
                             </ul>
                         </li>
