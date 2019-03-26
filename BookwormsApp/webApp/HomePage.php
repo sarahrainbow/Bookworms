@@ -83,6 +83,14 @@
             </div>
             
         </center>
+        <footer>
+        <div class='row py-4 mt-4'>
+
+               <div class='col-sm-4'> Terms of use </div>
+                    <div class='col-sm-4'>Contact us</div>
+                    <div class='col-sm-4'>Accessibility</div>
+               </div>
+            </footer>
         <?php
         // put your code here
         ?>

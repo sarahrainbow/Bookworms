@@ -78,15 +78,16 @@ and open the template in the editor.
     if(!empty($_SESSION)){
             echo "Welcome ".$_SESSION['Username'] . '<br>';
     }
-
+    
+   
 //    if(isset($_POST['submit'])){
 //      $username=$_POST['Username'];
 //      $password=$_POST['Password'];
-//      if (($username=="admin") && ($password="password"));
+//      if (($username=="administrator") && ($password="Password123!"));
 //      echo 'You are logged in';
 //      }
 //      else{
-//      echo header('Location:LoginError.php');
+//      header('Location:LoginError.php');
 //      die;
 //      }
 //        
