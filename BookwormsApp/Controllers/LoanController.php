@@ -2,7 +2,7 @@
 
 namespace Controllers {
     
-    #For Cynthuja  
+    #For Cynthujaa 
     #include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Loan.php';
     #include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Book.php';
     
