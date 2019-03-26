@@ -25,55 +25,60 @@ if(isset($_GET['search'])) {
 ?>
 
 <!DOCTYPE html>
-
 <html>
-    <head>
+<head>
         <meta charset="UTF-8">
-        <title>Search books</title>
+        <title>Search</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="CSS.css" rel="stylesheet" type="text/css"/>
+ 
     </head>
-    <body>
-</head>
-    <body>
+   <body>
         <center>
+            <h1>The Bookkeepers</h1>
                 <nav role="navigation">
                     <ul>
-                        <li><a href="">Search, Renew and Reserve books</a>
+                        <li><a href="#">Search, Renew and Reserve books</a>
                             <ul>
                                 <li><a href="">Search by author</a></li>
                                 <li><a href="">Search by title</a></li>
                             </ul>
                         </li>
-                        <li><a href="">Join a Library</a>
+                        <li><a href="#">Join a Library</a>
                             <ul>
-                                <li><a href="">Online application form</a></li>
-                                <li><a href="">Local Branches</a></li>
+                                <li><a href="#">Online application form</a></li>
+                                <li><a href="#">Local Branches</a></li>
                             </ul>
                         </li>
                         <li><a href="">Recommended Reads</a>
                             <ul>
                                 <li><a href="https://www.amazon.co.uk/Best-Sellers-Books/zgbs/books">Bestsellers</a></li>
-                                <li><a href="">Reader's Digest</a></li>
+                                <li><a href="#">Reader's Digest</a></li>
                             </ul>
                         </li>
                     </ul>
-            </nav>           
+            </nav>
         </center>
+
+ 
         <br>
         <br>
         <br>
         <h1>Search books</h1>
           
-<form action="search.php" method="get">
+<form action="search.php" method="get" class="form-inline mt-5">
   
-  <input type="search" name="search" placeholder="Search" autofocus="true"  maxlength="100" title="Book title or ISBN" required> 
-  <input type="submit" value="Search">
+  <input type="search" name="search" placeholder="Search" autofocus="true"  maxlength="100" title="Book title or ISBN" required class="form-control mb-3  ml-3 mr-3" > 
+   <button type="submit" value="Search" class="btn btn-primary mb-3  ml-3">Search</button> 
+ 
 </form>
         
-        <h2>Search results</h2>   
+        <h2 class="mb-4">Search results</h2>   
         
       <?php echo ("$output");?>  
         
-        <div>
+        <div class="mt-3">
         <div>Useful links</div>
         <ul>
             <li>Library branches</li>
@@ -81,17 +86,5 @@ if(isset($_GET['search'])) {
         </ul>
         </div>        
         
-        <footer>
-            <ul>
-                <li>Terms of use</li>
-                <li>Contact us</li>
-                <li>Accessibility</li>
-            </ul>
-        </footer>
-    <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>   
-    </body>
-</html>
+<?php include 'footer.php';?>
+    

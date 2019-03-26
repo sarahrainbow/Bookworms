@@ -47,10 +47,9 @@
         <p>
             <?php
             
-             echo ($_SESSION['errorMessage']);
-             unset($_SESSION['errorMessage']);
+             echo ($_SESSION['limitError']['errorMessage']);
+             unset($_SESSION['limitError']['errorMessage']);
             ?>
         </p>
         <button type="button" onclick="window.location.href = 'LoanReturn.php';">Return a book</button>
-    </body>
-</html>
+<?php include 'footer.php';?>

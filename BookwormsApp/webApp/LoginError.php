@@ -38,5 +38,4 @@
         <button type="button" onclick="window.location.href = 'LoginPage.php';">Log in again</button>
     
             
-    </body>
-</html>
+    <?php include 'footer.php';?>

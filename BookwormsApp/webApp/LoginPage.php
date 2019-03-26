@@ -54,5 +54,4 @@ and open the template in the editor.
     ?>
    
 
-    </body>
-</html>
+  <?php include 'footer.php';?>
