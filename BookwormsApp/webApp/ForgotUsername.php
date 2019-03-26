@@ -12,7 +12,7 @@ and open the template in the editor.
     </head>
     <body>
               <center>
-            <h1>The Bookkeepers</h1>
+            <h1>The Bookworms</h1>
                 <nav role="navigation">
                     <div class = row>
                     <div class="dropdown">
