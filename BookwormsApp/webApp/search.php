@@ -1,15 +1,15 @@
 <?php 
 
-$conn = mysqli_connect ('localhost', 'root') or die("could not connect");
-mysqli_select_db($conn, "libraryapp") or die ("could not connect");
+$conn = mysqli_connect ('localhost', 'root') or die("could not connect");//connecting to database
+mysqli_select_db($conn, "libraryapp") or die ("could not connect");//selecting our database
 
 $output = ''; //output of results
 
-if(isset($_GET['search'])) {
-    $searchq = $_GET['search'];
-    $searchq = preg_replace("#[^0-9a-z.-]#i","", $searchq);//replaces anything that is not first argument with second argument on variable. Allows letters and numbers and -.#i allows caps and lowercase
+if(isset($_GET['search'])) { //is something is entered in search box
+    $searchq = $_GET['search']; //get the data entered in search box
+    $searchq = preg_replace("#[^0-9a-z.-]#i","", $searchq);//sanitise user data. Replaces anything that is not first argument with second argument on search term entered by user. Allows letters and numbers and -.#i allows caps and lowercase
     
- $query = mysqli_query($conn, "SELECT * FROM book WHERE BookISBN LIKE '%$searchq%' OR Title LIKE '%$searchq%'") or die("could not search");
+ $query = mysqli_query($conn, "SELECT * FROM book WHERE BookISBN LIKE '%$searchq%' OR Title LIKE '%$searchq%'") or die("could not search");//search book table for book title or isbn that is like search query, or return error
  $count = mysqli_num_rows($query);//count number of rows of results
  if($count == 0) {
  $output = "There were no results\n";}
