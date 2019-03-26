@@ -12,9 +12,9 @@ and open the template in the editor.
     </head>
     <?php
        session_start();
-     unset($_SESSION['Username']);
-     unset($_SESSION['Password']);
-    session_destroy();
+     //unset($_SESSION['Username']);
+     //unset($_SESSION['Password']);
+    //session_destroy();
 
     ?>
     <body>       
