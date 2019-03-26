@@ -1,7 +1,7 @@
 <?php
 namespace Controllers{
     
-    #For Cynthuja  
+    #For Cynthujaa  
    #include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Book.php';
     
    #For Windows
