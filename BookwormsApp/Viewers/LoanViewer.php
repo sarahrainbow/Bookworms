@@ -2,7 +2,7 @@
 
 namespace Viewers {
     
-    #For Cynthuja  
+    #For Cynthujaa  
     #require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Loan.php';
     
     #For Windows
