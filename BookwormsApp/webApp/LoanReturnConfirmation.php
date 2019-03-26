@@ -76,7 +76,5 @@ if(!empty($loanDetails)) {
  ?>   
         
         
-    </body>
-                
-</html>
+<?php include 'footer.php';?>
 
