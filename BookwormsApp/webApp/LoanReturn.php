@@ -50,6 +50,5 @@
         </form>
             <br>
             
-    </body>
-</html>
+<?php include 'footer.php';?>
 
