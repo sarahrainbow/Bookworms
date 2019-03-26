@@ -16,19 +16,19 @@ namespace Tests {
 //    require_once 'Viewers\UserViewer.php';
 
     // MAC TEST (with forward slash delimiters)
-//    require_once ('Models/Person.php'); 
-//    require_once ('Models/Employee.php');
-//    require_once ('Models/Customer.php');
-//    require_once 'Models/Loan.php';
-//    require_once 'Models/Book.php';
-//    require_once ('Controllers/CustomerController.php');
-//    require_once 'Controllers/LoanController.php';
-//    require_once 'Viewers/LoanViewer.php';
-//    require_once 'Viewers/UserViewer.php';
+    require_once ('Models/Person.php'); 
+    require_once ('Models/Employee.php');
+    require_once ('Models/Customer.php');
+    require_once 'Models/Loan.php';
+    require_once 'Models/Book.php';
+    require_once ('Controllers/CustomerController.php');
+    require_once 'Controllers/LoanController.php';
+    require_once 'Viewers/LoanViewer.php';
+    require_once 'Viewers/UserViewer.php';
     
-    spl_autoload_register(function($Name) { #detects full pathname of class and then searches in equivalent file structure to include file
-    require_once $Name . '.php';
-    });
+//    spl_autoload_register(function($Name) { #detects full pathname of class and then searches in equivalent file structure to include file
+//    require_once $Name . '.php';
+//    });
     
     use Models\ {Person, Employee, Customer, Loan, Book};
     use Controllers\ {CustomerController, LoanController};
@@ -147,10 +147,14 @@ namespace Tests {
         
         public function testLoanViewer() {
             
+            $testLoan2 = new Loan(2, '2012-02-02', 4, 2);
+            $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
             $this->testLoan->setIsLoanOverdue(true);
             $this->testLoanController->loanBook($this->testLoan, $this->testBook); 
+            $this->testLoanController->loanBook($testLoan2, $testBook2); 
+            $this->testLoanViewer->listItems($this->testLoanController->getLoans());
             $this->testLoanController->returnBook($this->testLoan->getLoanID(), "2013-12-13", $this->testBook);
-            $this->testLoanViewer->listLoan($this->testLoan);
+            $this->testLoanViewer->listItem($this->testLoan);
         }
         
         public function testUserViewer() {
@@ -167,8 +171,8 @@ namespace Tests {
 //$myTest->testCustomerController();
 //$myTest->testLoan();
 //$myTest->testLoanController();
-//$myTest->testLoanViewer();
-$myTest->testUserViewer(); 
+$myTest->testLoanViewer();
+//$myTest->testUserViewer(); 
     
     
 }

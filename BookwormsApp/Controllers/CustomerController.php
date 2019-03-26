@@ -9,7 +9,8 @@ namespace Controllers{
     #require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Customer.php';
     
     #For Windows
-    require_once 'C:\xampp\htdocs\Exercise20\Models\Customer.php';
+//    require_once 'C:\xampp\htdocs\Exercise20\Models\Customer.php';
+    require_once(__DIR__ . '/../Models/Customer.php');
     
     use Models\Customer;
        

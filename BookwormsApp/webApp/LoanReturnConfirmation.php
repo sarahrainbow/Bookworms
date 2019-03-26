@@ -11,12 +11,12 @@
         <center>
                 <nav role="navigation">
                     <ul>
-                        <li><a href="search">Search, Renew and Reserve books</a>
+                        <li><a href="search.php">Search, Renew and Reserve books</a>
                             <ul>
-                                <li><a href="">Search by author</a></li>
-                                <li><a href="">Search by title</a></li>
-                                <li><a href="loanOutBook.php">Borrow a book</a></li>
-                                <li><a href="loanReturn.php">Return a book</a></li>
+                                <li><a href="search.php">Search by author</a></li>
+                                <li><a href="search.php">Search by title</a></li>
+                                <li><a href="LoanOut.php">Borrow a book</a></li>
+                                <li><a href="LoanReturn.php">Return a book</a></li>
                             </ul>
                         </li>
                         <li><a href="">Join a Library</a>
@@ -37,7 +37,9 @@
         <br>
         <br>
         <br><h2>Book returned successfully!</h2>
+        
         <h3>Loan details:</h3>
+        
     <?php
 require_once(__DIR__ . '/../Models/Loan.php');
 require_once(__DIR__ . '/../Viewers/LoanViewer.php');
@@ -45,11 +47,14 @@ require_once(__DIR__ . '/../Controllers/LoanController.php');
 use Models\ Loan;
 use Viewers\LoanViewer;
 use Controllers\LoanController;
+
 session_start();
 function filterInput($inputItem) {
     return filter_input(INPUT_POST,$inputItem,FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_HIGH);
 }
+
 $loanDetails = filter_input_array(INPUT_POST);
+
 if(!empty($loanDetails)) {
     foreach($loanDetails as $loanDetail => $loanValue) {
         ${$loanDetail} = filterInput($loanDetail);
@@ -60,10 +65,18 @@ if(!empty($loanDetails)) {
     $newLoanController = new LoanController();
     $newLoanController->flagLoanOverdue($newLoan);
     $newLoanViewer = new LoanViewer();
+    
+    if($newLoan->getIsLoanOverdue()){
+        echo '<h3 style="color:red">LOAN OVERDUE!</h3>';
+    }
+    
     $newLoanViewer->listLoan($newLoan);
     //else navigate to error page
 }
  ?>   
+        
+        
     </body>
+                
 </html>
 

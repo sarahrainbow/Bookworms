@@ -10,13 +10,15 @@ namespace Viewers {
 //    require_once(__DIR__ . '\..\Models\Loan.php');
     
     require_once(__DIR__ . '/../Models/Loan.php');
+    require_once (__DIR__ . '/../Interfaces/ViewerInterface.php');
     
     
     use Models\Loan;
+    use Interfaces\Viewer;
     
-    class LoanViewer {
+    class LoanViewer implements Viewer {
         
-        public function listLoan(Loan $loan) {
+        public function listItem($loan) {
             echo "<br>LoanID: " . $loan->getLoanID();
             echo "<br>Date book loaned out: " . $loan->getLoanOutDate();
             echo "<br>Date loan due: " . $loan->getLoanDueBackDate();
@@ -25,6 +27,16 @@ namespace Viewers {
             echo "<br>CustomerID: " . $loan->getLoanCustomerID();
             echo "<br>BookID: " . $loan->getLoanedBookID();
         }
+        
+        public function listItems(array $loans) {
+            $i=1;
+            foreach ($loans as $loan => $loanDetails){
+                echo "<br>Loan " . $i . ":";
+                var_dump($loanDetails);
+                $i++;
+            }
+        }
+        
         
     }
     

@@ -3,8 +3,8 @@
 namespace Interfaces {
     
     interface Viewer{
-        public function listItem();
-        public function listItems();
+        public function listItem($item);
+        public function listItems(array $items);
     }
 }
 

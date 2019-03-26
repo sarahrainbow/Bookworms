@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<?php
+    session_start();
+ ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -9,19 +14,20 @@
     </head>
     <body>
         <center>
+            <h1>The Bookkeepers</h1>
                 <nav role="navigation">
                     <ul>
-                        <li><a href="search">Search, Renew and Reserve books</a>
+                        <li><a href="search.php">Search, Renew and Reserve books</a>
                             <ul>
                                 <li><a href="">Search by author</a></li>
                                 <li><a href="">Search by title</a></li>
-                                <li><a href="loanOutBook.php">Borrow a book</a></li>
-                                <li><a href="loanReturn.php">Return a book</a></li>
+                                <li><a href="LoanOut.php">Borrow a book</a></li>
+                                <li><a href="LoanReturn.php">Return a book</a></li>
                             </ul>
                         </li>
                         <li><a href="">Join a Library</a>
                             <ul>
-                                <li><a href="customerSignUp.php">Online application form</a></li>
+                                <li><a href="">Online application form</a></li>
                                 <li><a href="">Local Branches</a></li>
                             </ul>
                         </li>
@@ -34,32 +40,17 @@
                     </ul>
             </nav>
         </center>
-<?php
-
-require_once(__DIR__ . '/../Models/Loan.php');
-
-use Models\ Loan;
-session_start();
-
-function filterInput($inputItem) {
-    return filter_input(INPUT_POST,$inputItem,FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_HIGH);
-}
-
-$loanDetails = filter_input_array(INPUT_POST);
-
-if(!empty($loanDetails)) {
-
-    foreach($loanDetails as $loanDetail => $loanValue) {
-        ${$loanDetail} = filterInput($loanDetail);
-        echo $loanDetail . ": " . $loanValue . "<br>";
-    }
-
-    $loanID= rand(000, 1000);
-    echo "loanID: " . $loanID . "<br>";
-    
-
-}
-
-$newLoan = new Loan($loanID, $loanDetails['loanOutDate'], $loanDetails['bookID'], $loanDetails['customerID']);
-
-echo "Date loan due back: " . $newLoan->getLoanDueBackDate();
+        <br>
+        <br>
+        <br>
+        <h2>Loan limit reached!</h2>
+        <p>
+            <?php
+            
+             echo ($_SESSION['errorMessage']);
+             unset($_SESSION['errorMessage']);
+            ?>
+        </p>
+        <button type="button" onclick="window.location.href = 'LoanReturn.php';">Return a book</button>
+    </body>
+</html>

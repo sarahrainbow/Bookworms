@@ -7,8 +7,10 @@ namespace Viewers {
 
     
     #For Windows
-    require_once 'C:\xampp\htdocs\Exercise20\Models\Customer.php';
-    require_once 'C:\xampp\htdocs\Exercise20\Models\Employee.php';
+//    require_once 'C:\xampp\htdocs\Exercise20\Models\Customer.php';
+//    require_once 'C:\xampp\htdocs\Exercise20\Models\Employee.php';
+    require_once(__DIR__ . '/../Models/Customer.php');
+    require_once(__DIR__ . '/../Models/Employee.php');
     
     use Models\ {Customer, Employee};
     

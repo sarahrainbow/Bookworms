@@ -11,7 +11,8 @@ namespace Models{
         protected $username;
         protected $password;
         #protected $isstaff; is this necessary if employees will have employee IDs?
-        protected $loanlimit=5;
+        protected $loanLimit=5;
+        protected $loanCount;
         protected $datejoined;
         protected $privileges;
         
@@ -112,6 +113,18 @@ namespace Models{
         
         public function setDateJoined($newDateJoined){
             $this->datejoined=$newDateJoined;
+        }
+        
+        public function getLoanCount() {
+            return $this->loanCount;
+        }
+        
+        public function setLoanCount(int $newLoanCount) {
+            $this->loanCount = $newLoanCount;
+        }
+        
+        public function getLoanLimit() {
+            return $this->loanLimit;
         }
 }
 }
