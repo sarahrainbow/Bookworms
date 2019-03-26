@@ -2,66 +2,94 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Homepage</title>
+        <title></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="CSS.css" rel="stylesheet" type="text/css"/>
- 
+    <?php
+     
+    ?>
     </head>
     <body>
         <center>
             <h1>The Bookkeepers</h1>
                 <nav role="navigation">
-                    <ul>
-                        <li><a href="#">Search, Renew and Reserve books</a>
-                            <ul>
-                                <li><a href="">Search by author</a></li>
-                                <li><a href="">Search by title</a></li>
+                    <div class = row>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="option1" data-toggle="dropdown">Search, Borrow and Reserve Books
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="search.php">Search</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="loanOutBook.php">Borrow book</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Reserve</a></li>
+                            </ul>                    
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="option1" data-toggle="dropdown">Join a Library
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="customerSignUp.php">Online Application form</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Library Branches</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Opening times</a></li>
                             </ul>
-                        </li>
-                        <li><a href="#">Join a Library</a>
-                            <ul>
-                                <li><a href="customerSignUp.php">Online application form</a></li>
-                                <li><a href="#">Local Branches</a></li>
+                            
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="option1" data-toggle="dropdown">Recommended Reads
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="www.amazon.co.uk">Bestsellers</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Reader's Digest</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Greatest Books of All Time</a></li>
                             </ul>
-                        </li>
-                        <li><a href="">Recommended Reads</a>
-                            <ul>
-                                <li><a href="https://www.amazon.co.uk/Best-Sellers-Books/zgbs/books">Bestsellers</a></li>
-                                <li><a href="#">Reader's Digest</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-            </nav>
-            <br>
-            <br>
-            <br>
-            <div class="row>"
+                            
+                    </div>
+                    <div class="btn">
+                        <button class="btn" type="button" id="option1" data-toggle="dropdown">Account Login
+                            <span class="caret"></span></button>
+                    </div>
+                </nav>
+                    
+                    
+                    
+                    
+                  
+            
+            <div class="container-fluid">
                  <div class="row">
-                    <div class="column">
-                      <img src="Images/JoinLibrary.jpeg" alt="Join the Library" style="float: right; margin: 0px 0px 15px 15px; text-align: center; width:40%; height:80%"/>Join the Library
+                    <div class="col-sm-4">
+                        <img src="Images/JoinLibrary.jpeg" alt="Join the Library" style="float: right; text-align: center; width:100%; height:50%"/>Join the Library
                     </div>
-                    <div class="column">
-                        <img src="Images/Searchbooks.jpeg" alt="Search, Renew, Reserve" style="float: right; margin: 0px 0px 15px 15px; text-align: center; width:40%; height:80%"/>Search, Renew and Reserve Books
+                    <div class="col-sm-4">
+                        <img src="Images/Searchbooks.jpeg" alt="Search, Renew, Reserve" style="float: right; text-align: center; width:100%; height:50%"/>Search, Renew and Reserve Books
                     </div>
-                    <div class="column">
-                        <img src="Images/recommendedread.jpeg" alt="Recommended Reads" style="float: right; margin: 0px 0px 15px 15px; text-align: center; width:40%; height:80%"/>Recommended Reads
+                    <div class="col-sm-4">
+                        <img src="Images/recommendedread.jpeg" alt="Recommended Reads" style="float: right; text-align: center; width:100%; height:50%"/>Recommended Reads
                     </div>
                 </div> 
             </div>
-            <div class="row>"
+            <div class="container-fluid">
                  <div class="row">
-                    <div class="column">
-                      <img src="Images/Audioebooks.jpeg" alt="Audio and Ebooks" style="text-align: center; width:40%; height:80%"/>Audio and Ebooks
+                    <div class="col-sm-4">
+                      <img src="Images/Audioebooks.jpeg" alt="Audio and Ebooks" style="text-align: right; width:100%; height:50%"/>Audio and E-books
                     </div>
-                    <div class="column">
-                        <img src="Images/events.jpeg" alt="Events and Activities" style="text-align: center; width:40%; height:80%"/>Events and Activities
+                    <div class="col-sm-4">
+                        <img src="Images/events.jpeg" alt="Events and Activities" style="text-align: right; width:100%; height:50%"/>Events and Activities
                     </div>
-                    <div class="column">
-                        <img src="Images/onlineservices.jpeg" alt="Online Services" style="text-align: center; width:40%; height:80%"/>Online Services
+                    <div class="col-sm-4">
+                        <img src="Images/onlineservices.jpeg" alt="Online Services" style="text-align: right; width:100%; height:50%"/>Online Services
                     </div>
                 </div> 
             </div>
             
         </center>
-<?php include 'footer.php';?>
+        <?php
+        // put your code here
+        ?>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>   
+    </body>
+</html>

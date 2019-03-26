@@ -35,31 +35,45 @@ if(isset($_GET['search'])) {
  
     </head>
    <body>
-        <center>
+                <center>
             <h1>The Bookkeepers</h1>
                 <nav role="navigation">
-                    <ul>
-                        <li><a href="#">Search, Renew and Reserve books</a>
-                            <ul>
-                                <li><a href="">Search by author</a></li>
-                                <li><a href="">Search by title</a></li>
+                    <div class = row>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="option1" data-toggle="dropdown">Search, Borrow and Reserve Books
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="search.php">Search</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="loanOutBook.php">Borrow book</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Reserve</a></li>
+                            </ul>                    
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="option1" data-toggle="dropdown">Join a Library
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="customerSignUp.php">Online Application form</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Library Branches</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Opening times</a></li>
                             </ul>
-                        </li>
-                        <li><a href="#">Join a Library</a>
-                            <ul>
-                                <li><a href="#">Online application form</a></li>
-                                <li><a href="#">Local Branches</a></li>
+                            
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="option1" data-toggle="dropdown">Recommended Reads
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="www.amazon.co.uk">Bestsellers</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Reader's Digest</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Greatest Books of All Time</a></li>
                             </ul>
-                        </li>
-                        <li><a href="">Recommended Reads</a>
-                            <ul>
-                                <li><a href="https://www.amazon.co.uk/Best-Sellers-Books/zgbs/books">Bestsellers</a></li>
-                                <li><a href="#">Reader's Digest</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-            </nav>
-        </center>
+                            
+                    </div>
+                    <div class="btn">
+                        <button class="btn" type="button" id="option1" href='LoginPage.php'>Account Login
+                            <span class="caret"></span></button>
+                    </div>
+                </nav>
+            </center>            
 
  
         <br>

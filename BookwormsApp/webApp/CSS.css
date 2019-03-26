@@ -22,7 +22,7 @@ nav {
 nav li {
   float: left;
   display: inline;
-  background: lightskyblue;
+  background: white;
   position: relative;
   z-index: 500;
   margin: 0 1px;
@@ -34,7 +34,7 @@ nav li a {
   font-weight: 700;
   height: 20px;
   text-decoration: none;
-  color: azure;
+  color: black;
   text-align: center;
 }
 
