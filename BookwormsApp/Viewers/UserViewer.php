@@ -1,7 +1,7 @@
 <?php
 namespace Viewers {
     
-    #For Cynthuja  
+    #For Cynthujaa  
     #require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Models/Customer.php';
     #require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Models/Employee.php';
 
