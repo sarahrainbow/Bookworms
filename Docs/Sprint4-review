@@ -1,11 +1,9 @@
+Sprint 4 review
 
-<strong>Sprint 4 review</strong>
+New features added
 
-<strong>New features added</strong>
+Restructured class files according to MVC model
 
-<ul>
-<li>Restructured class files according to MVC model</li>
-</ul>
 Added viewer interface
 
 Added controller trait
