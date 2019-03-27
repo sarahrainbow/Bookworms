@@ -1,6 +1,6 @@
-#Sprint 4 review
+# Sprint 4 review
 
-##New features added
+## New features added
 
 -Restructured class files according to MVC model
 -Added viewer interface
