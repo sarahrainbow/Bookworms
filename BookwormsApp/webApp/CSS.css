@@ -59,3 +59,13 @@ footer {
   color: white;
   text-align: center;
 }
+
+btn{
+    background-color: white;
+    display: inline;
+    text-align: center;
+}
+
+#form1{
+    display: none;
+}

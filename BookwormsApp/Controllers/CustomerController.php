@@ -6,11 +6,11 @@
 namespace Controllers{
     
     #For Cynthujaa  
-    #require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Customer.php';
+    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Customer.php';
     
     #For Windows
 //    require_once 'C:\xampp\htdocs\Exercise20\Models\Customer.php';
-    require_once(__DIR__ . '/../Models/Customer.php');
+    //require_once(__DIR__ . '/../Models/Customer.php');
     
     use Models\Customer;
        
@@ -19,17 +19,17 @@ namespace Controllers{
             
         public $customers=[]; //Creates an array for all customer objects, set to public for now just for testing purposes. #This should be replaced by database in future, and update function - otherwise array would need storing on server permanently eg in session      
  
-        public function getCustomer(){
+        public function getCustomer(){ //Get function - 
             return $this->customers;
         }
             
         public function addCustomer(Customer $customer){
-                array_push($this->customers, $customer);
+                array_push($this->customers, $customer); //add customer into an array
                 echo "New customer added\n";
             }
             
         public function deleteCustomer(Customer $deleteCustomer){
-            foreach($this->getCustomer() as $key => $customers){ 
+            foreach($this->getCustomer() as $key => $customers){ //use of associative array
                 if($customers->getCustomerID() === $deleteCustomer -> getCustomerID()){ //if CustomerID matches the customer you want to delete, delete it
                     unset($this->customers[$key]);
                     echo "Customer ID ". $deleteCustomer->getCustomerID(). " has been removed.";

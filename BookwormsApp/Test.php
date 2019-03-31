@@ -11,13 +11,15 @@ namespace Tests {
         require_once $macFilePath;   
     });
     
-    use Models\ {Person, Employee, Customer, Loan, Book};
-    use Controllers\ {CustomerController, LoanController};
-    use Viewers\ {LoanViewer, UserViewer};
+    use Models\ {Employee, Customer, Loan, Book};
+    use Controllers\ {BookController, CustomerController, LoanController};
+    use Viewers\ {BookViewer, LoanViewer, UserViewer};
     
     Class Tests {
         
         private $testBook;
+        private $testBookController;
+        private $testBookViewer;
         private $testEmployee;
         private $testCustomer;
         private $testCustomerController;
@@ -28,6 +30,8 @@ namespace Tests {
         
         public function __construct() {
             $this->testBook = new Book(000001, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
+            $this->testBookController= new BookController();
+            $this->testBookViewer= new Bookviewer();
             $this->testEmployee= new Employee(2384958, 'librarian', 'Frida', '','Kahlo','4 Feet Under','','','','','');
             $this->testCustomer = new Customer(12345, 'Matilda', 'Honey', 'Wormwood','9 Youngwood Drive','matildahoney@gmail.com','bookworm23','Password123','','');
             $this->testCustomerController = new CustomerController();

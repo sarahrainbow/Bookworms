@@ -2,10 +2,10 @@
 namespace Controllers{
     
     #For Cynthujaa  
-   #include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Book.php';
+   include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Book.php';
     
    #For Windows
-   require_once 'C:\xampp\htdocs\Exercise20\Models\Book.php';
+   //require_once 'C:\xampp\htdocs\Exercise20\Models\Book.php';
    use Models\Book;
     
     class BookController{
@@ -15,13 +15,13 @@ namespace Controllers{
             return $this->books;
         }
         
-        public function addbook(Book $book){ //Book is considered a type similar to string which is a defined type
+        public function addbook(Book $book){ //Book identifies that it is a type of book, whilst $book is the argument.
             array_push($this->books, $book);//Arraypush is premade function which adds variables to the end of established array. Argument $books is from the array function defined which needs to be added into, $book is the variable which is the new book tht will be defined 
             //$this->books, refers to the object instances (instantiation), so that it considers it as an attribute to relate to the book, $book is the variable
         }
         
         public function deleteBook(Book $deletebook){
-            foreach($this->getBook() as $key => $books){ //use of associative array and therefore can use keys help identify book to be removed
+            foreach($this->getBook() as $key => $books){ //Using an associative array, use they key to indentify the book to be deleted
                 if($books->getBookID() === $deletebook -> getBookID()){ //if BookID matches the deleted book ID then delete book
                     unset($this->books[$key]);
                     echo "Book ID ". $deletebook->getBookID(). " has been removed from library ";

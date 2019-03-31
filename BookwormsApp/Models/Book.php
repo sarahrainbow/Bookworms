@@ -21,7 +21,7 @@ namespace Models{
             $this->isAvailable=$isAvailable;
         }
         
-        public function getBookID(){
+        public function getBookID(){ //methods
             return $this->bookID;
         }
         

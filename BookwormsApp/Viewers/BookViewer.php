@@ -2,10 +2,9 @@
 
 namespace Viewers{
    #For Cynthujaa  
-   #include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/Exercise20/Model/Book.php';
-    
+   include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Book.php';
    #For Windows
-   require_once 'C:\xampp\htdocs\Exercise20\Models\Book.php';
+   //require_once 'C:\xampp\htdocs\Exercise20\Models\Book.php';
    use Models\Book;
     
     class BookViewer{
