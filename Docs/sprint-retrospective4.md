@@ -9,4 +9,4 @@
 
 ## How it might have gone better
 
-- It was difficult to integrate traits and interafaces within our project due to inheritance model
+- It was difficult to integrate traits and interfaces within our project due to inheritance model
