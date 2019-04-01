@@ -6,7 +6,7 @@ body {
      
 }
 
-h1, div#title {
+h1 {
     font-family: 'Merriweather', serif;
     line-height: 1.6;
     color: black;
