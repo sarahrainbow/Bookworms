@@ -1,5 +1,4 @@
 <?php 
-
 $conn = mysqli_connect ('localhost', 'root') or die("could not connect");
 mysqli_select_db($conn, "libraryapp") or die ("could not connect");
 
@@ -29,11 +28,7 @@ if(isset($_GET['search'])) { //is something is entered in search box
     $searchq = $_GET['search']; //get the data entered in search box
     $searchq = preg_replace("#[^0-9a-z.-]#i","", $searchq);//sanitise user data. Replaces anything that is not first argument with second argument on search term entered by user. Allows letters and numbers and -.#i allows caps and lowercase
  
-if(isset($_GET['search'])) {
-    $searchq = $_GET['search'];
-    $searchq = preg_replace("#[^0-9a-z.-]#i","", $searchq);//replaces anything that is not first argument with second argument on variable. Allows letters and numbers and -.#i allows caps and lowercase
- 
-    
+
  $query = mysqli_query($conn, "SELECT * FROM book WHERE BookISBN LIKE '%$searchq%' OR Title LIKE '%$searchq%'") or die("could not search");
  $count = mysqli_num_rows($query);//count number of rows of results
  if($count == 0) {
@@ -88,13 +83,11 @@ if(isset($_GET['search'])) {
             <li>Library branches</li>
             <li>Opening times</li> 
         </ul>
-        </div>        
-        
-<?php include 'footer.html';?>
-        
+        </div>   
+<?php include 'Footer.html';?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
 </body>
-</html>
+</html>  
