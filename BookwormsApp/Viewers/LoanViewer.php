@@ -3,14 +3,14 @@
 namespace Viewers {
     
     #For Cynthujaa  
-    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Interfaces/ViewerInterface.php';
+//    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Interfaces/ViewerInterface.php';
     
     #For Windows
 //    require_once 'C:\xampp\htdocs\Exercise20\Models\Loan.php';
 //    require_once(__DIR__ . '\..\Models\Loan.php');
     
-//    require_once(__DIR__ . '/../Models/Loan.php');
-//    require_once (__DIR__ . '/../Interfaces/ViewerInterface.php');
+    require_once(__DIR__ . '/../Models/Loan.php');
+    require_once (__DIR__ . '/../Interfaces/ViewerInterface.php');
  
     //use Models\Loan;
     use Interfaces\Viewer;

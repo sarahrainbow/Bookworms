@@ -35,7 +35,7 @@ namespace Tests {
             $this->testEmployee= new Employee(2384958, 'librarian', 'Frida', '','Kahlo','4 Feet Under','','','','','');
             $this->testCustomer = new Customer(12345, 'Matilda', 'Honey', 'Wormwood','9 Youngwood Drive','matildahoney@gmail.com','bookworm23','Password123','','');
             $this->testCustomerController = new CustomerController();
-            $this->testLoan = new Loan(98765, '13-01-19', 1, 2, "Kennington", 1);
+            $this->testLoan = new Loan(98765, '13-01-19', 1, 2, "Kennington");
             $this->testLoanController = new LoanController();
             $this->testLoanViewer = new LoanViewer();
             $this->testUserViewer = new UserViewer();
@@ -108,11 +108,11 @@ namespace Tests {
         
         public function testLoanController() {
 
-            $testLoan2 = new Loan(2, '2012-02-02', 4, 2, "Kings Cross", 3);
+            $testLoan2 = new Loan(2, '2012-02-02', 4, 2, "Kings Cross");
             $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
             
-            $this->testLoanController->loanBook((new Loan(1, '11-1-01', 3, 1, "Southwark", 4)), $this->testBook);
-            $this->testLoanController->loanBook((new Loan(2, '12-2-02', 4, 2, "Bethnal Green", 5)), $testBook2);
+            $this->testLoanController->loanBook((new Loan(1, '11-1-01', 3, 1, "Southwark")), $this->testBook);
+            $this->testLoanController->loanBook((new Loan(2, '12-2-02', 4, 2, "Bethnal Green")), $testBook2);
 
             var_dump($this->testLoanController->getLoans());
 
@@ -129,7 +129,7 @@ namespace Tests {
         
         public function testLoanViewer() {
             
-            $testLoan2 = new Loan(2, '2012-02-02', 4, 2, "Kings Cross", 3);
+            $testLoan2 = new Loan(2, '2012-02-02', 4, 2, "Kings Cross");
             $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
             $this->testLoan->setIsLoanOverdue(true);
             $this->testLoanController->loanBook($this->testLoan, $this->testBook); 

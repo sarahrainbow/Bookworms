@@ -3,22 +3,22 @@
 namespace Controllers {
     
     #For Cynthujaa 
-    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Loan.php';
-    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Book.php';
-    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Person.php';
-    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Traits/ControllerTrait.php';
+//    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Loan.php';
+//    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Book.php';
+//    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Person.php';
+//    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Traits/ControllerTrait.php';
     
-//    require_once(__DIR__ . '/../Models/Loan.php');
-//    require_once(__DIR__ . '/../Models/Book.php');
-//    require_once(__DIR__ . '/../Models/Person.php');
-//    require_once(__DIR__ . '/../Traits/ControllerTrait.php');
+    require_once(__DIR__ . '/../Models/Loan.php');
+    require_once(__DIR__ . '/../Models/Book.php');
+    require_once(__DIR__ . '/../Models/Person.php');
+    require_once(__DIR__ . '/../Traits/ControllerTrait.php');
     
     use Models\ {Book, Loan, Person};
-    use Traits\ {ControllerTrait};
+    use Traits\ {Controller};
 
     
     class LoanController {
-        use ControllerTrait; //What is this for - not working for me?
+        use Controller; //What is this for - not working for me?
         
         public $loans = []; //created loan array in the loan controller 
 

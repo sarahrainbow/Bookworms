@@ -9,22 +9,27 @@
     </head>
     <body>
                 <center>
-            <h1>The Bookworms</h1>
+            <h1>Bookworm Libraries</h1>
                 <?php include 'NavBar.html'; ?>
                     
         </center>
-        <br>
-        <br>
-        <br><h2>Loan out a book</h2>
-        <form action="LoanOutConfirmation.php" method="post" enctype="multipart/form-data">
-            
-            Book ID: <input type="number" name="bookID" autofocus required pattern="{4}"/>
-            <br>
-            Customer ID: <input type="number" name="customerID" required pattern="{4}"/>
-            <br>
-            Loan out date: <input type="date" name ="loanOutDate" required/>
-            <button type="submit">Loan book</button>
-        </form>
+        <div class="paddedBlock"><h2>Loan out a book</h2>
+            <form action="LoanOutConfirmation.php" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="bookID">Book ID</label>
+                    <input class="form-control" type="number" name="bookID" autofocus/>
+                </div>
+                <div class="form-group">
+                    <label for="customerID">Customer ID</label>
+                    <input class="form-control" type="number" name="customerID"/>
+                </div>
+                <div class="form-group">
+                    <label for="date">Loan out date</label>
+                    <input class="form-control" type="date" name ="loanOutDate" required/>
+                </div>
+                <button type="submit" class="btn btn-primary">Loan book</button>
+            </form>
+        </div>
             <br>
 <?php include 'Footer.html';?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

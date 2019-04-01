@@ -18,7 +18,7 @@ and open the template in the editor.
     </head>
     <body>
                 <center>
-            <h1>The Bookworms</h1>
+            <h1>Bookworm Libraries</h1>
                 <?php include 'NavBar.html'; ?>
                     
         <?php

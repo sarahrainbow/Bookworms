@@ -6,38 +6,36 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="CSS.css" rel="stylesheet" type="text/css"/>
-    <?php
-     
-    ?>
+      
     </head>
     <body>
         <center>
-            <h1>The Bookworms</h1>
+            <div id="Header"><h1>Bookworm Libraries</h1></div>
 <?php include 'NavBar.html';?>
             
                 <div class="container-fluid">
                      <div class="row">
                         <div class="col-sm-4">
-                            <a href="customerSignUp.php"><img src="Images/JoinLibrary.jpeg" alt="Join the Library" style="float: right; text-align: center; width:100%; height:50%"/>Join the Library</a>
+                            <a href="customerSignUp.php"><img src="Images/JoinLibrary.jpeg" alt="Join a Library"/>Join a Library</a>
                         </div>
                         <div class="col-sm-4">
-                            <a href="search.php"><img src="Images/Searchbooks.jpeg" alt="Search, Renew, Reserve" style="float: right; text-align: center; width:100%; height:50%"/>Search, Renew and Reserve Books</a>
+                            <a href="search.php"><img src="Images/Searchbooks.jpeg" alt="Search, Renew, Reserve"/>Search, Loan and Return Books</a>
                         </div>
                         <div class="col-sm-4">
-                            <a href=""><img src="Images/recommendedread.jpeg" alt="Recommended Reads" style="float: right; text-align: center; width:100%; height:50%"/>Recommended Reads</a>
+                            <a href=""><img src="Images/recommendedread.jpeg" alt="Recommended Reads"/>Recommended Reads</a>
                         </div>
                     </div> 
                 </div>
                 <div class="container-fluid">
                      <div class="row">
                         <div class="col-sm-4">
-                            <a href=""><img src="Images/Audioebooks.jpeg" alt="Audio and Ebooks" style="text-align: right; width:100%; height:50%"/>Audio and E-books</a>
+                            <a href=""><img src="Images/Audioebooks.jpeg" alt="Audio and Ebooks"/>Audio and E-books</a>
                         </div>
                         <div class="col-sm-4">
-                            <a href=""><img src="Images/events.jpeg" alt="Events and Activities" style="text-align: right; width:100%; height:50%"/>Events and Activities</a>
+                            <a href=""><img src="Images/events.jpeg" alt="Events and Activities"/>Events and Activities</a>
                         </div>
                         <div class="col-sm-4">
-                            <a href=""> <img src="Images/onlineservices.jpeg" alt="Online Services" style="text-align: right; width:100%; height:50%"/>Online Services</a>
+                            <a href=""> <img src="Images/onlineservices.jpeg" alt="Online Services"/>Online Services</a>
                         </div>
                     </div> 
                 </div>

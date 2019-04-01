@@ -8,24 +8,27 @@
  
     </head>
     <body>
-               <center>
-            <h1>The Bookworms</h1>
+
+            <h1>Bookworm Libraries</h1>
                 <?php include 'NavBar.html'; ?>
-        <br>
-        <br>
-        <br>
-        </center>
-        <h2>Return a book</h2>
-        <form action="loanReturnConfirmation.php" method="post" enctype="multipart/form-data">
-            
-            Book ID: <input type="number" name="bookID" autofocus required pattern="{4}"/>
-            <br>
-            Customer ID: <input type="number" name="customerID" required pattern="{4}"/>
-            <br>
-            Return date: <input type="date" name ="loanReturnDate" required/>
-            <br>
-            <button type="submit">Return book</button>
-        </form>
+        <div class="paddedBlock">
+            <h2>Return a book</h2>
+                <form action="loanReturnConfirmation.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="bookID">Book ID</label>
+                        <input class="form-control" type="number" name="bookID" autofocus/>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerID">Customer ID</label>
+                        <input class="form-control" type="number" name="customerID"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Return date</label>
+                        <input class="form-control" type="date" name ="loanReturnDate" required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Return book</button>
+                </form>
+        </div>
             <br>
             
 <?php include 'Footer.html';?>

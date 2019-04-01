@@ -6,9 +6,8 @@ abstract class BranchItem {
     private $branchName;
     private $branchCode;
     
-    public function __construct(string $branchName, int $branchCode) {
+    public function __construct(string $branchName) {
         $this->setBranchName($branchName);
-        $this->setBranchCode($branchCode);
     }
     
     public function getBranchName(){
