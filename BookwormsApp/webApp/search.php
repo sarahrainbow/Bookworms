@@ -23,6 +23,7 @@
 //catch(Exception $e) {
 //  echo 'Message: ' .$e->getMessage();
 //}
+
  try { 
 
 $conn = mysqli_connect ('localhost', 'root');//connect to database
@@ -42,17 +43,6 @@ function checkSearchIsSet($searchq) {
   }
   return true;
 }
-
-//try {
-//  checkSearchIsSet('');
-//  //If the exception is thrown, this text will not be shown
-//  echo 'If you see this, the search term is set';
-//}
-
-//catch exception
-//catch(Exception $e) {
-//  echo 'Message: ' .$e->getMessage();
-//}
 
 if(isset($_GET['search'])) { //is something is entered in search box
     $searchq = $_GET['search']; //get the data entered in search box
@@ -91,7 +81,7 @@ catch (Exception $e) {
     </head>
    <body>
                 <center>
-            <div id="title">The Bookworms</div>
+            <h1>The Bookworms</h1>
                   <?php include 'NavBar.html';?>
             </center>            
 
@@ -99,7 +89,7 @@ catch (Exception $e) {
         <br>
         <br>
         <br>
-        <h1>Search books</h1>
+        <h2>Search books</h2>
           
 <form action="search.php" method="get" class="form-inline mt-5">
   
@@ -108,7 +98,7 @@ catch (Exception $e) {
  
 </form>
         
-        <h2 class="mb-4">Search results</h2>   
+        <h3 class="mb-4">Search results</h3>   
         
       <?php echo ("$output");?>  
         
