@@ -5,6 +5,25 @@ mysqli_select_db($conn, "libraryapp") or die ("could not connect");//selecting o
 
 $output = ''; //output of results
 
+//function with exception
+function checkSearchIsSet($searchq) {
+  if(!isset($searchq)) {
+    throw new Exception("A search term must be entered");
+  }
+  return true;
+}
+
+try {
+  checkSearchIsSet('');
+  //If the exception is thrown, this text will not be shown
+  echo 'If you see this, the search term is set';
+}
+
+//catch exception
+catch(Exception $e) {
+  echo 'Message: ' .$e->getMessage();
+}
+
 if(isset($_GET['search'])) { //is something is entered in search box
     $searchq = $_GET['search']; //get the data entered in search box
     $searchq = preg_replace("#[^0-9a-z.-]#i","", $searchq);//sanitise user data. Replaces anything that is not first argument with second argument on search term entered by user. Allows letters and numbers and -.#i allows caps and lowercase
