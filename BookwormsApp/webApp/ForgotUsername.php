@@ -59,5 +59,5 @@ and open the template in the editor.
         <h2>I forgot my username - send new username</h2>
         <p></p>
         </center>
-        <?php include 'footer.php';?>
+<?php include 'Footer.html';?>
  
