@@ -1,28 +1,42 @@
 <?php 
-$conn = mysqli_connect ('localhost', 'root') or die("could not connect");
-mysqli_select_db($conn, "libraryapp") or die ("could not connect");
 
-$output = ''; //output of results
+//function with exception
+//
+//$conn = mysqli_connect ('localhost', 'root') or die("could not connect");
+//mysqli_select_db($conn, "libraryapp") or die ("could not connect");
+
+
+//function checkSearchIsSet(search) {
+//  if(!isset(search)) {
+//    throw new Exception("A search term must be entered");
+//  }
+//  return true;
+//}
+//
+//try {
+//  checkSearchIsSet('$searchq');
+//  //If the exception is thrown, this text will not be shown
+//  echo 'If you see this, the search term is set';
+//}
+//
+////catch exception
+//catch(Exception $e) {
+//  echo 'Message: ' .$e->getMessage();
+//}
+ try { 
+
+$conn = mysqli_connect ('localhostx', 'root');//connect to database
+
+if (mysqli_connect_error()) {
+throw new Exception(mysqli_connect_errno());
+}
+  
+mysqli_select_db($conn, "libraryapp");
 
  
-//function with exception
-function checkSearchIsSet($searchq) {
-  if(!isset($searchq)) {
-    throw new Exception("A search term must be entered");
-  }
-  return true;
-}
+  
 
-try {
-  checkSearchIsSet('');
-  //If the exception is thrown, this text will not be shown
-  echo 'If you see this, the search term is set';
-}
-
-//catch exception
-catch(Exception $e) {
-  echo 'Message: ' .$e->getMessage();
-}
+$output = ''; //output of results
 
 if(isset($_GET['search'])) { //is something is entered in search box
     $searchq = $_GET['search']; //get the data entered in search box
@@ -37,9 +51,14 @@ if(isset($_GET['search'])) { //is something is entered in search box
      while($row = mysqli_fetch_array($query)) {
          $bookisbn = $row['BookISBN'];
          $title = $row['Title'];
-         $output = "<div>$bookisbn $title</div>"; //
+         $output = "<div>$bookisbn $title</div>"; //show book ISBN and title
      }
  }
+}
+}
+
+catch (Exception $e) {
+    echo 'The database connection failed';
 }
 
 ?>
