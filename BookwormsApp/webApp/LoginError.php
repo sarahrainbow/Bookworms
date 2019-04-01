@@ -8,11 +8,9 @@
     </head>
     <body>
                 <center>
-            <h1>The Bookworms</h1>
+            <h1>The Bookworms</h1>         
             
-            
-                 
-   <?php include 'NavBar.html';?> 
+     <?php include 'NavBar.html';?> 
     </center                
         
         <?php    
