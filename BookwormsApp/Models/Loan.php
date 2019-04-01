@@ -17,13 +17,13 @@ namespace Models {
         private $loanCustomerID;
         
 
-        public function __construct(int $ID, $loanOutDate, int $loanedBookID, int $loanCustomerID, string $branchName, int $branchCode) {
+        public function __construct(int $ID, $loanOutDate, int $loanedBookID, int $loanCustomerID, string $branchName) {
             $this->setID($ID);
             $this->setLoanOutDate($loanOutDate);
             $this->setLoanedBookID($loanedBookID);
             $this->setLoanCustomerID($loanCustomerID);
             $this->setLoanDueBackDate();
-            parent::__construct($branchName, $branchCode);
+            parent::__construct($branchName);
         }
         
         public function getID() {
