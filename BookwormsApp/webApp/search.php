@@ -28,7 +28,7 @@
 $conn = mysqli_connect ('localhostx', 'root');//connect to database
 
 if (mysqli_connect_error()) {
-throw new Exception(mysqli_connect_errno());
+throw new Exception(mysqli_connect_error());
 }
   
 mysqli_select_db($conn, "libraryapp");
