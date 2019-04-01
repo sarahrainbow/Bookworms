@@ -25,16 +25,13 @@
 //}
  try { 
 
-$conn = mysqli_connect ('localhostx', 'root');//connect to database
+$conn = mysqli_connect ('localhost', 'root');//connect to database
 
 if (mysqli_connect_error()) {
 throw new Exception(mysqli_connect_error());
 }
   
 mysqli_select_db($conn, "libraryapp");
-
- 
-  
 
 $output = ''; //output of results
 
@@ -46,16 +43,16 @@ function checkSearchIsSet($searchq) {
   return true;
 }
 
-try {
-  checkSearchIsSet('');
-  //If the exception is thrown, this text will not be shown
-  echo 'If you see this, the search term is set';
-}
+//try {
+//  checkSearchIsSet('');
+//  //If the exception is thrown, this text will not be shown
+//  echo 'If you see this, the search term is set';
+//}
 
 //catch exception
-catch(Exception $e) {
-  echo 'Message: ' .$e->getMessage();
-}
+//catch(Exception $e) {
+//  echo 'Message: ' .$e->getMessage();
+//}
 
 if(isset($_GET['search'])) { //is something is entered in search box
     $searchq = $_GET['search']; //get the data entered in search box
