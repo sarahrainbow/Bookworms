@@ -19,7 +19,8 @@
                 <center>
             <h1>Bookworm Libraries</h1>
                 <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
-                    
+            
+            <p> You are now logged out. If you wish to log back in, please click <a href="LoginPage.php">here</a></p>
         <?php
         // put your code here
         ?>

@@ -106,3 +106,29 @@ session_start();
 
     #}//closure of namespace
 
+//Try and catch exceptions
+        
+//  class customException extends Exception {
+//  public function errorMessage() {
+//    //error message
+//    $errorMessage = 'Error on line '.$this->getLine().' and '.$this->getMessage().'</b> is not a valid E-Mail address';
+//    return $errorMessage;
+//  }
+//}
+//    
+//    try {
+//    if(empty($_FILES[UploadKey]['name'])){//trys to move, if successful returns true therefore if failed, ! would make true and get error statement
+//            throw new Exception("You have not added a file");
+//        }
+//    if(!in_array($_FILES[UploadKey]['type'],AllowedTypes)){//trys to move, if successful returns true therefore if failed, ! would make true and get error statement
+//            throw new Exception("There's been an error with the type of file");
+//        }
+//    }
+//         
+//
+//    catch (Exception $e) {
+//            echo $e->getMessage();
+//        }
+//    catch (customException $e) {
+//    echo $e->errorMessage();
+//    }

@@ -15,17 +15,14 @@ and open the template in the editor.
     
     <?php
        session_start();
-     //unset($_SESSION['Username']);
-     //unset($_SESSION['Password']);
-    //session_destroy();
-
+       
     ?>
     <body>       
         <center>
             <h1>Bookworm Libraries</h1>
                 <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
         <div>                
-        <form id="form1" form action ="LoginPage.php" method="post">
+        <form action ="LoginPage.php" method="post" name="hide">
             <div class ="container">
                 Please login into your account
                 <br>
@@ -41,12 +38,14 @@ and open the template in the editor.
         </form>
     </center>
             <?php
+
     if(!empty($_POST)){
         $_SESSION["Username"] = filter_input(INPUT_POST,'Username');
         }
     if(!empty($_SESSION)){
             echo "Welcome ".$_SESSION['Username'] . '<br>';
     }
+
 //    if(!empty($_SESSION)){
 //        $("#formButton").click(function(){
 //        $("#form1").toggle();
@@ -66,7 +65,7 @@ and open the template in the editor.
 //        
     
     ?>
-   
+
 
 <?php include 'Footer.html';?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
