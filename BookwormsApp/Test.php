@@ -6,7 +6,7 @@ namespace Tests {
     
     spl_autoload_register(function($Name) { #detects full pathname of class and then searches in equivalent file structure to include file
         $filePath = "$Name.php";
-        $macFilePath = str_replace('\\', '/', $filePath); // required for Mac
+        $macFilePath = str_replace('\\', '/', $filePath); // required for Mac - replace \\ with /
 //        require_once $filePath;
         require_once $macFilePath;   
     });
