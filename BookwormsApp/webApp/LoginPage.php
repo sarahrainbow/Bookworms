@@ -7,9 +7,12 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Log in page | The Bookworms</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="CSS.css" rel="stylesheet" type="text/css"/>
     </head>
+    
     <?php
        session_start();
      //unset($_SESSION['Username']);
@@ -36,7 +39,7 @@ and open the template in the editor.
             </div>
         </div>
         </form>
-    </centre>
+    </center>
             <?php
     if(!empty($_POST)){
         $_SESSION["Username"] = filter_input(INPUT_POST,'Username');

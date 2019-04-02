@@ -23,18 +23,16 @@
 //catch(Exception $e) {
 //  echo 'Message: ' .$e->getMessage();
 //}
+
  try { 
 
-$conn = mysqli_connect ('localhostx', 'root');//connect to database
+$conn = mysqli_connect ('localhost', 'root');//connect to database
 
 if (mysqli_connect_error()) {
 throw new Exception(mysqli_connect_error());
 }
   
 mysqli_select_db($conn, "libraryapp");
-
- 
-  
 
 $output = ''; //output of results
 
@@ -44,17 +42,6 @@ function checkSearchIsSet($searchq) {
     throw new Exception("A search term must be entered");
   }
   return true;
-}
-
-try {
-  checkSearchIsSet('');
-  //If the exception is thrown, this text will not be shown
-  echo 'If you see this, the search term is set';
-}
-
-//catch exception
-catch(Exception $e) {
-  echo 'Message: ' .$e->getMessage();
 }
 
 if(isset($_GET['search'])) { //is something is entered in search box
@@ -86,7 +73,7 @@ catch (Exception $e) {
 <html>
 <head>
         <meta charset="UTF-8">
-        <title>Search</title>
+        <title>Search | The Bookworms</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="CSS.css" rel="stylesheet" type="text/css"/>
@@ -94,7 +81,7 @@ catch (Exception $e) {
     </head>
    <body>
                 <center>
-            <div id="title">The Bookworms</div>
+            <h1>The Bookworms</h1>
                   <?php include 'NavBar.html';?>
             </center>            
 
@@ -102,7 +89,7 @@ catch (Exception $e) {
         <br>
         <br>
         <br>
-        <h1>Search books</h1>
+        <h2>Search books</h2>
           
 <form action="search.php" method="get" class="form-inline mt-5">
   
@@ -111,7 +98,7 @@ catch (Exception $e) {
  
 </form>
         
-        <h2 class="mb-4">Search results</h2>   
+        <h3 class="mb-4">Search results</h3>   
         
       <?php echo ("$output");?>  
         
