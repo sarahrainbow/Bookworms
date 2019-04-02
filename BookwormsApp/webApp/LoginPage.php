@@ -34,8 +34,8 @@ and open the template in the editor.
                 <a href="ForgotUsername.php">Forgot password?</a>
                 <a href="ForgotUsername.php">Forgot username?</a>
             </div>
-        </div>
-        </form>
+       </form>
+       </div>
     </center>
             <?php
 
