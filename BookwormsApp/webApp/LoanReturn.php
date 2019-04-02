@@ -10,7 +10,7 @@
     <body>
 
             <h1>Bookworm Libraries</h1>
-                <?php include 'NavBar.html'; ?>
+                <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
         <div class="paddedBlock">
             <h2>Return a book</h2>
                 <form action="loanReturnConfirmation.php" method="post" enctype="multipart/form-data">

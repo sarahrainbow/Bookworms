@@ -23,7 +23,7 @@ and open the template in the editor.
     <body>       
         <center>
             <h1>Bookworm Libraries</h1>
-                <?php include 'NavBar.html'; ?>
+                <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
         <div>                
         <form id="form1" form action ="LoginPage.php" method="post">
             <div class ="container">

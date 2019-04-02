@@ -15,7 +15,7 @@
     <body>
         <center>
             <h1>Bookworm Libraries</h1>
-                <?php include 'NavBar.html'; ?>
+                <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
         </center>
         <div class="paddedBlock"><h2>Looks like something went a little wrong here...</h2>
         

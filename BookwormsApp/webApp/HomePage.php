@@ -11,18 +11,18 @@
     <body>
         <center>
             <div id="Header"><h1>Bookworm Libraries</h1></div>
-<?php include 'NavBar.html';?>
+<?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
             
                 <div class="container-fluid">
                      <div class="row">
                         <div class="col-sm-4">
-                            <a href="customerSignUp.php"><img src="Images/JoinLibrary.jpeg" alt="Join a Library"/>Join a Library</a>
+                            <a href="customerSignUp.php"><img src="Images/JoinLibrary.jpeg" alt="Join a Library"/>Join</a>
                         </div>
                         <div class="col-sm-4">
-                            <a href="search.php"><img src="Images/Searchbooks.jpeg" alt="Search, Renew, Reserve"/>Search, Loan and Return Books</a>
+                            <a href="search.php"><img src="Images/Searchbooks.jpeg" alt="Search, Renew, Reserve"/>Search books</a>
                         </div>
                         <div class="col-sm-4">
-                            <a href=""><img src="Images/recommendedread.jpeg" alt="Recommended Reads"/>Recommended Reads</a>
+                            <a href=""><img src="Images/recommendedread.jpeg" alt="Recommended Reads"/>Recommended</a>
                         </div>
                     </div> 
                 </div>

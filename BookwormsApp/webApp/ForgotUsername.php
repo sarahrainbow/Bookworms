@@ -14,7 +14,7 @@ and open the template in the editor.
     </head>
     <body>
             <h1>Bookworm Libraries</h1>
-            <?php include 'NavBar.html'; ?>
+            <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
                     
         <br>
         <h2>I forgot my username - send new username</h2>
