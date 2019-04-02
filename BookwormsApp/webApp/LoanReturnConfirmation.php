@@ -21,8 +21,7 @@
             use Models\ Loan;
             use Viewers\LoanViewer;
             use Controllers\LoanController;
-
-            session_start();
+            
             function filterInput($inputItem) {
                 return filter_input(INPUT_POST,$inputItem,FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_HIGH);
             }
