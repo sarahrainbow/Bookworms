@@ -10,12 +10,12 @@ namespace Viewers {
 //    require_once(__DIR__ . '\..\Models\Loan.php');
     
     require_once(__DIR__ . '/../Models/Loan.php');
-    require_once (__DIR__ . '/../Interfaces/ViewerInterface.php');
+    require_once (__DIR__ . '/../Interfaces/Viewable.php');
  
-    //use Models\Loan;
-    use Interfaces\Viewer;
+    use Models\Loan;
+    use Interfaces\Viewable;
     
-    class LoanViewer implements Viewer {
+    class LoanViewer implements Viewable {
         
         public function listItem($loan) {
             echo "<br>LoanID: " . $loan->getID();
