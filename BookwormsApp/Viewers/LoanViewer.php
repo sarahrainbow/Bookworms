@@ -5,12 +5,11 @@ namespace Viewers {
     #For Cynthujaa  
 //    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Interfaces/ViewerInterface.php';
     
-    #For Windows
-//    require_once 'C:\xampp\htdocs\Exercise20\Models\Loan.php';
-//    require_once(__DIR__ . '\..\Models\Loan.php');
-    
-    require_once(__DIR__ . '/../Models/Loan.php');
-    require_once (__DIR__ . '/../Interfaces/Viewable.php');
+    spl_autoload_register(function($Name) {
+        $filePath = "$Name.php";
+        $macFilePath = str_replace('\\', '/', $filePath);
+        require_once '../' . $macFilePath;   
+    });
  
     use Models\Loan;
     use Interfaces\Viewable;

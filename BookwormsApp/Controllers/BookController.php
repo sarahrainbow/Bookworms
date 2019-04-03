@@ -2,10 +2,14 @@
 namespace Controllers{
     
     #For Cynthujaa  
-   include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Book.php';
+//   include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Book.php';
     
-   #For Windows
-   //require_once 'C:\xampp\htdocs\Exercise20\Models\Book.php';
+    spl_autoload_register(function($Name) {
+        $filePath = "$Name.php";
+        $macFilePath = str_replace('\\', '/', $filePath);
+        require_once '../' . $macFilePath;   
+    });
+   
    use Models\Book;
     
     class BookController{

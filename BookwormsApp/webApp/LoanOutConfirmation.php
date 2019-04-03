@@ -8,11 +8,16 @@
  
     </head>
     <body>
-            <h1>Bookworm Libraries</h1>
-            <?php
+        <h1>Bookworm Libraries</h1>
+        <?php
+        session_start();     
+
             
-            require_once(__DIR__ . '/../Models/Loan.php');
-            require_once(__DIR__ . '/../Models/Customer.php');
+            spl_autoload_register(function($Name) {
+                $filePath = "$Name.php";
+                $macFilePath = str_replace('\\', '/', $filePath);
+                require_once '../' . $macFilePath;   
+            });
 
             use Models\ {Loan, Customer};
 
@@ -22,37 +27,36 @@
 
             $loanDetails = filter_input_array(INPUT_POST);
 
-            if(!empty($loanDetails)) {
-                session_start(); 
-                include 'NavBar.html'; include 'NavBarCollapsed.html';
-                echo '<br><div class="paddedBlock"><h2>Book Loaned successfully!</h2>';
-                
 
-                foreach($loanDetails as $loanDetail => $loanValue) {
-                    ${$loanDetail} = filterInput($loanDetail);
-                    echo $loanDetail . ": " . $loanValue . "<br>";
-                }
+            //testing sunny and rainy day scenarios by changing loancount to loan limit 
+            $newCustomer = new Customer(12345, 'Matilda', 'Honey', 'Wormwood','9 Youngwood Drive','matildahoney@gmail.com','bookworm23','Password123','','');
+            $newCustomer->setLoanCount(5);
 
-                $loanID= rand(000, 1000);
-                echo "loanID: " . $loanID . "<br>";
-                $newLoan = new Loan($loanID, $loanDetails['loanOutDate'], $loanDetails['bookID'], $loanDetails['customerID'], "Kennington");
-                echo "Date loan due back: " . $newLoan->getLoanDueBackDate();
-                
-                //testing sunny and rainy day scenarios
-                $newCustomer = new Customer(12345, 'Matilda', 'Honey', 'Wormwood','9 Youngwood Drive','matildahoney@gmail.com','bookworm23','Password123','','');
-                $newCustomer->setLoanCount(4);
-
-                if($newCustomer->getLoanCount() >= $newCustomer->getLoanLimit()){
-                    header("Location: LoanLimitReached.php");
-                    $_SESSION['limitError']['errorMessage']="You have reached your loan limit. Please return a book to take out more loans.";
-                    die();
-                }
+            if($newCustomer->getLoanCount() >= $newCustomer->getLoanLimit()){ 
+                header("Location: LoanLimitReached.php");
+                $_SESSION['limitError']['errorMessage']="You have reached your loan limit. Please return a book to take out more loans.";
+                die();
             }
 
-            ?>
-        </div>
+            else if(!empty($loanDetails)) {
+                    include_once 'NavBar.html'; 
+                    include_once 'NavBarCollapsed.html';
+                    echo '<br><div class="paddedBlock"><h2>Book Loaned successfully!</h2>';
 
-            <?php include 'Footer.html';?>
+                    foreach($loanDetails as $loanDetail => $loanValue) {
+                        ${$loanDetail} = filterInput($loanDetail);
+                        echo $loanDetail . ": " . $loanValue . "<br>";
+                    }
+
+                    $loanID= rand(000, 1000);
+                    echo "loanID: " . $loanID . "<br>";
+                    $newLoan = new Loan($loanID, $loanDetails['loanOutDate'], $loanDetails['bookID'], $loanDetails['customerID'], "Kennington");
+                    echo "Date loan due back: " . $newLoan->getLoanDueBackDate();
+            }
+        ?>
+    </div>
+
+        <?php include 'Footer.html';?>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

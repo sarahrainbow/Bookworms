@@ -2,15 +2,15 @@
 namespace Viewers {
     
     #For Cynthujaa  
-    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Customer.php';
-    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Employee.php';
+//    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Customer.php';
+//    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Employee.php';
 
     
-    #For Windows
-//    require_once 'C:\xampp\htdocs\Exercise20\Models\Customer.php';
-//    require_once 'C:\xampp\htdocs\Exercise20\Models\Employee.php';
-//    require_once(__DIR__ . '/../Models/Customer.php');
-//    require_once(__DIR__ . '/../Models/Employee.php');
+    spl_autoload_register(function($Name) {
+        $filePath = "$Name.php";
+        $macFilePath = str_replace('\\', '/', $filePath);
+        require_once '../' . $macFilePath;   
+    });
     
     use Models\ {Customer, Employee};
     
