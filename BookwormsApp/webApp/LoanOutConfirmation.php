@@ -18,6 +18,7 @@
             
             spl_autoload_register(function($Name) {
                 $filePath = "$Name.php";
+                require_once '..\\' . $filePath; 
                 $macFilePath = str_replace('\\', '/', $filePath);
                 require_once '../' . $macFilePath;   
             });
