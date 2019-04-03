@@ -10,7 +10,7 @@
     <body>
             <h1>Bookworm Libraries</h1>
             <?php
-            session_start(); 
+            
             require_once(__DIR__ . '/../Models/Loan.php');
             require_once(__DIR__ . '/../Models/Customer.php');
 
@@ -23,7 +23,7 @@
             $loanDetails = filter_input_array(INPUT_POST);
 
             if(!empty($loanDetails)) {
-                
+                session_start(); 
                 include 'NavBar.html'; include 'NavBarCollapsed.html';
                 echo '<br><div class="paddedBlock"><h2>Book Loaned successfully!</h2>';
                 
