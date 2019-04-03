@@ -17,11 +17,11 @@
             <form action="LoanOutConfirmation.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="bookID">Book ID</label>
-                    <input class="form-control" type="number" name="bookID" autofocus/>
+                    <input class="form-control" type="number" name="bookID" autofocus required/>
                 </div>
                 <div class="form-group">
                     <label for="customerID">Customer ID</label>
-                    <input class="form-control" type="number" name="customerID"/>
+                    <input class="form-control" type="number" name="customerID" required/>
                 </div>
                 <div class="form-group">
                     <label for="date">Loan out date</label>
