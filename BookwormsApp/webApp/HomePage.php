@@ -38,7 +38,7 @@
     <div class="card">
     <img class="card-img-top" src="Images/recommendedread.jpeg" alt="Open book">
     <div class="card-body  text-center">
-      <a href="search.php" class="stretched-link card-title">Recommended </a>
+      <a href="#" class="stretched-link card-title">Recommended </a>
      </div>
     </div>
    </div>
