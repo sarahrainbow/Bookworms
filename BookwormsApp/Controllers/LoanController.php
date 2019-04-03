@@ -8,17 +8,25 @@ namespace Controllers {
 //    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Models/Person.php';
 //    include_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Traits/ControllerTrait.php';
     
-    require_once(__DIR__ . '/../Models/Loan.php');
-    require_once(__DIR__ . '/../Models/Book.php');
-    require_once(__DIR__ . '/../Models/Person.php');
-    require_once(__DIR__ . '/../Traits/ControllerTrait.php');
+    if(file_exists('/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Traits/ControllerTrait.php')){
+        include '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Traits/ControllerTrait.php';
+    }
+    else {
+        require_once(__DIR__ . '/../Traits/ControllerTrait.php');
+    }
+
+    spl_autoload_register(function($Name) {
+        $filePath = "$Name.php";
+        $macFilePath = str_replace('\\', '/', $filePath);
+        require_once '../' . $macFilePath;   
+    });
     
     use Models\ {Book, Loan, Person};
     use Traits\ {Controller};
 
     
     class LoanController {
-        use Controller; //What is this for - not working for me?
+        use Controller; 
         
         public $loans = []; //created loan array in the loan controller 
 
@@ -76,23 +84,23 @@ namespace Controllers {
         }
         
     }
-//    $testBook = new Book(1, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
-//    $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
-//    $testLoanController = new LoanController();
-//    $testLoan = new Loan(1, '2019-02-18', 3, 1, "Kennington", 2);
-//    $testLoan2 = new Loan(2, '2012-02-02', 4, 2, "Brighton", 8);
-//    $testLoanController->loanBook($testLoan, $testBook);
-//    $testLoanController->returnBook(1, '2018-12-12', $testBook);
-//    $testLoanController->loanBook($testLoan2, $testBook2);
-////    
-//    $testLoanController->deleteLoan($testLoan2);
+    $testBook = new Book(1, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
+    $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
+    $testLoanController = new LoanController();
+    $testLoan = new Loan(1, '2019-02-18', 3, 1, "Kennington", 2);
+    $testLoan2 = new Loan(2, '2012-02-02', 4, 2, "Brighton", 8);
+    $testLoanController->loanBook($testLoan, $testBook);
+    $testLoanController->returnBook(1, '2018-12-12', $testBook);
+    $testLoanController->loanBook($testLoan2, $testBook2);
 //    
-//    $testLoanController->addItem($testLoanController->getLoans(), $testLoan);
-//    var_dump($testLoanController->getLoans());
-//    echo "\n" . $testLoan->getLoanDueBackDate();
-//    echo "\n" . date('Y-m-d');
-//    echo "\n";
-//    $testLoanController->flagLoanOverdue($testLoan);
+    $testLoanController->deleteLoan($testLoan2);
+    
+    $testLoanController->addItem($testLoanController->getLoans(), $testLoan);
+    var_dump($testLoanController->getLoans());
+    echo "\n" . $testLoan->getLoanDueBackDate();
+    echo "\n" . date('Y-m-d');
+    echo "\n";
+    $testLoanController->flagLoanOverdue($testLoan);
     
             
 }

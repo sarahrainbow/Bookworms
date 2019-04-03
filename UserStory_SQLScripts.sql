@@ -356,4 +356,9 @@ SELECT concat(LibraryCardHolder.Forename, ' ', LibraryCardHolder.Surname) as 'Cu
 WHERE LibraryBranch.LibraryBranch = 'Walworth'
 
 
+#USER STORY 24
+# As a library staff member I want to loan out a book so the customer can take the book
+INSERT into loan (`LibraryCardID`, `BookID`, `DateOut`, `DateReturned`) 
+VALUES ((SELECT LibraryCardID from librarycardholder WHERE librarycardholder.LibraryCardID = 000000001), (SELECT BookID from copy WHERE copy.BookID = 000000016), '2019/03/31', '2019/04/30')
+
 

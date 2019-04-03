@@ -10,7 +10,10 @@
     <body>
         <h1>Bookworm Libraries</h1>
         <?php
-        session_start();     
+        session_start();   
+        const DB_DSN = 'mysql:host=localhost;dbname=libraryapp';
+        const DB_USER = 'root';
+        //const DB_PASS = 'pwd';
 
             
             spl_autoload_register(function($Name) {
@@ -30,7 +33,7 @@
 
             //testing sunny and rainy day scenarios by changing loancount to loan limit 
             $newCustomer = new Customer(12345, 'Matilda', 'Honey', 'Wormwood','9 Youngwood Drive','matildahoney@gmail.com','bookworm23','Password123','','');
-            $newCustomer->setLoanCount(5);
+            $newCustomer->setLoanCount(4);
 
             if($newCustomer->getLoanCount() >= $newCustomer->getLoanLimit()){ 
                 header("Location: LoanLimitReached.php");
@@ -47,11 +50,36 @@
                         ${$loanDetail} = filterInput($loanDetail);
                         echo $loanDetail . ": " . $loanValue . "<br>";
                     }
+                    
+                    
+
 
                     $loanID= rand(000, 1000);
                     echo "loanID: " . $loanID . "<br>";
                     $newLoan = new Loan($loanID, $loanDetails['loanOutDate'], $loanDetails['bookID'], $loanDetails['customerID'], "Kennington");
                     echo "Date loan due back: " . $newLoan->getLoanDueBackDate();
+                    
+
+                    try {
+                        $pdo = new PDO(DB_DSN, DB_USER);
+                    }
+                    catch (PDOException $e) {
+                        die("Something went wrong :'( \n" . $e->getMessage() . " on line " . $e->getLine());
+                    }
+
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+                    $statement = $pdo->prepare("INSERT INTO `loan`(`LibraryCardID`, `BookID`, `DateOut`) VALUES ((SELECT LibraryCardID from librarycardholder WHERE librarycardholder.LibraryCardID = :LibraryCardID), (SELECT BookID from copy WHERE copy.BookID = :BookID), :DateOut)");
+
+                    try {
+                        $statement->execute(['LibraryCardID' => $loanDetails['customerID'], 'BookID' => $loanDetails['bookID'], 'DateOut' => $loanDetails['loanOutDate']]);                   
+                    } catch (PDOException $e) {
+                        echo $e->getMessage() . ' on line ' . $e->getLine();
+                        $error = $e->errorInfo;
+                        die();
+                    }
+                    
             }
         ?>
     </div>

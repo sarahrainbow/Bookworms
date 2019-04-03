@@ -23,7 +23,7 @@
                         <input class="form-control" type="number" name="customerID"/>
                     </div>
                     <div class="form-group">
-                        <label for="date">Return date</label>
+                        <label for="date">Return date (dd/mm/yyyy)</label>
                         <input class="form-control" type="date" name ="loanReturnDate" required/>
                     </div>
                     <button type="submit" class="btn btn-primary">Return book</button>

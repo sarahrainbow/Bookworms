@@ -24,7 +24,7 @@
                     <input class="form-control" type="number" name="customerID" required/>
                 </div>
                 <div class="form-group">
-                    <label for="date">Loan out date</label>
+                    <label for="date">Loan out date (dd/mm/yyyy)</label>
                     <input class="form-control" type="date" name ="loanOutDate" required/>
                 </div>
                 <button type="submit" class="btn btn-primary">Loan book</button>
