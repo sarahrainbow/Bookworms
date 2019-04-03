@@ -73,7 +73,7 @@ catch (Exception $e) {
 <html>
 <head>
         <meta charset="UTF-8">
-        <title>Search | The Bookworms</title>
+        <title>Search | Bookworm Libraries</title>
        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
         <link href="CSS.css" rel="stylesheet" type="text/css"/>
@@ -81,7 +81,7 @@ catch (Exception $e) {
     </head>
    <body>
                 <center>
-            <h1>The Bookworms</h1>
+            <h1>Bookworm Libraries</h1>
                   <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
             </center>            
 
