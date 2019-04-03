@@ -41,6 +41,9 @@
                     Post Code:   <input class="form-control" type="text" name="postcode" required pattern="[A-Za-z0-9 ]{3,8}"/>
                 </div>
                 <div class="form-group">
+                    Email: <input class="form-control" type="email" name="email"/>
+                </div>
+                <div class="form-group">
                     Username: <input class="form-control" type="text" name="username" required pattern=^[a-zA-Z]{1}[a-zA-Z0-9-_\.]{5,19}$ title="Your username must begin with a letter, and may not contain special characters" placeholder="6-20 Characters"/>
                 </div>
                 <div class="form-group">
