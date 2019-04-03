@@ -15,21 +15,22 @@
  
     </head>
     <body>
-                <center>
+          <center>
             <h1>Bookworm Libraries</h1>
-                <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
-                </center>
+            <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
+          </center>     
     
-        <div class="paddedBlock"><h2>Profile Page</h2>
-            <p>
-                <br>
-                <?php
-                echo '<img src="'.$_SESSION['userDetails']['avatarLocation'].'" alt="Your avatar" style="width:200px;height:200px;"><br>';
-                echo "Hello " . $_SESSION['userDetails']['username'] . '<br>';
-                echo "Your new library card ID is " . $_SESSION['userDetails']['customerID'] .'<br>';
-                ?>
-            </p>
-        </div>
+            <div class="paddedBlock"><h2>Profile Page</h2>
+                <p id="avatar">
+                   <?php
+                    echo '<img id="avatar" src="'.$_SESSION['userDetails']['avatarLocation'].'" alt="Your avatar" style="width:200px;height:200px;"><br><br>';
+                    $userWelcome1 = 'Hello ' . $_SESSION['userDetails']['username']; 
+                    $userWelcome2 = 'Your new library card ID is ' . $_SESSION['userDetails']['customerID'];
+                    echo htmlentities($userWelcome1).'<br>'.htmlentities($userWelcome2).'<br>';
+                   ?>
+                </p>
+            </div>
+            
 <?php include 'Footer.html';?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
