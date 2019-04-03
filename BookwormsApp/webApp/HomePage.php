@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Home page | Bookworm Libraries</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
- 
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
 <link href="CSS.css" rel="stylesheet" type="text/css"/>
       
     </head>
