@@ -76,12 +76,11 @@
                 echo "loanID: " . $loanID . "<br>";
                 $newLoan = new Loan($loanID, $loanOutDate, $bookID, $customerID, "Kennington");
                 echo "Date loan due back: " . $newLoan->getLoanDueBackDate();
-
-//                    Connect with database exception handling
+                
             }
         ?>
 
-
+        </div>
         <?php include 'Footer.html';?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
