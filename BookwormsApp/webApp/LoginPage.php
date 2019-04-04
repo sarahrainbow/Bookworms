@@ -17,14 +17,15 @@
         <center>
             <h1>Bookworm Libraries</h1>
                 <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
-        <div>                
-        <form action ="LoginPage.php" method="post" name="hide">
+        <div class="hide" id="form">                
+            <form action ="LoginPage.php" method="post" ID="hide" enctype="multipart/form-data">
             <div class ="container">
                 Please login into your account
                 <br>
-                Username: <input type ="text" placeholder="Enter username" name="Username" required pattern=^[a-zA-Z]{1}[a-zA-Z0-9-_\.]{5,19}$ ><br>
+                <br>
+                Username: <input type ="text" placeholder="Enter username" name="Username" autofocus required pattern=^[a-zA-Z]{1}[a-zA-Z0-9-_\.]{5,19}$ ><br>
                 Password: <input type ="password" placeholder="Enter password" name="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
-                <button type="submit">Login</button>
+                <button type="submit" value="submit">Login</button>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
                 <br>
                 <a href="ForgotUsername.php">Forgot password?</a>
@@ -63,9 +64,20 @@
     ?>
 
 
+
 <?php include 'Footer.html';?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+<script>
+<?php if(!empty($_SESSION)){ ;?>
+    
+    $(document).ready(function(){
+ 
+    $(".hide").hide(500);
+  });
+ 
+<?php } ;?>
+</script>
 </body>
 </html>
