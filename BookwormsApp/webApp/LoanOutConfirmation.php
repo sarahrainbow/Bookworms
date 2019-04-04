@@ -18,7 +18,7 @@
             
             spl_autoload_register(function($Name) {
                 $filePath = "$Name.php";
-                require_once '..\\' . $filePath; 
+//                require_once '..\\' . $filePath; 
                 $macFilePath = str_replace('\\', '/', $filePath);
                 require_once '../' . $macFilePath;   
             });
@@ -51,16 +51,14 @@
                         ${$loanDetail} = filterInput($loanDetail);
                         echo $loanDetail . ": " . $loanValue . "<br>";
                     }
+                                       
                     
-                    
-
-
                     $loanID= rand(000, 1000);
                     echo "loanID: " . $loanID . "<br>";
-                    $newLoan = new Loan($loanID, $loanDetails['loanOutDate'], $loanDetails['bookID'], $loanDetails['customerID'], "Kennington");
+                    $newLoan = new Loan($loanID, $loanOutDate, $bookID, $customerID, "Kennington");
                     echo "Date loan due back: " . $newLoan->getLoanDueBackDate();
-                    
 
+//                    Connect with database exception handling
                     try {
                         $pdo = new PDO(DB_DSN, DB_USER);
                     }
@@ -69,18 +67,17 @@
                     }
 
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
+                    
+//                    prepare statement with placeholders
                     $statement = $pdo->prepare("INSERT INTO `loan`(`LibraryCardID`, `BookID`, `DateOut`) VALUES ((SELECT LibraryCardID from librarycardholder WHERE librarycardholder.LibraryCardID = :LibraryCardID), (SELECT BookID from copy WHERE copy.BookID = :BookID), :DateOut)");
-
+                    
                     try {
-                        $statement->execute(['LibraryCardID' => $loanDetails['customerID'], 'BookID' => $loanDetails['bookID'], 'DateOut' => $loanDetails['loanOutDate']]);                   
+                        $statement->execute(['LibraryCardID' => $customerID, 'BookID' => $bookID, 'DateOut' => $loanOutDate]);                   
                     } catch (PDOException $e) {
                         echo $e->getMessage() . ' on line ' . $e->getLine();
                         $error = $e->errorInfo;
                         die();
                     }
-                    
             }
         ?>
     </div>
