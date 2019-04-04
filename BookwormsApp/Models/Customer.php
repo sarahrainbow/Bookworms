@@ -7,6 +7,7 @@ use Models\Person;
 
     class Customer extends Person{
         private $customerID;
+        private $avatarFilePath;
 
             public function __construct(int $customerID, string $firstname,  string $secondname,string $surname, string $address, string $email, string $username, string $password, string $privileges, string $datejoined){
                     $this->customerID = $customerID;
@@ -21,6 +22,13 @@ use Models\Person;
                 $this->customerID=$newCustomerID;
             }
             
+            public function getAvatarFilePath(){
+                return $this->avatarFilePath;
+            }
+
+            public function setAvatarFilePath($newAvatarFilePath){
+                $this->avatarFilePath=$newAvatarFilePath;
+            }
 
           
 
