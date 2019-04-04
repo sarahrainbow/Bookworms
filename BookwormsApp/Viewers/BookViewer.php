@@ -35,7 +35,7 @@ namespace Viewers{
         }
     }
     
-$mybook=new Book(9, 'Harry Potter', ['J.K. Rowling','Stephen King'], 28342432, 1996, 'Children'); //BookID cannot start with 0 as PHP recognises numeric literal
-$myBookViewer = new BookViewer();
-$myBookViewer->ViewBook($mybook);    
+//$mybook=new Book(9, 'Harry Potter', ['J.K. Rowling','Stephen King'], 28342432, 1996, 'Children', "Kings Cross"); //BookID cannot start with 0 as PHP recognises numeric literal
+//$myBookViewer = new BookViewer();
+//$myBookViewer->ViewBook($mybook);    
 }

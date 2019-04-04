@@ -29,7 +29,7 @@ namespace Tests {
         private $testUserViewer;
         
         public function __construct() {
-            $this->testBook = new Book(000001, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children');
+            $this->testBook = new Book(000001, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children', 'Kennington');
             $this->testBookController= new BookController();
             $this->testBookViewer= new Bookviewer();
             $this->testEmployee= new Employee(2384958, 'librarian', 'Frida', '','Kahlo','4 Feet Under','','','','','');
@@ -109,7 +109,7 @@ namespace Tests {
         public function testLoanController() {
 
             $testLoan2 = new Loan(2, '2012-02-02', 4, 2, "Kings Cross");
-            $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
+            $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror', 'Bath');
             
             $this->testLoanController->loanBook((new Loan(1, '11-1-01', 3, 1, "Southwark")), $this->testBook);
             $this->testLoanController->loanBook((new Loan(2, '12-2-02', 4, 2, "Bethnal Green")), $testBook2);
@@ -130,7 +130,7 @@ namespace Tests {
         public function testLoanViewer() {
             
             $testLoan2 = new Loan(2, '2012-02-02', 4, 2, "Kings Cross");
-            $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror');
+            $testBook2 = new Book(2, 'A Clockwork Orange', ['Anthony Burgess'], 23, 1984, 'Horror', 'Farringdon');
             $this->testLoan->setIsLoanOverdue(true);
             $this->testLoanController->loanBook($this->testLoan, $this->testBook); 
             $this->testLoanController->loanBook($testLoan2, $testBook2); 
@@ -148,13 +148,13 @@ namespace Tests {
     $myTest = new Tests();
     
     
-//$myTest->testEmployee();
-//$myTest->testCustomer();
-//$myTest->testCustomerController();
-//$myTest->testLoan();
-//$myTest->testLoanController();
+$myTest->testEmployee();
+$myTest->testCustomer();
+$myTest->testCustomerController();
+$myTest->testLoan();
+$myTest->testLoanController();
 $myTest->testLoanViewer();
-//$myTest->testUserViewer(); 
+$myTest->testUserViewer(); 
     
     
 }

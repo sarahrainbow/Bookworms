@@ -2,9 +2,6 @@
 
 namespace Viewers {
     
-    #For Cynthujaa  
-//    require_once '/Users/getintotech/Applications/XAMPP/xamppfiles/htdocs/BookwormsApp/Interfaces/ViewerInterface.php';
-    
     spl_autoload_register(function($Name) {
         $filePath = "$Name.php";
         $macFilePath = str_replace('\\', '/', $filePath);

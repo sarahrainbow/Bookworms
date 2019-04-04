@@ -1,8 +1,11 @@
 <?php
 
 namespace Models{
+    
+    require_once 'BranchItem.php';
+    use Models\BranchItem;
 
-    class Book {
+    class Book extends BranchItem {
         private $bookID;
         private $title; 
         private $authors=[];
@@ -11,14 +14,15 @@ namespace Models{
         private $genre;
         private $isAvailable;
         
-        public function __construct(int $bookID, string $title, array $authors, int $ISBN, int $publishdate, string $genre, bool $isAvailable=true){
+        public function __construct(int $bookID, string $title, array $authors, int $ISBN, int $publishdate, string $genre, $branchName){
             $this->bookID = $bookID;
             $this->title = $title;
             $this->authors = $authors;
             $this->ISBN = $ISBN;
             $this->publishdate = $publishdate;
             $this->genre = $genre;
-            $this->isAvailable=$isAvailable;
+            $this->isAvailable=true;
+            parent::__construct($branchName);
         }
         
         public function getBookID(){ //methods
