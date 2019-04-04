@@ -77,6 +77,9 @@ footer {
   background-color: #494949;
   color: white;
   text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 
 btn{
@@ -124,4 +127,14 @@ p#avatar {
 
 .bg-dark.p-4 {
     text-align: center;
+}
+
+#errorMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: lightblue;
+    text-align: center;
+    padding: 20px;
 }

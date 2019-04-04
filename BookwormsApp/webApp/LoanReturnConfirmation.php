@@ -33,7 +33,7 @@
                     ${$loanDetail} = filterInput($loanDetail);
                 }
                 $loanID= rand(000, 1000);  
-                $newLoan = new Loan($loanID, '2019-01-25', $loanDetails['bookID'], $loanDetails['customerID'], "Kings Cross");
+                $newLoan = new Loan($loanID, '2019-03-25', $bookID, $customerID, "Kings Cross");
                 $newLoan->setLoanReturnDate($loanDetails['loanReturnDate']);
                 $newLoanController = new LoanController();
                 $newLoanController->flagLoanOverdue($newLoan);

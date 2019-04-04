@@ -14,8 +14,7 @@ namespace Viewers {
     
     use Models\ {Customer, Employee};
     
-    class UserViewer {
-        
+    class UserViewer {     
         public function listAccountDetails (Customer $customer) {//taking customer object type and variable is argument
             echo "Customer ID: " . $customer->getCustomerID() . "\n";
             echo "First name: " . $customer->getFirstName() . "\n";

@@ -21,7 +21,7 @@ namespace Viewers {
             echo "<br>Date book loaned out: " . $loan->getLoanOutDate();
             echo "<br>Date loan due: " . $loan->getLoanDueBackDate();
             echo "<br>Date book returned: " . $loan->getLoanReturnDate();
-            echo $loan->getIsLoanOverdue() ? "<br>This loan is OVERDUE!" : "<br>This loan is NOT overdue";
+            echo $loan->getIsLoanOverdue() ? "<br>This loan is OVERDUE!" : "";
             echo "<br>CustomerID: " . $loan->getLoanCustomerID();
             echo "<br>BookID: " . $loan->getLoanedBookID();
             echo "<br>At branch: " . $loan->getBranchName();

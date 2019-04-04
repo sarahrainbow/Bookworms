@@ -15,17 +15,17 @@
  
     </head>
     <body>
-          <center>
+
             <h1>Bookworm Libraries</h1>
             <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
-          </center>     
+    
     
             <div class="paddedBlock"><h2>Profile Page</h2>
                 <p id="avatar">
                    <?php
                     echo '<img id="avatar" src="'.$_SESSION['userDetails']['avatarLocation'].'" alt="Your avatar" style="width:200px;height:200px;"><br><br>';
                     $userWelcome1 = 'Hello ' . $_SESSION['userDetails']['username']; 
-                    $userWelcome2 = 'Your new library card ID is ' . $_SESSION['userDetails']['customerID'];
+                    $userWelcome2 = 'Your library card ID is ' . $_SESSION['userDetails']['customerID'];
                     echo htmlentities($userWelcome1).'<br>'.htmlentities($userWelcome2).'<br>';
                    ?>
                 </p>
