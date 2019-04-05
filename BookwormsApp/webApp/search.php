@@ -29,44 +29,66 @@
 //catch(Exception $e) {
 //  echo 'Message: ' .$e->getMessage();
 //}
+//SEARCH - OLD MYSQLI WAY
+// try { 
+//
+//$conn = mysqli_connect ('localhost', 'root');//connect to database
+//
+//if (mysqli_connect_error()) {
+//throw new Exception(mysqli_connect_error());
+//}
+//  
+//mysqli_select_db($conn, "libraryapp");
+//
+//$output = ''; //output of results
+//
+//
+//
+//if(isset($_GET['search'])) { //is something is entered in search box
+//    $searchq = $_GET['search']; //get the data entered in search box
+//    $searchq = preg_replace("#[^0-9a-z.-]#i","", $searchq);//sanitise user data. Replaces anything that is not first argument with second argument on search term entered by user. Allows letters and numbers and -.#i allows caps and lowercase
+// 
+//
+// $query = mysqli_query($conn, "SELECT * FROM book WHERE BookISBN LIKE '%$searchq%' OR Title LIKE '%$searchq%'") or die("could not search");
+// $count = mysqli_num_rows($query);//count number of rows of results
+// if($count == 0) {
+// $output = "There were no results\n";}
+// else {
+//     while($row = mysqli_fetch_array($query)) {
+//         $bookisbn = $row['BookISBN'];
+//         $title = $row['Title'];
+//         $output = "<div>$bookisbn $title</div>"; //show book ISBN and title
+//     }
+// }
+//}
+//}
+//
+//catch (Exception $e) {
+//    echo 'The database connection failed';
+//}
+//
+//END OF OLD SEARCH
 
- try { 
 
-$conn = mysqli_connect ('localhost', 'root');//connect to database
+$dsn = 'mysql:dbname=libraryapp';//database source name
+$username = 'root';
+$password = '';
 
-if (mysqli_connect_error()) {
-throw new Exception(mysqli_connect_error());
+//Establish DB connection by instantiating PDO object and passing in variables
+try {
+$conn = new PDO( $dsn, $username, $password );
+$conn-> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );//using setAttribute method to set PDO's object error method
+$rows = $conn->query ( $sql );
 }
-  
-mysqli_select_db($conn, "libraryapp");
-
-$output = ''; //output of results
 
 
 
-if(isset($_GET['search'])) { //is something is entered in search box
-    $searchq = $_GET['search']; //get the data entered in search box
-    $searchq = preg_replace("#[^0-9a-z.-]#i","", $searchq);//sanitise user data. Replaces anything that is not first argument with second argument on search term entered by user. Allows letters and numbers and -.#i allows caps and lowercase
- 
-
- $query = mysqli_query($conn, "SELECT * FROM book WHERE BookISBN LIKE '%$searchq%' OR Title LIKE '%$searchq%'") or die("could not search");
- $count = mysqli_num_rows($query);//count number of rows of results
- if($count == 0) {
- $output = "There were no results\n";}
- else {
-     while($row = mysqli_fetch_array($query)) {
-         $bookisbn = $row['BookISBN'];
-         $title = $row['Title'];
-         $output = "<div>$bookisbn $title</div>"; //show book ISBN and title
-     }
- }
-}
+catch ( PDOException $e ) {
+echo "Connection failed: ". $e-> getMessage();
 }
 
-catch (Exception $e) {
-    echo 'The database connection failed';
-}
 
+//$conn = null; //close connection by destroying PDO object
 ?>
 
 <!DOCTYPE html>
