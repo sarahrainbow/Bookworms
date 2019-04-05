@@ -68,7 +68,8 @@
                     echo '<p style="color:red">LOAN OVERDUE!</p>';
                 }
 
-                $newLoanViewer->listItem($newLoan);
+//                $newLoanViewer->listItem($newLoan);
+                $newLoanViewer->listItemPDO();
                 //else navigate to error page
             }
              ?>   

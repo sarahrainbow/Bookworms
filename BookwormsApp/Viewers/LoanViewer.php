@@ -34,7 +34,16 @@ namespace Viewers {
         }
         
         public function listItemPDO() {
+            include '../webApp/DatabaseConn.php';
+            $statement = $conn->query("SELECT * FROM `loan` WHERE `LibraryCardID` = 4 AND `BookID` = 9 AND `DateOut` = '2019-02-27'");
+            $rows = $statement->fetchAll();
             
+            for ($i = 0; $i<5; $i++) {
+                foreach ($rows as $row) {
+                    echo $row[$i] . '<br>';
+                }   
+                
+            }
         }
         
         
