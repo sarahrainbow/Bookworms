@@ -44,8 +44,8 @@ namespace Controllers {
        
         public function loanBook(Loan $loan, Book $book) {
             if($book->getIsAvailable()){
-                array_push($this->loans, $loan); //Put the loan information into the array and pulling books added into book class
-                $book->setIsAvailable(false); //Setting the book as unavailable by creating a boolean (false means book is now loaned out)
+                array_push($this->loans, $loan); 
+                $book->setIsAvailable(false); 
                 echo "<br>" . $book->getTitle() . " successfully loaned with bookID: " . $book->getBookID();
             }
             else if (!$book->getIsAvailable()) {

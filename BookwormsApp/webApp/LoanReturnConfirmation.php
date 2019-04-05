@@ -14,10 +14,15 @@
         <div class="paddedBlock">
             <h2>Book returned successfully!</h2>
                
-                <?php
-            require_once(__DIR__ . '/../Models/Loan.php');
-            require_once(__DIR__ . '/../Viewers/LoanViewer.php');
-            require_once(__DIR__ . '/../Controllers/LoanController.php');
+        <?php
+            const DB_DSN = 'mysql:host=localhost;dbname=libraryapp';
+            const DB_USER = 'root';
+            spl_autoload_register(function($Name) {
+                $filePath = "$Name.php";
+                $macFilePath = str_replace('\\', '/', $filePath);
+                require_once '../' . $macFilePath;   
+            });
+            
             use Models\ Loan;
             use Viewers\LoanViewer;
             use Controllers\LoanController;
@@ -27,11 +32,31 @@
             }
 
             $loanDetails = filter_input_array(INPUT_POST);
-            echo "<h3>Loan details:</h3>";
             if(!empty($loanDetails)) {
+                echo "<h3>Loan details:</h3>";
+                
                 foreach($loanDetails as $loanDetail => $loanValue) {
                     ${$loanDetail} = filterInput($loanDetail);
                 }
+                
+                try {
+                    $conn = new PDO(DB_DSN, DB_USER);
+                } catch (PDOException $e) {
+                    header("Location: ErrorPage.php");
+                }
+                
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $statement = $conn->prepare("UPDATE `loan` SET `DateReturned`= :DateReturned WHERE `BookID`= :BookID AND `LibraryCardID` = :CustomerID AND `DateReturned` IS NULL");
+
+                try {
+                    $statement->execute(['DateReturned' => $loanReturnDate, 'BookID' => $bookID, 'CustomerID' => $customerID]);                   
+                } catch (PDOException $e) {
+                    echo $e->getMessage() . ' on line ' . $e->getLine();
+                    $error = $e->errorInfo;
+                    die();
+                }
+                
                 $loanID= rand(000, 1000);  
                 $newLoan = new Loan($loanID, '2019-03-25', $bookID, $customerID, "Kings Cross");
                 $newLoan->setLoanReturnDate($loanDetails['loanReturnDate']);

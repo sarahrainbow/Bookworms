@@ -43,7 +43,7 @@
 
         else if(!empty($loanDetails)) {
                 try {
-                    $pdo = new PDO(DB_DSN, DB_USER);
+                    $conn = new PDO(DB_DSN, DB_USER);
                 }
                 catch (PDOException $e) {
                     header("Location: ErrorPage.php");
@@ -53,14 +53,14 @@
                 include_once 'NavBarCollapsed.html';
 
                 echo '<br><div class="paddedBlock"><h2>Book Loaned successfully!</h2>';
+                
                 foreach($loanDetails as $loanDetail => $loanValue) {
                     ${$loanDetail} = filterInput($loanDetail);
                     echo $loanDetail . ": " . $loanValue . "<br>";
                 }
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-//                    prepare statement with placeholders
-                $statement = $pdo->prepare("INSERT INTO `loan`(`LibraryCardID`, `BookID`, `DateOut`) VALUES ((SELECT LibraryCardID from librarycardholder WHERE librarycardholder.LibraryCardID = :LibraryCardID), (SELECT BookID from copy WHERE copy.BookID = :BookID), :DateOut)");
+                $statement = $conn->prepare("INSERT INTO `loan`(`LibraryCardID`, `BookID`, `DateOut`) VALUES ((SELECT LibraryCardID from librarycardholder WHERE librarycardholder.LibraryCardID = :LibraryCardID), (SELECT BookID from copy WHERE copy.BookID = :BookID), :DateOut)");
 
                 try {
                     $statement->execute(['LibraryCardID' => $customerID, 'BookID' => $bookID, 'DateOut' => $loanOutDate]);                   
@@ -69,8 +69,6 @@
                     $error = $e->errorInfo;
                     die();
                 }
-
-
 
                 $loanID= rand(000, 1000);
                 echo "loanID: " . $loanID . "<br>";
