@@ -9,9 +9,9 @@ use Models\Person;
         private $customerID;
         private $avatarFilePath;
 
-            public function __construct(int $customerID, string $firstname,  string $secondname,string $surname, string $address, string $email, string $username, string $password, string $privileges, string $datejoined){
+            public function __construct(int $customerID, string $firstname,  string $secondname,string $surname, string $addressNumber, string $addressRoad, string $addressCity, string $addressPostcode, string $email, string $username, string $password, string $privileges, string $datejoined){
                     $this->customerID = $customerID;
-                    parent::__construct($firstname, $secondname,$surname, $address, $email, $username, $password, $privileges, $datejoined);
+                    parent::__construct($firstname, $secondname,$surname, $addressNumber, $addressRoad, $addressCity, $addressPostcode, $email, $username, $password, $privileges, $datejoined);
             }
 
             public function getCustomerID(){
