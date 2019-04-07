@@ -10,10 +10,10 @@ use Models\Person;
         private $jobtitle;
         protected $loanLimit=10;#this overwrites general limit of 5
 
-            public function __construct(int $employeeID, string $jobtitle, string $firstname,  string $secondname,string $surname, string $address, string $email, string $username, string $password, string $privileges, string $datejoined){
+            public function __construct(int $employeeID, string $jobtitle, string $firstname,  string $secondname,string $surname, string $addressNumber, string $addressRoad, string $addressCity, string $addressPostcode, string $email, string $username, string $password, string $privileges, string $datejoined){
                     $this->employeeID = $employeeID;
                     $this->jobtitle = $jobtitle;
-                    parent::__construct($firstname, $secondname,$surname, $address, $email, $username, $password,$privileges, $datejoined);
+                    parent::__construct($firstname, $secondname,$surname, $addressNumber, $addressRoad, $addressCity, $addressPostcode, $email, $username, $password,$privileges, $datejoined);
 
             }
 
