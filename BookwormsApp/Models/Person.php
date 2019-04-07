@@ -6,7 +6,10 @@ namespace Models{
         protected $firstname; 
         protected $secondname;
         protected $surname;
-        protected $address; 
+        protected $addressNumber;
+        protected $addressRoad; 
+        protected $addressCity; 
+        protected $addressPostcode; 
         protected $email;
         protected $username;
         protected $password;
@@ -16,11 +19,14 @@ namespace Models{
         protected $datejoined;
         protected $privileges;
         
-        public function __construct(string $firstname, string $secondname, string $surname, string $address, string $email, string $username, string $password, string $privileges, string $datejoined){
+        public function __construct(string $firstname, string $secondname, string $surname, string $addressNumber, string $addressRoad, string $addressCity, string $addressPostcode, string $email, string $username, string $password, string $privileges, string $datejoined){
                 $this->firstname = $firstname;
                 $this->secondname = $secondname;
                 $this->surname = $surname;
-                $this->address = $address; 
+                $this->addressNumber = $addressNumber; 
+                $this->addressRoad = $addressRoad; 
+                $this->addressCity = $addressCity; 
+                $this->addressPostcode = $addressPostcode; 
                 $this->email = $email;
                 $this->username = $username;
                 $this->password = $password;
@@ -62,12 +68,36 @@ namespace Models{
             }
             }
             
-        public function getAddress(){
-            return $this->address;
+        public function getAddressNumber(){
+            return $this->addressNumber;
         }
         
-        public function setAddress($newAddress){
-            $this->address=$newAddress;
+        public function setAddressNumber($newAddressNumber){
+            $this->addressNumber=$newAddressNumber;
+        }
+        
+        public function getAddressRoad(){
+            return $this->addressRoad;
+        }
+        
+        public function setAddressRoad($newAddressRoad){
+            $this->addressRoad=$newAddressRoad;
+        }
+        
+        public function getAddressCity(){
+            return $this->addressCity;
+        }
+        
+        public function setAddress($newAddressCity){
+            $this->addressCity=$newAddressCity;
+        }
+        
+        public function getAddressPostcode(){
+            return $this->addressPostcode;
+        }
+        
+        public function setAddressPostcode($newAddressPostcode){
+            $this->addressPostcode=$newAddressPostcode;
         }
         
         public function getEmail(){
