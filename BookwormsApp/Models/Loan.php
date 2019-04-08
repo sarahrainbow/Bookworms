@@ -82,7 +82,8 @@ namespace Models {
             $this->loanCustomerID = $loanCustomerID;
         }  
     
-    }   
+    }  
     
+
 }
 

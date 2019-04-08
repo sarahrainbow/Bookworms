@@ -17,28 +17,27 @@
         <?php
             const DB_DSN = 'mysql:host=localhost;dbname=libraryapp';
             const DB_USER = 'root';
+            
             spl_autoload_register(function($Name) {
                 $filePath = "$Name.php";
                 $macFilePath = str_replace('\\', '/', $filePath);
                 require_once '../' . $macFilePath;   
             });
             
-            use Models\ Loan;
+            use Models\ {Loan, LoanNew};
             use Viewers\LoanViewer;
             use Controllers\LoanController;
+            
             
             function filterInput($inputItem) {
                 return filter_input(INPUT_POST,$inputItem,FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_HIGH);
             }
 
             $loanDetails = filter_input_array(INPUT_POST);
+            
             if(!empty($loanDetails)) {
                 echo "<h3>Loan details:</h3>";
-                
-                foreach($loanDetails as $loanDetail => $loanValue) {
-                    ${$loanDetail} = filterInput($loanDetail);
-                }
-                
+                          
                 try {
                     $conn = new PDO(DB_DSN, DB_USER);
                 } catch (PDOException $e) {
@@ -47,30 +46,32 @@
                 
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $statement = $conn->prepare("UPDATE `loan` SET `DateReturned`= :DateReturned WHERE `BookID`= :BookID AND `LibraryCardID` = :CustomerID AND `DateReturned` IS NULL");
-
-                try {
-                    $statement->execute(['DateReturned' => $loanReturnDate, 'BookID' => $bookID, 'CustomerID' => $customerID]);                   
-                } catch (PDOException $e) {
-                    echo $e->getMessage() . ' on line ' . $e->getLine();
-                    $error = $e->errorInfo;
-                    die();
-                }
-                
-                $loanID= rand(000, 1000);  
-                $newLoan = new Loan($loanID, '2019-03-25', $bookID, $customerID, "Kings Cross");
-                $newLoan->setLoanReturnDate($loanDetails['loanReturnDate']);
                 $newLoanController = new LoanController();
-                $newLoanController->flagLoanOverdue($newLoan);
+                $newLoanController->returnBookPDO($loanDetails);
                 $newLoanViewer = new LoanViewer();
+                $loan = new LoanNew();
+                $newLoanViewer->listItem($loan, $loanDetails);
+                
+    //            set return date
+//                $returnDateStatement = $conn->prepare("UPDATE `loan` SET `DateReturned`= :DateReturned WHERE `BookID`= :BookID AND `LibraryCardID` = :CustomerID AND `DateReturned` IS NULL");
+//
+//                try {
+//                    $returnDateStatement->execute(['DateReturned' => $loanReturnDate, 'BookID' => $bookID, 'CustomerID' => $customerID]);                   
+//                } catch (PDOException $e) {
+//                    echo $e->getMessage() . ' on line ' . $e->getLine();
+//                    $error = $e->errorInfo;
+//                    die();
+//                } 
 
-                if($newLoan->getIsLoanOverdue()){
-                    echo '<p style="color:red">LOAN OVERDUE!</p>';
-                }
+//                $loanID= rand(000, 1000);  
+//                $newLoan = new Loan($loanID, '2019-03-25', $bookID, $customerID, "Kings Cross");
+//                $newLoan->setLoanReturnDate($loanReturnDate);
+//                $newLoanController = new LoanController();
+//                $newLoanController->flagLoanOverdue($newLoan);
 
-//                $newLoanViewer->listItem($newLoan);
-                $newLoanViewer->listItemPDO();
-                //else navigate to error page
+//                if($newLoan->getIsLoanOverdue()){
+//                    echo '<p style="color:red">LOAN OVERDUE!</p>';
+//                }
             }
              ?>   
         </div>
