@@ -70,25 +70,41 @@
 //END OF OLD SEARCH
 
 
-$dsn = 'mysql:dbname=libraryapp';//database source name
+$dsn = 'mysql:host=localhost;dbname=libraryapp';//database source name
 $username = 'root';
 $password = '';
 
+if(isset($_GET['search'])) { //if something is entered in search box    
+
 //Establish DB connection by instantiating PDO object and passing in variables
 try {
-$conn = new PDO( $dsn, $username, $password );
-$conn-> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );//using setAttribute method to set PDO's object error method
-$rows = $conn->query ( $sql );
+$conn = new PDO($dsn, $username, $password);
 }
-
-
-
 catch ( PDOException $e ) {
 echo "Connection failed: ". $e-> getMessage();
 }
 
+$conn-> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );//using setAttribute method to set PDO's object error method so can raise exceptions
 
-//$conn = null; //close connection by destroying PDO object
+$stmt = $pdo->prepare("SELECT * FROM book WHERE BookISBN LIKE '%:BookISBN%' OR Title LIKE '%:Title%'") or die("could not search");
+//A prepared statement is a feature used to execute the same (or similar) SQL statements repeatedly
+
+try {
+    $stmt->execute($_GET['search']);
+    }
+catch (PDOException $e) {
+echo "Query failed: " . $e->getMessage();
+die();
+}
+$output = $stmt->fetch();
+}
+$conn = null; //close connection by destroying PDO object
+
+        
+        
+
+
+
 ?>
 
 <!DOCTYPE html>
