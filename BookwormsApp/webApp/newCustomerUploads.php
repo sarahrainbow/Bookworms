@@ -2,6 +2,9 @@
 
 //Defining constants so code is clearer
 #namespace ? {
+    const DB_DSN = 'mysql:host=localhost;dbname=libraryapp';
+    const DB_USER = 'root';
+    const DB_PASS = '';
     const UploadKey = 'avatar';
     const AllowedTypes = ['image/jpeg','image/jpg','image/bmp','image/png'];
          
@@ -16,8 +19,15 @@
 
     use Models\ {Customer};
 
-#Session started for storing user details
+#Session started for storing user details and detabase connected to
     session_start();
+    
+    try{
+        $conn=new PDO(DB_DSN,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+        echo "Connected successfully";
+    } catch(PDOException $e){
+    die("Connection failed: ".$e->getMessage());# Ideally would not die but redirect to another page/part of script
+    }
 
 
 
@@ -41,8 +51,47 @@
         $customerID= rand(000, 1000);
         
         #Then create a new customer object ->may want to change class in line with database fields at later point
-        $newCustomer= new Customer($customerID, $firstname, $secondname, $lastname, $addresslineone.' '.$addresslinetwo.' '.$city.' '.$postcode
+        $newCustomer= new Customer($customerID, $firstname, $secondname, $lastname, $addressnumber, $addressroad,$city,$postcode
                 , $email, $username, $password, 'libraryuser', date("Y/m/d"));
+        
+        #Add to database
+            
+        $searchUsersql="SELECT * FROM librarycardholder where Username = ':username';";
+        $searchPostcodesql="SELECT * FROM postcode where Postcode = ':postcode';";
+        $addPostcodesql="INSERT INTO postcode(Postcode) VALUES (:postcode);";
+        
+        
+        try {
+            $stmt=$conn->prepare($searchUsersql); //Search to see if username already exists
+            $stmt->execute(['username' => $newCustomer->getUsername()]) ;
+        
+            If ($user = ($stmt->fetch())){//true if username already exists, must be unique
+            header("Location: uploadErrorPage.php"); 
+            $_SESSION['uploadError']['errorMessage']="Username already exists, please try another";
+            die();
+            }
+            else {//if user doesn't already exist, we want to add them - need to add data across various tables
+                
+                $stmtSearchPC=$conn->prepare($searchPostcodesql); //check if postcode exists, if does - fetch ID, if not add to database and fetch ID
+                $stmtSearchPC->execute(['postcode' => $newCustomer->getAddressPostcode()]) ;  
+
+                if($rowPC = ($stmtSearchPC->fetch())){
+                    $postcodeID=$rowPC['PostcodeID'];
+                }
+                else{
+                    $stmtAddPC=$conn->prepare($addPostcodesql);
+                    if ($stmtAddPC->execute(['postcode' => $newCustomer->getAddressPostcode()]))
+                        {
+                        echo $conn->lastInsertId();
+                        }; 
+                    #NEED TO RETURN ID SO CAN USE AGAIN - THEN CONTINUE WITH REST OF ADDRESS AND CUSTOMER DATA - last insert not wprking?
+                }
+            }
+        }
+        catch (PDOException $e){
+            echo "Error: ".$e->getMessage();#placeholder for now, better error handling required
+            die();
+        }
             
         $_SESSION['userDetails']['username'] = $newCustomer->getUsername(); #Will want to store this in database in future iterations, not cookie
         $_SESSION['userDetails']['customerID'] = $newCustomer->getCustomerID(); #Will want to store this in database in future iterations, not cookie
