@@ -29,10 +29,10 @@
                     Last Name:   <input class="form-control" type="text" name="lastname" required pattern="[A-Za-z -]{1,50}" title="Alphabetical characters, spaces, and hyphens are accepted"/>
                 </div>
                 <div class="form-group">
-                    Address Line One:   <input class="form-control" type="text" name="addresslineone" required pattern="[A-Za-z 0-9]{1,50}"/>
+                    Address Number:   <input class="form-control" type="text" name="addressnumber" required pattern="[A-Za-z 0-9]{1,50}"/>
                 </div>
                 <div class="form-group">
-                    Address Line Two:   <input class="form-control" type="text" name="addresslinetwo" pattern="[A-Za-z 0-9]{1,50}"/>
+                    Address Road:   <input class="form-control" type="text" name="addressroad" pattern="[A-Za-z 0-9]{1,50}"/>
                 </div>
                 <div class="form-group">
                     City:   <input class="form-control" type="text" name="city" required pattern="[A-Za-z ]{1,50}"/>
