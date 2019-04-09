@@ -22,9 +22,9 @@ if(isset($_GET['search'])) { //if something is entered in search box
     try {
         // $stmt->execute(['BookISBN' => $_GET['search']]);
         $search = $_GET['search'];
-        $searchThis = $search;
+ //       $searchThis = $search;
 //        $stmt->bindValue(':Title', '%' . $searchThis . '%');
-        $stmt->bindValue(':Title', $searchThis);
+        $stmt->bindValue(':Title', $search);
         $stmt->execute();
         $booksMatched = $stmt->fetchAll();
         }
