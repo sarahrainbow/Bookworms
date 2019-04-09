@@ -72,21 +72,21 @@ try {
 //$stmt= $pdo->prepare($sql);
 //$stmt->execute([$ISBN,$title,$publish,$age,$genre]);
 
-$sql = "INSERT INTO book(BookISBN, Title, YearPublished, AgeID, GenreID) VALUES (?,?,?,?,?)";
-$stmt= $pdo->prepare($sql);
-$stmt->bindparam(':BookISBN',$ISBN, PDO::PARAM_INT);
-$stmt->bindparam(':Title',$title, PDO::PARAM_STR);
-$stmt->bindparam(':YearPublished',$publish, PDO::PARAM_STR);
-$stmt->bindparam(':AgeID',$age, PDO::PARAM_INT);
-$stmt->bindparam(':GenreID',$genre, PDO::PARAM_INT);
-$stmt->execute([$ISBN,$title,$publish,$age,$genre]);
-
-$ISBN = $_POST["BookISBN"];
-$title = $_POST["Title"];
-$publish = $_POST["YearPublished"];
-$age=$_POST["AgeID"];
-$genre=$_POST["GenreID"];
-$stmt->execute();
+//$sql = "INSERT INTO book(BookISBN, Title, YearPublished, AgeID, GenreID) VALUES (?,?,?,?,?)";
+//$stmt= $pdo->prepare($sql);
+//$stmt->bindparam(':BookISBN',$ISBN, PDO::PARAM_INT);
+//$stmt->bindparam(':Title',$title, PDO::PARAM_STR);
+//$stmt->bindparam(':YearPublished',$publish, PDO::PARAM_STR);
+//$stmt->bindparam(':AgeID',$age, PDO::PARAM_INT);
+//$stmt->bindparam(':GenreID',$genre, PDO::PARAM_INT);
+//$stmt->execute([$ISBN,$title,$publish,$age,$genre]);
+//
+//$ISBN = $_POST["BookISBN"];
+//$title = $_POST["Title"];
+//$publish = $_POST["YearPublished"];
+//$age=$_POST["AgeID"];
+//$genre=$_POST["GenreID"];
+//$stmt->execute();
 
 
 //Add new books
@@ -118,13 +118,26 @@ $stmt->execute();
 
 //$sql="INSERT INTO book () VALUES (:BookISBN, :Title, )";
 
-//$stmt = $pdo->prepare("INSERT INTO book(BookISBN, Title, YearPublished, AgeID, GenreID) VALUES (:BookISBN, :Title, :YearPublished, :AgeID, :GenreID)");
-//$stmt->bindValue(':BookISBN',$ISBN, PDO::PARAM_INT);
-//$stmt->bindValue(':Title',$title, PDO::PARAM_STR);
-//$stmt->bindValue(':YearPublished',$publish, PDO::PARAM_STR);
-//$stmt->bindValue(':AgeID',$age, PDO::PARAM_INT);
-//$stmt->bindValue(':GenreID',$genre, PDO::PARAM_INT);
-//$stmt->execute();
+$ISBN = $_POST["BookISBN"];
+$title = $_POST["Title"];
+$publish = $_POST["YearPublished"];
+$age=$_POST["AgeID"];
+$genre=$_POST["GenreID"];
+
+$stmt = $pdo->prepare("INSERT INTO book(BookISBN, Title, YearPublished, AgeID, GenreID) VALUES (:BookISBN, :Title, :YearPublished, :AgeID, :GenreID)");
+$stmt->bindValue('BookISBN',$ISBN, PDO::PARAM_INT);
+$stmt->bindValue('Title',$title, PDO::PARAM_STR);
+$stmt->bindValue('YearPublished',$publish, PDO::PARAM_STR);
+$stmt->bindValue('AgeID',$age, PDO::PARAM_INT);
+$stmt->bindValue('GenreID',$genre, PDO::PARAM_INT);
+$stmt->execute();
+
+$forename=$_POST["FirstName"];
+$surname=$_POST["LastName"];
+$authorstmt=$pdo->prepare("INSERT INTO author(FirstName, LastName) VALUES (:FirstName, :LastName)");
+$authorstmt->bindValue('FirstName',$forename, PDO::PARAM_INT);
+$authorstmt->bindValue('LastName',$surname, PDO::PARAM_INT);
+$authorstmt->execute();
 
 //$data = [
 //    'BookISBN' => $ISBN,
