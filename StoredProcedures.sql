@@ -23,22 +23,22 @@ DELIMITER ;
 
 -- Find book by title
 
-CREATE PROCEDURE FindBookByTitle (IN thisBookTitle VARCHAR(120))
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `FindBookByTitle`(IN `thisBookTitle` VARCHAR(120))
 BEGIN
-	SELECT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, CopyAvailibility.IsAvailable, LibraryBranch.LibraryBranch
+  SELECT DISTINCT concat(Author.FirstName,' ', Author.LastName) as 'Author', Book.*, copy.IsAvailable, LibraryBranch.LibraryBranch
   FROM bookisbn_authorid
   INNER JOIN Book
   ON bookisbn_authorid.BookISBN=Book.BookISBN
   INNER JOIN Author
   ON bookisbn_authorid.AuthorID = Author.AuthorID
-  INNER JOIN CopyAvailibility
-  ON bookisbn_authorid.BookISBN = CopyAvailibility.BookISBN
+  INNER JOIN copy
+  ON bookisbn_authorid.BookISBN = copy.BookISBN
   INNER JOIN LibraryBranch 
-  ON CopyAvailibility.BranchID = LibraryBranch.BranchID
-  WHERE Book.Title= thisBookTitle;                      
-END //
-
-CALL `FindBookByTitle`('Good Omens');
+  ON copy.BranchID = LibraryBranch.BranchID
+  WHERE Book.Title LIKE CONCAT('%', thisBookTitle, '%');                       
+END$$
+DELIMITER ;
 
 
 -- exported from MySQL 
@@ -123,10 +123,10 @@ SELECT
 
 END$$
 
--- Find loans by loanID
+-- Find loans by libraryCardID
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `FindLoansByLoanID`(IN `thisLoanID` INT(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `FindLoansByLibraryCardID`(IN `thisLoanID` INT(10))
     NO SQL
 BEGIN
 SELECT DISTINCT

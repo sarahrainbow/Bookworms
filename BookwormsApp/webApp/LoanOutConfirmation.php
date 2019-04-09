@@ -69,7 +69,6 @@
                 ${$loanDetail} = filterInput($loanDetail);
             }
             
-            echo "<br>" . $customerID;
             $_SESSION['LibraryCardID'] = $customerID;
             
             

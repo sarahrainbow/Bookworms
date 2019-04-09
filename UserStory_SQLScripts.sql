@@ -89,7 +89,7 @@ Where Book.BookISBN = '978-0062457714' AND copy.IsAvailable = 1;
 -- Need Loan table to be created. Book needs BookLoanHistory field, LibraryCardHolder also needs CustomerLoanHistory
 
 SELECT DISTINCT
-	concat(librarycardholder.FirstName, ' ', librarycardholder.LastName) as 'Customer name', 
+	concat(librarycardholder.FirstName, ' ', librarycardholder.SecondName) as 'Customer name', 
 	Book.Title,
 	concat(Author.FirstName,' ', Author.LastName) as 'Author',
 	Loan.DateOut, 
@@ -210,7 +210,6 @@ WHERE LibraryCardID = ANY (SELECT FROM Loan  WHERE LoanQuantity = <=5);
 
 	    
 	 WHERE CURRENT_DATE > DATE_ADD(DateOut, INTERVAL 30 DAY) #this function adds 30 days to the date in the DateOut column
-
 
 
 #UserStory17 - get contact details of a library card holder
