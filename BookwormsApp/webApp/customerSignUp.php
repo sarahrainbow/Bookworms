@@ -41,6 +41,9 @@
                     Post Code:   <input class="form-control" type="text" name="postcode" required pattern="[A-Za-z0-9 ]{3,8}"/>
                 </div>
                 <div class="form-group">
+                    Phone:   <input class="form-control" type="text" name="phone" required pattern="[0-9 ]{10,13}"/>
+                </div>
+                <div class="form-group">
                     Email: <input class="form-control" type="email" name="email"/>
                 </div>
                 <div class="form-group">
