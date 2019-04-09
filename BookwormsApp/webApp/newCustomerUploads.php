@@ -53,15 +53,15 @@
                 , $phone, $email, $username, $password, 'libraryuser', date("Y/m/d"));
         
         
-        #Add to database
+        #Add to database - issue with prepared statements not picking up associative array
         
             //  SQL statements to use below
-        $searchUsersql="SELECT * FROM librarycardholder where Username = ':username';";#works ok, tested in phpmyadmin
-        $searchPostcodesql="SELECT * FROM postcode where Postcode = ':postcode';";
+        $searchUsersql="SELECT * FROM librarycardholder where Username = :username;";#didn't work when I had ':username'
+        $searchPostcodesql="SELECT * FROM postcode where Postcode = :postcode;";
         $addPostcodesql="INSERT INTO postcode(Postcode) VALUES (:postcode);";
-        $searchCitysql="SELECT * FROM city where CityName = ':city';";
+        $searchCitysql="SELECT * FROM city where CityName = :city;";
         $addCitysql="INSERT INTO city (CityName) VALUES (:city);";
-        $searchRoadsql="SELECT * FROM road where RoadName = ':road';";
+        $searchRoadsql="SELECT * FROM road where RoadName = :road;";
         $addRoadsql="INSERT INTO road (RoadName) VALUES (:road);";
         $addAddresssql="INSERT INTO address (AddressNumber, RoadID, CityID, PostcodeID) VALUES (:addressnumber, :roadid, :cityid, :postcodeid);";
         $addCustomersql="INSERT INTO librarycardholder (FirstName, LastName, ContactNumber, AddressID, DateJoined, Email, Username, Password)"
@@ -71,12 +71,11 @@
             $stmt=$conn->prepare($searchUsersql); //Search to see if username already exists
             $stmt->execute(['username' => $newCustomer->getUsername()]) ;
             
-            #CURRENTLY NOT WORKING - DETECTS USERNAME IN DATABASE BUT GOES ONTO ELSE??
-            If ($user = $stmt->fetch()){//true if username already exists, must be unique, so sends to error page
-            #If (1){
-            #header("Location: uploadErrorPage.php"); 
-            $_SESSION['uploadError']['errorMessage']="Username already exists, please try another";#change to an exeption?
-            die('hello');
+            
+            If( $user = $stmt->fetch()){//true if username already exists, must be unique, so sends to error page (does work but when testing remember to refresh page)
+                header("Location: uploadErrorPage.php"); 
+                $_SESSION['uploadError']['errorMessage']="Username already exists, please try another";#change to an exeption?
+            #die('hello');
             }
             else {//if user doesn't already exist, we want to add them - need to add data across various tables
                 #die('hi');
