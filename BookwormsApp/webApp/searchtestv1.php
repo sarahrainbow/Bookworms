@@ -4,36 +4,53 @@ $dsn = 'mysql:host=localhost;dbname=libraryapp';//database source name
 $username = 'root';
 $password = '';
 
-if(isset($_GET['search'])) { //if something is entered in search box    
+if(isset($_GET['submit'])) { //if something is entered in search box    
 
 //Establish DB connection by instantiating PDO object and passing in variables
 try {
 $conn = new PDO($dsn, $username, $password);
-$conn-> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );//using setAttribute method to set PDO's object error method so can raise exceptions
 }
 catch ( PDOException $e ) {
 echo "Connection failed: ". $e-> getMessage();
 }
 
-//$stmt = $conn->prepare("SELECT * FROM book WHERE BookISBN LIKE ? OR Title LIKE ?") or die("could not search");
-$stmt = $conn->prepare('SELECT * FROM book WHERE Title = :Title') or die("could not search");
+$conn-> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );//using setAttribute method to set PDO's object error method so can raise exceptions
+
+$str = $_GET['search'];
+$sth = $conn->prepare("SELECT * from 'book' WHERE Title = '$str'");
+
+$sth->setFetchMode(PDO:: FETCH_OBJ);
+$sth -> exectute();
+
+if ($row = $sth->fetch()){
+echo $row->Title;}
+
+else {
+    echo "No results found";
+}
+}
+
+//$stmt = $conn->prepare("SELECT * FROM book WHERE BookISBN LIKE '%:BookISBN%' OR Title LIKE '%:Title%'") or die("could not search");
+//$stmt = $conn->prepare("SELECT * FROM book WHERE Title = :Title") or die("could not search");
 //A prepared statement is a feature used to execute the same (or similar) SQL statements repeatedly
 
-try {
-    // $stmt->execute(['BookISBN' => $_GET['search']]);
-    $search = '%' . $_GET['search'] . '%';
-    $stmt->bindParam(':Title', $_GET['search'], PDO::PARAM_STR);
-    $output = $stmt->fetchAll();
-    $stmt->execute();
-    }
+//try {
+//$stmt->execute(['BookISBN' => $_GET['search']]);
+//$search = '%' . $_GET['search'] . '%';
+//$stmt->bindParam('Title', $_GET['search']);
+//$stmt->execute;//(['Title' => $_GET['search'] ]);
+//$output = $stmt;
+ // }
     
-catch (PDOException $e) {
-echo "Query failed: " . $e->getMessage();
-die();
-}
+//catch (PDOException $e) {
+//echo "Query failed: " . $e->getMessage();
+//die();
+//}
+//
+//
+//}
+//$conn = null; //close connection by destroying PDO object
 
-}
-$conn = null; //close connection by destroying PDO object
 
 ?>
 

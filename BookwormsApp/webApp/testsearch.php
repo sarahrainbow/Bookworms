@@ -4,36 +4,31 @@ $dsn = 'mysql:host=localhost;dbname=libraryapp';//database source name
 $username = 'root';
 $password = '';
 
-if(isset($_GET['search'])) { //if something is entered in search box    
+ 
 
 //Establish DB connection by instantiating PDO object and passing in variables
 try {
 $conn = new PDO($dsn, $username, $password);
-$conn-> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );//using setAttribute method to set PDO's object error method so can raise exceptions
 }
 catch ( PDOException $e ) {
 echo "Connection failed: ". $e-> getMessage();
 }
 
-//$stmt = $conn->prepare("SELECT * FROM book WHERE BookISBN LIKE ? OR Title LIKE ?") or die("could not search");
-$stmt = $conn->prepare('SELECT * FROM book WHERE Title = :Title') or die("could not search");
-//A prepared statement is a feature used to execute the same (or similar) SQL statements repeatedly
+$conn-> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );//using setAttribute method to set PDO's object error method so can raise exceptions
 
-try {
-    // $stmt->execute(['BookISBN' => $_GET['search']]);
-    $search = '%' . $_GET['search'] . '%';
-    $stmt->bindParam(':Title', $_GET['search'], PDO::PARAM_STR);
-    $output = $stmt->fetchAll();
-    $stmt->execute();
-    }
-    
-catch (PDOException $e) {
-echo "Query failed: " . $e->getMessage();
-die();
-}
+//$stmt = $conn->prepare("SELECT * FROM book WHERE BookISBN LIKE '%:BookISBN%' OR Title LIKE '%:Title%'") or die("could not search");
 
+$stmt = $conn->query("SELECT * FROM book");
+
+$count = $stmt->rowCount();
+
+if($count == 0) {
+ $output = "There were no results\n";}
+ else {
+while ($row = $stmt->fetch()) {
+    $output = $row['Title']."<br />\n";
 }
-$conn = null; //close connection by destroying PDO object
+}
 
 ?>
 
@@ -59,7 +54,7 @@ $conn = null; //close connection by destroying PDO object
         <br>
         <div class="paddedBlock"><h2>Search books</h2> 
           
-<form action="search.php" method="get" class="form-inline mt-5">
+<form action="testsearch.php" method="get" class="form-inline mt-5">
   
   <input type="search" name="search" placeholder="Search" autofocus="true"  maxlength="100" title="Book title or ISBN" required class="form-control mb-3  mr-3" > 
    <button type="submit" value="Search" class="btn btn-primary mb-3  ml-3">Search</button> 
@@ -68,8 +63,8 @@ $conn = null; //close connection by destroying PDO object
         
         <h3 class="mb-4">Search results</h3>   
         
-   
- <?php echo ("$output");?>  </div>
+    <?php echo ("$output");?> </div>
+        
  
 <?php include 'Footer.html';?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
