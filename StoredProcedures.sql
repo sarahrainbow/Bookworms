@@ -122,3 +122,32 @@ SELECT
 	GROUP BY B.BookISBN, B.Title,concat(A.FirstName,' ', A.LastName),B.YearPublished, C.BranchID;
 
 END$$
+
+-- Find loans by loanID
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `FindLoansByLoanID`(IN `thisLoanID` INT(10))
+    NO SQL
+BEGIN
+SELECT DISTINCT
+  concat(librarycardholder.FirstName, ' ', librarycardholder.SecondName) as 'Customer name', 
+  Book.Title,
+  concat(Author.FirstName,' ', Author.LastName) as 'Author',
+  Loan.DateOut, 
+  Loan.DateReturned,
+  DATE_ADD(DateOut, INTERVAL 1 MONTH) as 'Due back' 
+
+FROM Loan
+INNER JOIN LibraryCardHolder
+  ON LibraryCardHolder.LibraryCardID = Loan.LibraryCardID
+INNER JOIN copy
+  ON copy.BookID=loan.BookID 
+INNER JOIN bookisbn_authorid
+  ON copy.BookISBN=bookisbn_authorid.BookISBN
+INNER JOIN book
+  ON book.BookISBN=bookisbn_authorid.BookISBN
+INNER JOIN Author
+  ON bookisbn_authorid.AuthorID = Author.AuthorID
+WHERE Loan.LibraryCardID = thisLoanID;
+END$$
+DELIMITER ;

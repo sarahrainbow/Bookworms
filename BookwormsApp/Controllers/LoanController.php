@@ -55,15 +55,9 @@ namespace Controllers {
     
         }
         
-        public function loanBookPDO($loanDetails) {
-            try {
-                $conn = new PDO(DB_DSN, DB_USER);
-            } catch (PDOException $e) {
-                header("Location: ErrorPage.php");
-            }
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        public function loanBookPDO($conn, $loanDetails) {
             
-//            set variables from inputted data
+//            set and filter variables from inputted data
             foreach($loanDetails as $loanDetail => $loanValue) {
                 ${$loanDetail} = filterInput($loanDetail);
             }    
@@ -90,17 +84,9 @@ namespace Controllers {
             }
         }
         
-        public function returnBookPDO($loanDetails) {
-            
-            //            connect with db
-            try {
-                $conn = new PDO(DB_DSN, DB_USER);
-            } catch (PDOException $e) {
-                header("Location: ErrorPage.php");
-            }
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-//            set variables from inputted data
+        public function returnBookPDO($conn, $loanDetails) {
+      
+//            set and filter variables from inputted data
             foreach($loanDetails as $loanDetail => $loanValue) {
                 ${$loanDetail} = filterInput($loanDetail);
             }

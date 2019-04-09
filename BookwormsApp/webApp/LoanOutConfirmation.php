@@ -10,7 +10,7 @@
     <body>
         <h1>Bookworm Libraries</h1>
         <?php
-        session_start();   
+        session_start();
         const DB_DSN = 'mysql:host=localhost;dbname=libraryapp';
         const DB_USER = 'root';
         //const DB_PASS = 'pwd';
@@ -50,6 +50,7 @@
                 catch (PDOException $e) {
                     header("Location: ErrorPage.php");
                 }
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 include_once 'NavBar.html'; 
                 include_once 'NavBarCollapsed.html';
@@ -57,36 +58,25 @@
                 echo '<br><div class="paddedBlock"><h2>Book Loaned successfully!</h2>';
                 
                 $newLoanController = new LoanController();
-                $newLoanController->loanBookPDO($loanDetails);
+                $newLoanController->loanBookPDO($conn, $loanDetails);
                 $newLoanViewer = new LoanViewer();
                 $loan = new LoanNew();
-                $newLoanViewer->listItem($loan, $loanDetails);
-                
-//                foreach($loanDetails as $loanDetail => $loanValue) {
-//                    ${$loanDetail} = filterInput($loanDetail);
-//                    echo $loanDetail . ": " . $loanValue . "<br>";
-//                }
-//                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//
-//                $statement = $conn->prepare("INSERT INTO `loan`(`LibraryCardID`, `BookID`, `DateOut`) VALUES ((SELECT LibraryCardID from librarycardholder WHERE librarycardholder.LibraryCardID = :LibraryCardID), (SELECT BookID from copy WHERE copy.BookID = :BookID), :DateOut)");
-//
-//                try {
-//                    $statement->execute(['LibraryCardID' => $customerID, 'BookID' => $bookID, 'DateOut' => $loanOutDate]);                   
-//                } catch (PDOException $e) {
-//                    echo $e->getMessage() . ' on line ' . $e->getLine();
-//                    $error = $e->errorInfo;
-//                    die();
-//                }
-
-//                $loanID= rand(000, 1000);
-//                echo "loanID: " . $loanID . "<br>";
-//                $newLoan = new Loan($loanID, $loanOutDate, $bookID, $customerID, "Kennington");
-//                echo "Date loan due back: " . $newLoan->getLoanDueBackDate();
+                $newLoanViewer->listItem($conn, $loan, $loanDetails);              
                 
             }
+            
+            foreach($loanDetails as $loanDetail => $loanValue) {
+                ${$loanDetail} = filterInput($loanDetail);
+            }
+            
+            echo "<br>" . $customerID;
+            $_SESSION['LibraryCardID'] = $customerID;
+            
+            
         ?>
+        <br>
+        <a href="LoanActivity.php">See all loan activity from this library user</a>
 
-        </div>
         <?php include 'Footer.html';?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

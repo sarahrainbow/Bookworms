@@ -57,11 +57,17 @@ namespace Models {
         }  
         
         public function getLoanDueBackDate() {
-            return $this->DateOut;
+            return date('Y-m-d', strtotime('+1 month', strtotime($this->DateOut)));
         }
         
         public function setLoanDueBackDate() {
             return date('Y-m-d', strtotime('+1 month', strtotime($this->DateOut)));
+        }
+        
+        public function getIsLoanOverdue() {
+            if($this->getLoanDueBackDate() < $this->getDateReturned()){
+                return '<br>Loan overdue!';
+            }
         }
     
     }   

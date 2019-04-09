@@ -47,10 +47,10 @@
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $newLoanController = new LoanController();
-                $newLoanController->returnBookPDO($loanDetails);
+                $newLoanController->returnBookPDO($conn, $loanDetails);
                 $newLoanViewer = new LoanViewer();
                 $loan = new LoanNew();
-                $newLoanViewer->listItem($loan, $loanDetails);
+                $newLoanViewer->listItem($conn, $loan, $loanDetails);
                 
     //            set return date
 //                $returnDateStatement = $conn->prepare("UPDATE `loan` SET `DateReturned`= :DateReturned WHERE `BookID`= :BookID AND `LibraryCardID` = :CustomerID AND `DateReturned` IS NULL");
