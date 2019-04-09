@@ -74,7 +74,7 @@
             
         ?>
         <br>
-        <a href="LoanActivity.php">See all loan activity from this library user</a>
+        <a href="LoanActivity.php">See all loan activity from this library user</a></div>
 
         <?php include 'Footer.html';?>
 
