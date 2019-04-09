@@ -9,7 +9,8 @@ namespace Models{
         protected $addressNumber;
         protected $addressRoad; 
         protected $addressCity; 
-        protected $addressPostcode; 
+        protected $addressPostcode;
+        protected $phone;
         protected $email;
         protected $username;
         protected $password;
@@ -19,14 +20,15 @@ namespace Models{
         protected $datejoined;
         protected $privileges;
         
-        public function __construct(string $firstname, string $secondname, string $surname, string $addressNumber, string $addressRoad, string $addressCity, string $addressPostcode, string $email, string $username, string $password, string $privileges, string $datejoined){
+        public function __construct(string $firstname, string $secondname, string $surname, string $addressNumber, string $addressRoad, string $addressCity, string $addressPostcode, $phone, string $email, string $username, string $password, string $privileges, string $datejoined){
                 $this->firstname = $firstname;
                 $this->secondname = $secondname;
                 $this->surname = $surname;
                 $this->addressNumber = $addressNumber; 
                 $this->addressRoad = $addressRoad; 
                 $this->addressCity = $addressCity; 
-                $this->addressPostcode = $addressPostcode; 
+                $this->addressPostcode = $addressPostcode;
+                $this->phone = $phone;
                 $this->email = $email;
                 $this->username = $username;
                 $this->password = $password;
@@ -98,6 +100,14 @@ namespace Models{
         
         public function setAddressPostcode($newAddressPostcode){
             $this->addressPostcode=$newAddressPostcode;
+        }
+        
+         public function getPhone(){
+            return $this->phone;
+        }
+        
+        public function setPhone($newPhone){
+            $this->phone=$newPhone;
         }
         
         public function getEmail(){
