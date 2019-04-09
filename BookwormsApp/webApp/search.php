@@ -4,7 +4,7 @@
 $username = 'root';
 $password = '';
 
-if(isset($_GET['search'])) { //if something is entered in search box    
+if(isset($_GET['submit'])) { //if something is entered in search box    
 
 //Establish DB connection by instantiating PDO object and passing in variables
 try {
@@ -16,23 +16,40 @@ echo "Connection failed: ". $e-> getMessage();
 
 $conn-> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );//using setAttribute method to set PDO's object error method so can raise exceptions
 
+$str = $_GET['search'];
+$sth = $conn->prepare("SELECT * from 'book' WHERE Title = '$str'");
+
+$sth->setFetchMode(PDO:: FETCH_OBJ);
+$sth -> exectute();
+
+if ($row = $sth->fetch()){
+echo $row->Title;}
+
+else {
+    echo "No results found";
+}
+}
+
 //$stmt = $conn->prepare("SELECT * FROM book WHERE BookISBN LIKE '%:BookISBN%' OR Title LIKE '%:Title%'") or die("could not search");
-$stmt = $conn->prepare("SELECT * FROM book WHERE Title = :Title") or die("could not search");
+//$stmt = $conn->prepare("SELECT * FROM book WHERE Title = :Title") or die("could not search");
 //A prepared statement is a feature used to execute the same (or similar) SQL statements repeatedly
 
-try {
-//    $stmt->execute(['BookISBN' => $_GET['search']]);
-    $search = '%' . $_GET['search'] . '%';
-    $stmt->bindParam('Title', $_GET['search']);
-    $stmt->execute();
-    }
-catch (PDOException $e) {
-echo "Query failed: " . $e->getMessage();
-die();
-}
-$output = $stmt->fetchAll();
-}
-$conn = null; //close connection by destroying PDO object
+//try {
+//$stmt->execute(['BookISBN' => $_GET['search']]);
+//$search = '%' . $_GET['search'] . '%';
+//$stmt->bindParam('Title', $_GET['search']);
+//$stmt->execute;//(['Title' => $_GET['search'] ]);
+//$output = $stmt;
+ // }
+    
+//catch (PDOException $e) {
+//echo "Query failed: " . $e->getMessage();
+//die();
+//}
+//
+//
+//}
+//$conn = null; //close connection by destroying PDO object
 
 
 ?>
@@ -68,8 +85,7 @@ $conn = null; //close connection by destroying PDO object
         
         <h3 class="mb-4">Search results</h3>   
         
-      <?php echo ("$output");
-      ?>  </div>
+   
         
  
 <?php include 'Footer.html';?>
