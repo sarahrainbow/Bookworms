@@ -18,14 +18,14 @@
             <h1>Bookworm Libraries</h1>
                 <?php include 'NavBar.html'; include 'NavBarCollapsed.html';?>
         <div class="hide" id="form">                
-            <form action ="LoginPage.php" method="post" ID="hide" enctype="multipart/form-data">
+            <form action ="LoginSQL.php" method="post" ID="hide" enctype="multipart/form-data">
             <div class ="container">
                 Please login into your account
                 <br>
                 <br>
                 Username: <input type ="text" placeholder="Enter username" name="Username" autofocus required pattern=^[a-zA-Z]{1}[a-zA-Z0-9-_\.]{5,19}$ ><br>
                 Password: <input type ="password" placeholder="Enter password" name="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
-                <button type="submit" value="submit">Login</button>
+                <button type="submit" id="submit" value="submit">Login</button>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
                 <br>
                 <a href="ForgotUsername.php">Forgot password?</a>
@@ -38,6 +38,7 @@
 
     if(!empty($_POST)){
         $_SESSION["Username"] = filter_input(INPUT_POST,'Username');
+        $_SESSION["Password"] = filter_input(INPUT_POST,'Password');
         }
     if(!empty($_SESSION)){
             echo "Welcome ".$_SESSION['Username'] . '<br>';
