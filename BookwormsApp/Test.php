@@ -32,8 +32,8 @@ namespace Tests {
             $this->testBook = new Book(000001, 'Harry Potter', ['J K Rowling'], 135, 1989, 'Children', 'Kennington');
             $this->testBookController= new BookController();
             $this->testBookViewer= new Bookviewer();
-            $this->testEmployee= new Employee(2384958, 'librarian', 'Frida', '','Kahlo','4','Feet Under','','','','','','','');
-            $this->testCustomer = new Customer(12345, 'Matilda', 'Honey', 'Wormwood','9','Youngwood Drive','London','N12 78H','matildahoney@gmail.com','bookworm23','Password123','','');
+            $this->testEmployee= new Employee(2384958, 'librarian', 'Frida', '','Kahlo','4','Feet Under','','','','','','','','');
+            $this->testCustomer = new Customer('Matilda', 'Honey', 'Wormwood','9','Youngwood Drive','London','N12 78H','07123456789','matildahoney@gmail.com','bookworm23','Password123','','');
             $this->testCustomerController = new CustomerController();
             $this->testLoan = new Loan(98765, '13-01-19', 1, 2, "Kennington");
             $this->testLoanController = new LoanController();
