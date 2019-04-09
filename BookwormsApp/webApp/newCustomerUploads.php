@@ -53,7 +53,7 @@
                 , $phone, $email, $username, $password, 'libraryuser', date("Y/m/d"));
         
         
-        #Add to database - issue with prepared statements not picking up associative array
+        #Add to database
         
             //  SQL statements to use below
         $searchUsersql="SELECT * FROM librarycardholder where Username = :username;";#didn't work when I had ':username'
@@ -75,7 +75,7 @@
             If( $user = $stmt->fetch()){//true if username already exists, must be unique, so sends to error page (does work but when testing remember to refresh page)
                 header("Location: uploadErrorPage.php"); 
                 $_SESSION['uploadError']['errorMessage']="Username already exists, please try another";#change to an exeption?
-            #die('hello');
+                die();
             }
             else {//if user doesn't already exist, we want to add them - need to add data across various tables
                 #die('hi');
